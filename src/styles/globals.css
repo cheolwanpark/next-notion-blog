@@ -1,5 +1,21 @@
+:root {
+  --gap: 24px;
+  --main-width: 720px;
+}
+:root:not([data-theme="dark"]),
+[data-theme="light"] {
+  --background-color: rgb(245, 245, 245);
+}
+[data-theme="dark"] {
+  --background-color: rgb(29, 30, 32);
+}
+
 .screen {
   min-width: 100vw;
   min-height: 100vh;
   background-color: var(--background-color);
+}
+
+main.main {
+  max-width: var(--main-width);
 }

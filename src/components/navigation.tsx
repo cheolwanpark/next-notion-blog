@@ -1,5 +1,6 @@
+import { config } from "@/config";
 import { DarkModeContext } from "@/services/darkmode";
-import { uiFont } from "@/services/font";
+import { ui } from "@/services/font";
 import classNames from "classnames";
 import Link from "next/link";
 import { createElement, useContext } from "react";
@@ -17,11 +18,11 @@ export const Navigation = () => {
   };
   return (
     <>
-      <nav className={classNames("container", uiFont)}>
+      <nav className={classNames("container", ui)}>
         <ul>
           <li className="title">
             <Link href="/" data-nopico>
-              <strong>Covilog</strong>
+              <strong>{config.blogTitle}</strong>
             </Link>
           </li>
         </ul>
