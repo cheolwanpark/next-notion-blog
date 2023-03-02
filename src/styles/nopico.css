@@ -1,0 +1,38 @@
+a[data-nopico] {
+  --color: var(--color);
+}
+a[data-nopico]:is([aria-current], :hover, :active, :focus) {
+  --background-color: var(--background-color);
+  --text-decoration: var(--text-decoration);
+  --color: var(--color);
+}
+[role="button"][data-nopico],
+button[data-nopico],
+input[type="button"][data-nopico],
+input[type="reset"][data-nopico],
+input[type="submit"][data-nopico] {
+  --background-color: var(--background-color);
+  --border-color: var(--border-color);
+  --color: var(--color);
+  --box-shadow: var(--box-shadow);
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  text-align: center;
+  cursor: pointer;
+}
+[role="button"][data-nopico]:is([aria-current], :hover, :active, :focus),
+button[data-nopico]:is([aria-current], :hover, :active, :focus),
+input[type="button"][data-nopico]:is([aria-current], :hover, :active, :focus),
+input[type="reset"][data-nopico]:is([aria-current], :hover, :active, :focus),
+input[type="submit"][data-nopico]:is([aria-current], :hover, :active, :focus) {
+  --background-color: var(--background-color);
+  --border-color: var(--border-color);
+  --color: var(--color);
+  --box-shadow: var(--box-shadow);
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  text-align: center;
+  cursor: pointer;
+}
