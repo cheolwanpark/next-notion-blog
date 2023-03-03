@@ -12,6 +12,7 @@ export const getPageMeta = (
 ): PageMeta | null => {
   try {
     if (isFullPage(page)) {
+      const id = page.id;
       const title = page.properties["Name"];
       const author = page.properties["Author"];
       const description = page.properties["Description"];
@@ -21,6 +22,7 @@ export const getPageMeta = (
       const published = page.properties["Published"];
       const updated = page.last_edited_time;
       return {
+        id,
         title: title.type === "title" ? plainText(title.title) : "",
         author: author.type === "rich_text" ? plainText(author.rich_text) : "",
         description:

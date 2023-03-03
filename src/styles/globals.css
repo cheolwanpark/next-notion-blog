@@ -8,6 +8,7 @@
 }
 [data-theme="dark"] {
   --background-color: rgb(29, 30, 32);
+  --card-background-color: rgb(46, 46, 51);
 }
 
 .screen {
@@ -17,5 +18,21 @@
 }
 
 main.main {
-  max-width: var(--main-width);
+  width: 100%;
+  padding: var(--gap);
+}
+@media (min-width: 576px) {
+  main.main {
+    max-width: 510px;
+  }
+}
+@media (min-width: 768px) {
+  main.main {
+    max-width: 700px;
+  }
+}
+@media (min-width: 992px) {
+  main.main {
+    max-width: var(--main-width);
+  }
 }

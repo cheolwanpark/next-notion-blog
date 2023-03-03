@@ -39,6 +39,7 @@ export type QueryResponse = {
 };
 
 export type PageMeta = {
+  id: string;
   title: string;
   author: string;
   description: string;

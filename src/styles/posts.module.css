@@ -1,0 +1,50 @@
+.post {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 24px 24px;
+  margin: 24px 0;
+}
+.post > hgroup {
+  margin-bottom: 7px;
+}
+.post h1 {
+  font-size: 21px;
+  margin-bottom: 7px;
+}
+.post h2 {
+  font-size: 14px;
+  margin-bottom: 0;
+}
+
+.tags {
+  padding: 0;
+  margin-bottom: 7px;
+  z-index: 999;
+}
+.tags li {
+  list-style: none;
+  float: left;
+  font-size: 12px;
+  margin-right: 9px;
+  margin-bottom: 0;
+}
+.tags li:hover {
+  color: var(--primary);
+}
+
+.additional {
+  color: var(--color-muted);
+  font-size: 12px;
+  margin-bottom: 0;
+  text-align: start;
+}
+
+.link {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}

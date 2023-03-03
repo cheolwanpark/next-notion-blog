@@ -1,0 +1,13 @@
+.title {
+  font-size: 24px;
+  color: var(--color);
+}
+.title:hover {
+  color: var(--primary);
+}
+.button {
+  color: var(--color);
+}
+.button:hover {
+  color: var(--primary);
+}

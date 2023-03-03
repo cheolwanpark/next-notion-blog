@@ -9,6 +9,7 @@ import {
   BsFillMoonFill,
   BsSearch,
 } from "react-icons/bs";
+import styles from "@/styles/navigation.module.css";
 
 export const Navigation = () => {
   const { isDarkMode, setMode } = useContext(DarkModeContext);
@@ -17,43 +18,30 @@ export const Navigation = () => {
     setMode(!isDarkMode);
   };
   return (
-    <>
-      <nav className={classNames("container", ui)}>
-        <ul>
-          <li className="title">
-            <Link href="/" data-nopico>
-              <strong>{config.blogTitle}</strong>
-            </Link>
-          </li>
-        </ul>
-        <ul>
-          <li>
-            <button onClick={toggleDarkMode} className="button" data-nopico>
-              {createElement(darkModeIcon)}
-            </button>
-          </li>
-          <li>
-            <button className="button" data-nopico>
-              <BsSearch />
-            </button>
-          </li>
-        </ul>
-      </nav>
-      <style jsx>{`
-        .title {
-          font-size: 24px;
-          color: var(--color);
-        }
-        .title:hover {
-          color: var(--primary);
-        }
-        .button {
-          color: var(--color);
-        }
-        .button:hover {
-          color: var(--primary);
-        }
-      `}</style>
-    </>
+    <nav className={classNames("container", ui)}>
+      <ul>
+        <li className={styles.title}>
+          <Link href="/" data-nopico>
+            <strong>{config.blogTitle}</strong>
+          </Link>
+        </li>
+      </ul>
+      <ul>
+        <li>
+          <button
+            onClick={toggleDarkMode}
+            className={styles.button}
+            data-nopico
+          >
+            {createElement(darkModeIcon)}
+          </button>
+        </li>
+        <li>
+          <button className={styles.button} data-nopico>
+            <BsSearch />
+          </button>
+        </li>
+      </ul>
+    </nav>
   );
 };

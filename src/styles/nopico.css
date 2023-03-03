@@ -1,7 +1,9 @@
-a[data-nopico] {
+a[data-nopico],
+[role="link"][data-nopico] {
   --color: var(--color);
 }
-a[data-nopico]:is([aria-current], :hover, :active, :focus) {
+a[data-nopico]:is([aria-current], :hover, :active, :focus),
+[role="link"][data-nopico]:is([aria-current], :hover, :active, :focus) {
   --background-color: var(--background-color);
   --text-decoration: var(--text-decoration);
   --color: var(--color);
@@ -37,7 +39,6 @@ input[type="submit"][data-nopico]:is([aria-current], :hover, :active, :focus) {
   cursor: pointer;
 }
 article[data-nopico] {
-  margin: 0;
   padding: 0;
   border-radius: 0;
   background: none;
