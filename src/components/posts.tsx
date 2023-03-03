@@ -11,9 +11,9 @@ export const Posts = ({ posts, size }: { posts: PageMeta[]; size: number }) => {
       {posts.slice(0, size).map((post) => {
         const published = dayjs(post.published).format("MMMM DD, YYYY");
         return (
-          <article key={post.title} className={styles.post}>
+          <article key={post.path} className={styles.post}>
             <Link
-              href={`/post/${post.title}`}
+              href={`/post/${post.path}`}
               className={styles.link}
               data-nopico
             ></Link>

@@ -13,16 +13,17 @@ export const getPageMeta = (
   try {
     if (isFullPage(page)) {
       const id = page.id;
+      const path = page.properties["Path"];
       const title = page.properties["Name"];
       const author = page.properties["Author"];
       const description = page.properties["Description"];
       const tags = page.properties["Tags"];
       const isPublic = page.properties["Public"];
-      const featured = page.properties["Featured"];
       const published = page.properties["Published"];
       const updated = page.last_edited_time;
       return {
         id,
+        path: path.type === "rich_text" ? plainText(path.rich_text) : "",
         title: title.type === "title" ? plainText(title.title) : "",
         author: author.type === "rich_text" ? plainText(author.rich_text) : "",
         description:
@@ -34,7 +35,6 @@ export const getPageMeta = (
             ? tags.multi_select.map((option) => option.name)
             : [],
         public: isPublic.type === "checkbox" ? isPublic.checkbox : false,
-        featured: featured.type === "checkbox" ? featured.checkbox : false,
         published:
           published.type === "date"
             ? dayjs(published.date!.start).toJSON()
