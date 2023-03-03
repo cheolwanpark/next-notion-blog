@@ -1,5 +1,5 @@
 import { config } from "@/config";
-import { contentBold, contentReg, ui } from "@/services/font";
+import { contentBold, contentReg } from "@/services/font";
 import Link from "next/link";
 import { BsGithub } from "react-icons/bs";
 
