@@ -7,7 +7,7 @@ import Link from "next/link";
 
 export const Posts = ({ posts, size }: { posts: PageMeta[]; size: number }) => {
   return (
-    <section>
+    <section className={styles.posts}>
       {posts.slice(0, size).map((post) => {
         const published = dayjs(post.published).format("MMMM DD, YYYY");
         return (
