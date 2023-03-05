@@ -4,8 +4,28 @@ import {
   PartialPageObjectResponse,
 } from "@notionhq/client/build/src/api-endpoints";
 import dayjs from "dayjs";
+import pMemoize from "p-memoize";
+import { notion } from "./api";
+import { query } from "./query";
 import { PageMeta } from "./types";
 import { plainText } from "./utils";
+
+const getPageImpl = async (id: string) => {
+  const page = await notion.pages.retrieve({ page_id: id });
+  return getPageMeta(page);
+};
+export const getPage = pMemoize(getPageImpl);
+
+const getAllPagesImpl = async () => {
+  let response = null;
+  let pages: PageMeta[] = [];
+  do {
+    response = await query();
+    pages = pages.concat(response.pages);
+  } while (response.next_cursor);
+  return pages;
+};
+export const getAllPages = pMemoize(getAllPagesImpl);
 
 export const getPageMeta = (
   page: PageObjectResponse | PartialPageObjectResponse,
