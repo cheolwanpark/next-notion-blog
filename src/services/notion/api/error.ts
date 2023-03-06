@@ -134,10 +134,10 @@ export const notionErrorHandler = <T extends (...args: any[]) => Promise<any>>(
             break;
 
           default:
-            throw new NotHandledError();
             break;
         }
       }
+      throw new NotHandledError();
     }
   });
 };
