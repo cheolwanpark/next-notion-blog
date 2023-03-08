@@ -1,0 +1,136 @@
+.blod {
+  font-weight: 900;
+}
+.italic {
+  font-style: italic;
+}
+.strikethrough {
+  text-decoration: line-through;
+}
+.underline {
+  text-decoration: underline;
+}
+
+/* https://optemization.com/notion-color-guide */
+.default {
+  color: var(--color);
+}
+.blue {
+  color: #0b6e99;
+}
+[data-theme="dark"] .blue {
+  color: #529cca;
+}
+.brown {
+  color: #64473a;
+}
+[data-theme="dark"] .brown {
+  color: #937264;
+}
+.gray {
+  color: #9b9a97;
+}
+[data-theme="dark"] .gray {
+  color: #979a9b;
+  opacity: 0.95;
+}
+.green {
+  color: #0f7b6c;
+}
+[data-theme="dark"] .green {
+  color: #4dab9a;
+}
+.orange {
+  color: #d9730d;
+}
+[data-theme="dark"] .orange {
+  color: #ffa344;
+}
+.pink {
+  color: #ad1a72;
+}
+[data-theme="dark"] .pink {
+  color: #e255a1;
+}
+.purple {
+  color: #6940a5;
+}
+[data-theme="dark"] .purple {
+  color: #9a6dd7;
+}
+.red {
+  color: #e03e3e;
+}
+[data-theme="dark"] .red {
+  color: #ff7369;
+}
+.yellow {
+  color: #dfab01;
+}
+[data-theme="dark"] .yellow {
+  color: #ffdc49;
+}
+
+.blue_background {
+  color: var(--color);
+  background-color: #ddebf1;
+}
+[data-theme="dark"] .blue_background {
+  background-color: #364954;
+}
+.brown_background {
+  color: var(--color);
+  background-color: #e9e5e3;
+}
+[data-theme="dark"] .brown_background {
+  background-color: #434040;
+}
+.gray_background {
+  color: var(--color);
+  background-color: #ebeced;
+}
+[data-theme="dark"] .gray_background {
+  background-color: #454b4e;
+}
+.green_background {
+  color: var(--color);
+  background-color: #ddedea;
+}
+[data-theme="dark"] .green_background {
+  background-color: #354c4b;
+}
+.orange_background {
+  color: var(--color);
+  background-color: #faebdd;
+}
+[data-theme="dark"] .orange_background {
+  background-color: #594a3a;
+}
+.pink_background {
+  color: var(--color);
+  background-color: #f4dfeb;
+}
+[data-theme="dark"] .pink_background {
+  background-color: #533b4c;
+}
+.purple_background {
+  color: var(--color);
+  background-color: #eae4f2;
+}
+[data-theme="dark"] .purple_background {
+  background-color: #443f57;
+}
+.red_background {
+  color: var(--color);
+  background-color: #fbe4e4;
+}
+[data-theme="dark"] .red_background {
+  background-color: #594141;
+}
+.yellow_background {
+  color: var(--color);
+  background-color: #fbf3db;
+}
+[data-theme="dark"] .yellow_background {
+  background-color: #59563b;
+}

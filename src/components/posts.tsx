@@ -1,4 +1,4 @@
-import { contentBold, contentReg } from "@/services/font";
+import { content } from "@/services/font";
 import { PageMeta } from "@/services/notion/types";
 import styles from "@/styles/posts.module.css";
 import classNames from "classnames";
@@ -11,20 +11,20 @@ export const Posts = ({ posts, size }: { posts: PageMeta[]; size: number }) => {
       {posts.slice(0, size).map((post) => {
         const published = dayjs(post.published).format("MMMM DD, YYYY");
         return (
-          <article key={post.path} className={styles.post}>
+          <article key={post.path} className={classNames(styles.post, content)}>
             <Link
               href={`/post/${post.path}`}
               className={styles.link}
               data-nopico
             ></Link>
             <hgroup>
-              <h1 className={contentBold}>{post.title}</h1>
-              <h2 className={contentReg}>{post.description}</h2>
+              <h1>{post.title}</h1>
+              <h2>{post.description}</h2>
             </hgroup>
             <ul className={styles.tags}>
               {post.tags.map((tag) => {
                 return (
-                  <li className={contentBold}>
+                  <li key={tag}>
                     <Link href={`/tag/${tag}`} data-nopico>
                       #{tag}
                     </Link>
@@ -33,7 +33,7 @@ export const Posts = ({ posts, size }: { posts: PageMeta[]; size: number }) => {
               })}
             </ul>
             <p
-              className={classNames(styles.additional, contentReg)}
+              className={styles.additional}
             >{`${published} · ${post.author}`}</p>
           </article>
         );

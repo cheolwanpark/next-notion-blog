@@ -1,15 +1,16 @@
 import { config } from "@/config";
-import { contentBold, contentReg } from "@/services/font";
+import { content } from "@/services/font";
 import Link from "next/link";
 import { BsGithub } from "react-icons/bs";
 import styles from "@/styles/intro.module.css";
+import classNames from "classnames";
 
 export const Intro = () => {
   return (
-    <article className={styles.intro} data-nopico>
+    <article className={classNames(styles.intro, content)} data-nopico>
       <hgroup>
-        <h1 className={contentBold}>{config.blogTitle}</h1>
-        <h2 className={contentReg}>
+        <h1>{config.blogTitle}</h1>
+        <h2>
           Welcome to demo of hugo’s theme PaperMod.
           <br />
           PaperMod is a simple but fast and responsive theme with useful

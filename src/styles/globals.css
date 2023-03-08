@@ -1,6 +1,7 @@
 :root {
   --gap: 24px;
   --main-width: 720px;
+  --font-family: unset;
 }
 :root:not([data-theme="dark"]),
 [data-theme="light"] {
