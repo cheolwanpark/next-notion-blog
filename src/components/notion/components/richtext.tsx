@@ -14,7 +14,7 @@ export const RichText = ({
     <>
       {richTexts.map((richText, idx) => {
         const style = getClassNames(richText);
-        const color = getColor(richText);
+        const color = getColorClass(richText.annotations.color);
         const className = classNames(...style, color, "richtext");
         if (richText.type === "text") {
           const content = richText.text.content;
@@ -23,10 +23,10 @@ export const RichText = ({
             <span className={className} key={idx}>
               {link ? (
                 <Link className={styles.link} href={link} data-nopico>
-                  {content}
+                  <NewLineAppliedText content={content} />
                 </Link>
               ) : (
-                content
+                <NewLineAppliedText content={content} />
               )}
             </span>
           );
@@ -48,6 +48,17 @@ const getClassNames = (richText: RichTextItemResponse) => {
   return classNames;
 };
 
-const getColor = (richText: RichTextItemResponse) => {
-  return getColorClass(richText.annotations.color);
+const NewLineAppliedText = ({ content }: { content: string }) => {
+  return (
+    <>
+      {content.split("\n").map((substr, idx, arr) => {
+        const isMiddle = idx < arr.length - 1;
+        return (
+          <>
+            {substr} {isMiddle && <br />}
+          </>
+        );
+      })}
+    </>
+  );
 };

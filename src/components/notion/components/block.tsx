@@ -1,6 +1,7 @@
 import { BlockWithChildren } from "@/services/notion/types/block";
 import { Heading1, Heading2, Heading3 } from "./headings";
 import { Paragraph } from "./paragraph";
+import { Quote } from "./quote";
 
 export const Block = ({ block }: { block: BlockWithChildren }) => {
   switch (block.type) {
@@ -12,6 +13,8 @@ export const Block = ({ block }: { block: BlockWithChildren }) => {
       return <Heading2 block={block} />;
     case "heading_3":
       return <Heading3 block={block} />;
+    case "quote":
+      return <Quote block={block} />;
     default:
       return <div></div>;
   }

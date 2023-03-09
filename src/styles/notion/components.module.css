@@ -10,3 +10,11 @@
   font-size: 1.25rem;
   margin: 1rem 0;
 }
+
+.quote {
+  border-left: 3px solid currentcolor;
+  padding-left: 14px;
+  padding-right: 14px;
+  width: 100%;
+  margin: 10px 0;
+}
