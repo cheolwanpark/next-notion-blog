@@ -1,5 +1,5 @@
 import { RichTextItemResponse } from "@notionhq/client/build/src/api-endpoints";
-import styles from "@/styles/notion.richtext.module.css";
+import styles from "@/styles/notion/richtext.module.css";
 import classNames from "classnames";
 import Link from "next/link";
 
@@ -23,7 +23,7 @@ export const RichText = ({
           return (
             <span className={className} key={idx}>
               {link ? (
-                <Link href={link} data-nopico>
+                <Link className={styles.link} href={link} data-nopico>
                   {content}
                 </Link>
               ) : (

@@ -5,7 +5,7 @@ import {
   Heading3BlockObjectResponse,
 } from "@notionhq/client/build/src/api-endpoints";
 import { RichText } from "./richtext";
-import styles from "@/styles/notion.components.module.css";
+import styles from "@/styles/notion/components.module.css";
 
 // TODO: support childs
 export const Heading1 = ({

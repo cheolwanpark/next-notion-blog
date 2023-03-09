@@ -11,64 +11,138 @@
   text-decoration: underline;
 }
 
+.link {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 /* https://optemization.com/notion-color-guide */
 .default {
   color: var(--color);
 }
+.default .link {
+  color: #9c9c99;
+}
+[data-theme="dark"] .default .link {
+  color: #72797e;
+}
 .blue {
   color: #0b6e99;
+}
+.blue .link {
+  color: #0078df;
 }
 [data-theme="dark"] .blue {
   color: #529cca;
 }
+[data-theme="dark"] .blue .link {
+  color: #529cca;
+  opacity: 0.5;
+}
 .brown {
   color: #64473a;
+}
+.brown .link {
+  color: #8c2e00;
 }
 [data-theme="dark"] .brown {
   color: #937264;
 }
+[data-theme="dark"] .brown .link {
+  color: #937264;
+  opacity: 0.5;
+}
 .gray {
+  color: #9b9a97;
+}
+.gray .link {
   color: #9b9a97;
 }
 [data-theme="dark"] .gray {
   color: #979a9b;
   opacity: 0.95;
 }
+[data-theme="dark"] .gray .link {
+  color: #979a9b;
+  opacity: 0.5;
+}
 .green {
   color: #0f7b6c;
+}
+.green .link {
+  color: #00876b;
 }
 [data-theme="dark"] .green {
   color: #4dab9a;
 }
+[data-theme="dark"] .green .link {
+  color: #4dab9a;
+  opacity: 0.5;
+}
 .orange {
   color: #d9730d;
+}
+.orange .link {
+  color: #f55d00;
 }
 [data-theme="dark"] .orange {
   color: #ffa344;
 }
+[data-theme="dark"] .orange .link {
+  color: #ffa344;
+  opacity: 0.5;
+}
 .pink {
   color: #ad1a72;
+}
+.pink .link {
+  color: #dd0081;
 }
 [data-theme="dark"] .pink {
   color: #e255a1;
 }
+[data-theme="dark"] .pink .link {
+  color: #e255a1;
+  opacity: 0.5;
+}
 .purple {
   color: #6940a5;
+}
+.purple .link {
+  color: #6724de;
 }
 [data-theme="dark"] .purple {
   color: #9a6dd7;
 }
+[data-theme="dark"] .purple .link {
+  color: #9a6dd7;
+  opacity: 0.5;
+}
 .red {
   color: #e03e3e;
+}
+.red .link {
+  color: #ff001a;
 }
 [data-theme="dark"] .red {
   color: #ff7369;
 }
+[data-theme="dark"] .red .link {
+  color: #ff7369;
+  opacity: 0.5;
+}
 .yellow {
   color: #dfab01;
 }
+.yellow .link {
+  color: #e9a800;
+}
 [data-theme="dark"] .yellow {
   color: #ffdc49;
+}
+[data-theme="dark"] .yellow .link {
+  color: #ffdc49;
+  opacity: 0.5;
 }
 
 .blue_background {
