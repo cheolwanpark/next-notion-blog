@@ -54,9 +54,9 @@ const NewLineAppliedText = ({ content }: { content: string }) => {
       {content.split("\n").map((substr, idx, arr) => {
         const isMiddle = idx < arr.length - 1;
         return (
-          <>
+          <span key={idx}>
             {substr} {isMiddle && <br />}
-          </>
+          </span>
         );
       })}
     </>

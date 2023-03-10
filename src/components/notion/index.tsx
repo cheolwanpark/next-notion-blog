@@ -4,8 +4,8 @@ import { Block } from "./components/block";
 export const NotionRenderer = ({ blocks }: { blocks: BlockWithChildren[] }) => {
   return (
     <div>
-      {blocks.map((block, idx) => {
-        return <Block block={block} key={idx} />;
+      {blocks.map((block, idx, arr) => {
+        return <Block block={block} blocks={arr} idx={idx} key={idx} />;
       })}
     </div>
   );

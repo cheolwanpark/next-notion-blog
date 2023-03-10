@@ -18,3 +18,31 @@
   width: 100%;
   margin: 10px 0;
 }
+
+.bulletedlist {
+  fill: currentColor;
+  color: unset;
+}
+.bulletedlist > li {
+  list-style-type: disc;
+  margin-bottom: 7px;
+}
+.bulletedlist .bulletedlist > li {
+  list-style-type: circle;
+}
+.bulletedlist .bulletedlist .bulletedlist > li {
+  list-style-type: square;
+}
+.numberedlist {
+  fill: currentColor;
+  color: unset;
+}
+.numberedlist > li {
+  list-style-type: decimal;
+}
+.numberedlist .numberedlist > li {
+  list-style-type: lower-alpha;
+}
+.numberedlist .numberedlist .numberedlist > li {
+  list-style-type: lower-roman;
+}
