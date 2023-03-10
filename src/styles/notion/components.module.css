@@ -1,3 +1,7 @@
+.renderer {
+  color: var(--color);
+}
+
 .heading1 {
   font-size: 1.875em;
   margin: 1.3rem 0;
@@ -45,4 +49,14 @@
 }
 .numberedlist .numberedlist .numberedlist > li {
   list-style-type: lower-roman;
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  visibility: visible;
+  border-bottom: 1px solid rgba(55, 53, 47, 0.16);
+}
+[data-theme="dark"] .divider {
+  border-bottom: 1px solid rgba(206, 203, 192, 0.479);
 }

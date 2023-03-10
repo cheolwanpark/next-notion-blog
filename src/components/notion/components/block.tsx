@@ -1,5 +1,6 @@
 import { BlockWithChildren } from "@/services/notion/types/block";
 import { Blank } from "./blank";
+import { Divider } from "./divider";
 import { Heading1, Heading2, Heading3 } from "./headings";
 import { BulletedList, NumberedList } from "./list";
 import { Paragraph } from "./paragraph";
@@ -29,6 +30,8 @@ export const Block = ({
       return <BulletedList block={block} blocks={blocks} idx={idx} />;
     case "numbered_list_item":
       return <NumberedList block={block} blocks={blocks} idx={idx} />;
+    case "divider":
+      return <Divider block={block} />;
     default:
       return <Blank />;
   }
