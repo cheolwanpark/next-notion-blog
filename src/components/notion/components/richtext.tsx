@@ -31,7 +31,7 @@ export const RichText = ({
             </span>
           );
         } else {
-          return <span></span>;
+          return <span key={idx}></span>;
         }
       })}
     </>

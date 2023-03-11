@@ -2,36 +2,44 @@ import { isNotFoundError } from "@/services/notion/api/error";
 import { query } from "@/services/notion/query";
 import { PageMeta } from "@/services/notion/types";
 import { getBlocks } from "@/services/notion/block";
-import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
+import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
 import { isServer } from "@/services/utils";
 import { NotionRenderer } from "@/components/notion";
 import { BlockWithChildren } from "@/services/notion/types/block";
 import { content } from "@/services/font";
+import { useRouter } from "next/router";
+import { Spinner } from "@/components/spinner";
 
 export default function PostPage({
   meta,
   blocks,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) {
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   if (!isServer) {
     console.log(meta);
     console.log(blocks);
   }
-  return (
-    <article className={content} data-nopico>
-      <NotionRenderer blocks={blocks} />
-    </article>
-  );
+  const router = useRouter();
+  if (router.isFallback) {
+    return <Spinner />;
+  } else {
+    return (
+      <article className={content} data-nopico>
+        <NotionRenderer blocks={blocks} />
+      </article>
+    );
+  }
 }
 
-export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+export const getStaticProps: GetStaticProps = async (ctx) => {
   const createProp = (meta: PageMeta | null, blocks: BlockWithChildren[]) => {
     return {
       props: { meta, blocks },
+      revalidate: 60 * 60,
     };
   };
   try {
     const queryResult = await query({
-      path: ctx.query.path as string,
+      path: ctx.params!.path as string,
     });
     if (queryResult.pages.length !== 1) {
       return createProp(null, []);
@@ -43,5 +51,13 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
     if (isNotFoundError(error)) {
       return createProp(null, []);
     }
+    throw error;
   }
-}
+};
+
+export const getStaticPaths: GetStaticPaths = async (ctx) => {
+  return {
+    paths: [],
+    fallback: "blocking",
+  };
+};
