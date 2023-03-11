@@ -1,4 +1,5 @@
 import { BlockWithChildren } from "@/services/notion/types/block";
+import dynamic from "next/dynamic";
 import { Blank } from "./blank";
 import { Divider } from "./divider";
 import { Heading1, Heading2, Heading3 } from "./headings";
@@ -32,7 +33,16 @@ export const Block = ({
       return <NumberedList block={block} blocks={blocks} idx={idx} />;
     case "divider":
       return <Divider block={block} />;
+    case "code":
+      return <Code block={block} />;
     default:
       return <Blank />;
   }
 };
+
+const Code = dynamic(() =>
+  import("./code").then(async (mod) => {
+    await import("@/services/prism");
+    return mod.Code;
+  }),
+);
