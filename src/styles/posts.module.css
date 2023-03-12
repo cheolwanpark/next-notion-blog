@@ -32,6 +32,7 @@
   font-size: 12px;
   margin-right: 9px;
   margin-bottom: 0;
+  font-weight: 900;
 }
 .tags li:hover {
   color: var(--primary);

@@ -1,21 +1,20 @@
 import { config } from "@/config";
-import { isFullPage } from "@notionhq/client";
 import {
   PageObjectResponse,
   PartialPageObjectResponse,
 } from "@notionhq/client/build/src/api-endpoints";
-import dayjs from "dayjs";
 import pMemoize from "p-memoize";
 import { notion } from "./api";
 import { getPageMeta } from "./page";
+import { isNotNull } from "@/services/utils";
 import {
   isContentQuery,
   isNextPageQuery,
+  isPathQuery,
   isTagQuery,
   PageMeta,
   Query,
 } from "./types";
-import { notNull } from "./utils";
 
 const queryImpl = async (query?: Query, page_size?: number) => {
   const response = await notion.databases.query({
@@ -27,7 +26,7 @@ const queryImpl = async (query?: Query, page_size?: number) => {
   });
   return {
     next_cursor: response.next_cursor,
-    pages: convert(response.results),
+    pages: extractPageMeta(response.results),
   };
 };
 
@@ -36,7 +35,9 @@ const buildFilter = (q?: Query) => {
     return {
       [q.type]: q.tags.map((tag) => ({
         property: "Tags",
-        contains: tag,
+        multi_select: {
+          contains: tag,
+        },
       })),
     };
   } else if (isContentQuery(q)) {
@@ -44,27 +45,42 @@ const buildFilter = (q?: Query) => {
     if (q.title) {
       condition.push({
         property: "Name",
-        contains: q.title,
+        rich_text: {
+          contains: q.title,
+        },
       });
     }
     if (q.description) {
       condition.push({
         property: "Description",
-        contains: q.description,
+        rich_text: {
+          contains: q.description,
+        },
       });
     }
     return {
       [q.type]: condition,
+    };
+  } else if (isPathQuery(q)) {
+    return {
+      and: [
+        {
+          property: "Path",
+          rich_text: {
+            equals: q.path,
+          },
+        },
+      ],
     };
   } else {
     return undefined;
   }
 };
 
-const convert = (
+const extractPageMeta = (
   pages: (PageObjectResponse | PartialPageObjectResponse)[],
 ): PageMeta[] => {
-  return pages.map((page) => getPageMeta(page)).filter(notNull);
+  return pages.map((page) => getPageMeta(page)).filter(isNotNull);
 };
 
 export const query = pMemoize(queryImpl);

@@ -11,4 +11,4 @@ const getClient = () => {
   }
 };
 
-export const notion: Client = getClient()!;
+export const client: Client = getClient()!;
