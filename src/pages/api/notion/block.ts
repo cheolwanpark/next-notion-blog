@@ -7,7 +7,7 @@ type GetBlockResponse = {
   block: ImageBlockExtended | null;
 };
 
-export default async (
+const handler = async (
   req: NextApiRequest,
   res: NextApiResponse<GetBlockResponse>,
 ) => {
@@ -19,3 +19,5 @@ export default async (
     res.status(400).json({ block: null });
   }
 };
+
+export default handler;

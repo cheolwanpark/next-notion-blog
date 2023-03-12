@@ -3,7 +3,7 @@ import dynamic from "next/dynamic";
 import { Blank } from "./blank";
 import { Divider } from "./divider";
 import { Heading1, Heading2, Heading3 } from "./headings";
-import { Image } from "./image";
+import { NotionImage } from "./image";
 import { BulletedList, NumberedList } from "./list";
 import { Paragraph } from "./paragraph";
 import { Quote } from "./quote";
@@ -37,7 +37,7 @@ export const Block = ({
     case "code":
       return <Code block={block} />;
     case "image":
-      return <Image block={block} />;
+      return <NotionImage block={block} />;
     default:
       return <Blank />;
   }
