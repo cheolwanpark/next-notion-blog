@@ -3,75 +3,63 @@ import {
   WithChildren,
 } from "@/services/notion/types/block";
 import dayjs from "dayjs";
-import NextImage from "next/image";
-import { useMemo } from "react";
+import Image from "next/image";
 import styles from "@/styles/notion/components.module.css";
 import { RichText } from "./richtext";
-import {
-  GetBlockResponse,
-  RichTextItemResponse,
-} from "@notionhq/client/build/src/api-endpoints";
 import useSWR from "swr";
+import { Spinner } from "@/components/spinner";
 
-const ImageImpl = ({
-  url,
-  dim,
-  caption,
-  unoptimized,
-}: {
-  url: string;
-  dim: {
-    width: number;
-    height: number;
-  };
-  caption: RichTextItemResponse[];
-  unoptimized?: boolean;
-}) => {
-  return (
-    <div className={styles.image}>
-      <NextImage
-        src={url}
-        width={dim.width}
-        height={dim.height}
-        alt=""
-        unoptimized={unoptimized || false}
-      />
-      <div className={styles.caption}>
-        <RichText richTexts={caption} />
-      </div>
-    </div>
-  );
-};
-
-export const Image = ({
+export const NotionImage = ({
   block,
 }: {
   block: ImageBlockExtended & WithChildren;
 }) => {
-  const { url, expired } = useMemo(() => getImageUrl(block), [block]);
-  const {
-    dim,
-    image: { caption },
-  } = block;
-  if (!expired) {
-    return <ImageImpl url={url} dim={dim} caption={caption} />;
-  } else {
-    const { data } = useImageBlock(block.id);
-    if (data) {
-      return (
-        <ImageImpl
-          url={getImageUrl(data).url}
-          dim={dim}
-          caption={caption}
-          unoptimized={true}
+  const { url, renewed } = useImageUrl(block);
+  if (url) {
+    return (
+      <div className={styles.image}>
+        <Image
+          src={url}
+          width={block.dim.width}
+          height={block.dim.height}
+          alt=""
+          unoptimized={renewed}
         />
-      );
-    } else {
-      return (
-        <ImageImpl url={url} dim={dim} caption={caption} unoptimized={true} />
-      );
-    }
+        <div className={styles.caption}>
+          <RichText richTexts={block.image.caption} />
+        </div>
+      </div>
+    );
+  } else {
+    return (
+      <div
+        className={styles.image_loading}
+        style={{ aspectRatio: block.dim.width / block.dim.height }}
+      >
+        <Spinner />
+      </div>
+    );
   }
+};
+
+export const useImageUrl = (block: ImageBlockExtended) => {
+  const { expired } = getImageUrl(block);
+  const { data, isValidating, error } = useSWR<{
+    block: ImageBlockExtended;
+    renewed: boolean;
+  }>([block.id], async () => {
+    if (expired) {
+      const res = await fetch(`/api/notion/block?id=${block.id}`);
+      // @ts-ignore
+      return { block: (await res.json()).block, renewed: true };
+    } else {
+      return { block: block, renewed: false };
+    }
+  });
+  return {
+    url: isValidating || error || !data ? null : getImageUrl(data.block).url,
+    renewed: data ? data.renewed : true,
+  };
 };
 
 const getImageUrl = (
@@ -93,21 +81,4 @@ const getImageUrl = (
       expired: currentTime.isAfter(expiryTime),
     };
   }
-};
-
-export const useImageBlock = (id: string) => {
-  const { data, isValidating, error } = useSWR<ImageBlockExtended | null>(
-    [id],
-    async () => {
-      const res = await fetch(`/api/notion/block?id=${id}`);
-      // @ts-ignore
-      return res.json().block;
-    },
-  );
-
-  return {
-    data,
-    isLoading: isValidating,
-    error,
-  };
 };

@@ -104,3 +104,13 @@
   font-size: 14px;
   color: var(--muted-color);
 }
+.image_loading {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 7px 0;
+  background-color: var(--muted-border-color);
+  --spinner-color: var(--color);
+  min-height: 5.5em;
+}
