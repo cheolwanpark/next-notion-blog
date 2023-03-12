@@ -149,3 +149,68 @@
   display: flex;
   flex-direction: column;
 }
+
+.bookmark_box {
+  margin: 13px 0;
+}
+.bookmark_box > .caption {
+  color: var(--muted-color);
+  font-size: 14px;
+}
+.bookmark {
+  width: 100%;
+  height: 135px;
+  display: flex;
+  border: 1px solid rgba(55, 53, 47, 0.16);
+  border-radius: 7px;
+  margin: 0;
+  position: relative;
+}
+[data-theme="dark"] .bookmark {
+  border-color: rgba(212, 212, 211, 0.16);
+}
+.bookmark:hover {
+  background-color: rgb(230, 230, 230);
+}
+[data-theme="dark"] .bookmark:hover {
+  background-color: rgb(43, 45, 48);
+}
+.bookmark > .informations {
+  width: 100%;
+  padding: 17px 23px;
+}
+.bookmark > .informations > h1 {
+  font-size: 14px;
+  margin-bottom: 3px;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  overflow: hidden;
+  max-height: 1.8em;
+  line-height: 1.8em;
+}
+.bookmark > .informations > h2 {
+  font-size: 12px;
+  font-weight: 300;
+  margin-bottom: 3px;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  overflow: hidden;
+  max-height: 3.6em;
+  line-height: 1.8em;
+}
+.bookmark > .informations > h3 {
+  font-size: 12px;
+  margin: 0;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  overflow: hidden;
+  max-height: 1.8em;
+  line-height: 1.8em;
+}
+.bookmark > .link {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}

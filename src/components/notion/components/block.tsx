@@ -1,6 +1,7 @@
 import { BlockWithChildren } from "@/services/notion/types/block";
 import dynamic from "next/dynamic";
 import { Blank } from "./blank";
+import { Bookmark } from "./bookmark";
 import { Callout } from "./callout";
 import { Column, ColumnList } from "./columnlist";
 import { Divider } from "./divider";
@@ -46,6 +47,8 @@ export const Block = ({
       return <ColumnList block={block} />;
     case "column":
       return <Column block={block} />;
+    case "bookmark":
+      return <Bookmark block={block} />;
     default:
       return <Blank />;
   }

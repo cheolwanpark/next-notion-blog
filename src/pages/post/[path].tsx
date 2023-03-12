@@ -34,7 +34,7 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
   const createProp = (meta: PageMeta | null, blocks: BlockWithChildren[]) => {
     return {
       props: { meta, blocks },
-      revalidate: 60 * 60,
+      revalidate: 24 * 60 * 60,
     };
   };
   try {

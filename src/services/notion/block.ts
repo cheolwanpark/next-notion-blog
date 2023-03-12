@@ -1,6 +1,7 @@
 import { config } from "@/config";
 import { isFullBlock } from "@notionhq/client";
 import {
+  BookmarkBlockObjectResponse,
   ImageBlockObjectResponse,
   ListBlockChildrenResponse,
 } from "@notionhq/client/build/src/api-endpoints";
@@ -8,10 +9,12 @@ import dayjs from "dayjs";
 import pMap from "p-map";
 import pMemoize from "p-memoize";
 import probeIamgeSize from "probe-image-size";
+import { getMetadata } from "../webmetadata";
 import { notion } from "./api";
 import {
   BlockObject,
   BlockWithChildren,
+  BookmarkBlockExtended,
   ImageBlockExtended,
 } from "./types/block";
 
@@ -19,7 +22,9 @@ const getBlockImpl = async (blockID: string): Promise<BlockObject | null> => {
   const block = await notion.blocks.retrieve({ block_id: blockID });
   if (!isFullBlock(block)) return null;
   if (block.type === "image") {
-    return await retrieveAdditionalInfo(block);
+    return await retrieveImageAdditionalInfo(block);
+  } else if (block.type === "bookmark") {
+    return await retrieveBookmarkAdditionalInfo(block);
   } else {
     return block;
   }
@@ -52,8 +57,10 @@ const processResponse = async (
   response: ListBlockChildrenResponse,
 ): Promise<BlockWithChildren[]> => {
   const fullBlocks = response.results.filter(isFullBlock).map(async (block) => {
-    if (block.type !== "image") return block;
-    return await retrieveAdditionalInfo(block);
+    if (block.type === "image") return await retrieveImageAdditionalInfo(block);
+    else if (block.type === "bookmark")
+      return await retrieveBookmarkAdditionalInfo(block);
+    else return block;
   });
   return await pMap(fullBlocks, retrieveChildren, { concurrency: 2 });
 };
@@ -75,7 +82,7 @@ const retrieveChildren = async (
   }
 };
 
-const retrieveAdditionalInfo = async (
+const retrieveImageAdditionalInfo = async (
   block: ImageBlockObjectResponse,
 ): Promise<ImageBlockExtended> => {
   const url =
@@ -91,6 +98,17 @@ const retrieveAdditionalInfo = async (
       height,
     },
     cacheExpiryTime: cacheExpiryTime.format(),
+  };
+};
+
+const retrieveBookmarkAdditionalInfo = async (
+  block: BookmarkBlockObjectResponse,
+): Promise<BookmarkBlockExtended> => {
+  const url = block.bookmark.url;
+  const metadata = await getMetadata(url);
+  return {
+    ...block,
+    metadata,
   };
 };
 
