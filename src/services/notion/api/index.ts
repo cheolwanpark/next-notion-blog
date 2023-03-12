@@ -12,5 +12,6 @@ export const notion = {
     children: {
       list: notionErrorHandler(client.blocks.children.list),
     },
+    retrieve: notionErrorHandler(client.blocks.retrieve),
   },
 };
