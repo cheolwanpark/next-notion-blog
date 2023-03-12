@@ -1,6 +1,7 @@
 import { BlockWithChildren } from "@/services/notion/types/block";
 import dynamic from "next/dynamic";
 import { Blank } from "./blank";
+import { Callout } from "./callout";
 import { Divider } from "./divider";
 import { Heading1, Heading2, Heading3 } from "./headings";
 import { NotionImage } from "./image";
@@ -38,6 +39,8 @@ export const Block = ({
       return <Code block={block} />;
     case "image":
       return <NotionImage block={block} />;
+    case "callout":
+      return <Callout block={block} />;
     default:
       return <Blank />;
   }
