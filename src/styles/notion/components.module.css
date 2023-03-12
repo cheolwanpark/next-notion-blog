@@ -134,3 +134,18 @@
 .callout > .content > p {
   margin: 0;
 }
+
+.column_list {
+  display: flex;
+  flex-direction: row;
+}
+.column_list > .col {
+  flex-grow: 0;
+  width: fit-content;
+  display: flex;
+  flex-direction: row;
+}
+.column {
+  display: flex;
+  flex-direction: column;
+}
