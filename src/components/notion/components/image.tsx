@@ -42,7 +42,7 @@ export const NotionImage = ({
   }
 };
 
-export const useImageUrl = (block: ImageBlockExtended) => {
+const useImageUrl = (block: ImageBlockExtended) => {
   const { expired } = getImageUrl(block);
   const { data, isValidating, error } = useSWR<{
     block: ImageBlockExtended;

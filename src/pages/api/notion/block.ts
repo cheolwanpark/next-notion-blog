@@ -1,4 +1,3 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import { getBlock } from "@/services/notion/block";
 import { ImageBlockExtended } from "@/services/notion/types/block";
 import type { NextApiRequest, NextApiResponse } from "next";

@@ -21,7 +21,6 @@ export const Code = ({
   const codeRef = useRef(null);
   useEffect(() => {
     if (codeRef.current) {
-      console.log("highlight");
       highlightElement(codeRef.current);
     }
   }, [codeRef]);
