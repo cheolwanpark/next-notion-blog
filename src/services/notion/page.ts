@@ -20,7 +20,13 @@ const getAllPagesImpl = async () => {
   let response = null;
   let pages: PageMeta[] = [];
   do {
-    response = await query();
+    response = await query({
+      query:
+        response && response.next_cursor
+          ? { cursor: response?.next_cursor }
+          : undefined,
+      page_size: 100,
+    });
     pages = pages.concat(response.pages);
   } while (response.next_cursor);
   return pages;

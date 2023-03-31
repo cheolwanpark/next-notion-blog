@@ -14,13 +14,24 @@ import {
   isTagQuery,
   PageMeta,
   Query,
+  QueryResult,
+  Sort,
 } from "./types";
 
-const queryImpl = async (query?: Query, page_size?: number) => {
+const queryImpl = async ({
+  query,
+  sorts,
+  page_size,
+}: {
+  query?: Query;
+  sorts?: Sort[];
+  page_size?: number;
+}): Promise<QueryResult> => {
   const response = await notion.databases.query({
     database_id: config.notion.databaseID,
     // @ts-ignore
     filter: buildFilter(query),
+    sorts,
     start_cursor: isNextPageQuery(query) ? query.cursor : undefined,
     page_size: page_size,
   });
