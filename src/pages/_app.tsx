@@ -6,6 +6,7 @@ import { Navigation } from "@/components/navigation";
 import { DarkModeContext } from "@/services/darkmode";
 import { useState } from "react";
 import { Footer } from "@/components/footer";
+import "@/services/dayjs";
 
 export default function App({ Component, pageProps }: AppProps) {
   const [isDarkMode, setMode] = useState(false);

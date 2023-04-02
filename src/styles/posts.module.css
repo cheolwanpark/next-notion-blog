@@ -1,5 +1,8 @@
 .posts {
+  display:flex;
   margin: 17px 0;
+  flex-direction: column;
+  align-items: center;
 }
 .post {
   position: relative;
@@ -7,7 +10,8 @@
   flex-direction: column;
   align-items: flex-start;
   padding: 24px 24px;
-  margin: 24px 0;
+  margin: 12px 0;
+  width: 100%;
 }
 .post > hgroup {
   margin-bottom: 7px;
@@ -32,6 +36,7 @@
   font-size: 12px;
   margin-right: 9px;
   margin-bottom: 0;
+  font-weight: 900;
 }
 .tags li:hover {
   color: var(--primary);
@@ -50,4 +55,20 @@
   right: 0;
   top: 0;
   bottom: 0;
+}
+
+.navigator {
+  width: 95%;
+  margin-top: 12px;
+}
+
+.navigator > .button {
+  color: var(--color);
+  font-weight: 900;
+  font-size: 15px;
+  width: fit-content;
+}
+
+.navigator > .button:hover {
+  color: var(--primary);
 }

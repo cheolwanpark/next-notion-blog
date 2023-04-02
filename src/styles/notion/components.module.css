@@ -1,0 +1,216 @@
+.renderer {
+  color: var(--color);
+}
+
+.heading1 {
+  font-size: 1.875em;
+  margin: 1.3rem 0;
+}
+.heading2 {
+  font-size: 1.5rem;
+  margin: 1.15rem 0;
+}
+.heading3 {
+  font-size: 1.25rem;
+  margin: 1rem 0;
+}
+
+.quote {
+  border-left: 3px solid currentcolor;
+  padding-left: 14px;
+  padding-right: 14px;
+  width: 100%;
+  margin: 10px 0;
+}
+
+.bulletedlist {
+  fill: currentColor;
+  color: unset;
+}
+.bulletedlist > li {
+  list-style-type: disc;
+  margin-bottom: 7px;
+}
+.bulletedlist .bulletedlist > li {
+  list-style-type: circle;
+}
+.bulletedlist .bulletedlist .bulletedlist > li {
+  list-style-type: square;
+}
+.numberedlist {
+  fill: currentColor;
+  color: unset;
+}
+.numberedlist > li {
+  list-style-type: decimal;
+}
+.numberedlist .numberedlist > li {
+  list-style-type: lower-alpha;
+}
+.numberedlist .numberedlist .numberedlist > li {
+  list-style-type: lower-roman;
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  visibility: visible;
+  border-bottom: 1px solid rgba(55, 53, 47, 0.16);
+  margin: 7px 0;
+}
+[data-theme="dark"] .divider {
+  border-bottom: 1px solid rgba(206, 203, 192, 0.479);
+}
+
+.code {
+  position: relative;
+}
+.code > .copy_button {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  width: fit-content;
+  margin: 0;
+  color: var(--color);
+}
+.code > .copy_button:hover {
+  color: var(--primary);
+}
+.code > .copy_button > svg {
+  margin: 5px 7px;
+  width: calc(var(--font-size) * 1.2);
+  height: calc(var(--font-size) * 1.2);
+}
+.code > pre {
+  margin: 0;
+}
+.code .caption {
+  font-size: 14px;
+  color: var(--muted-color);
+}
+
+.image {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 7px 0;
+}
+.image img {
+  width: 100%;
+}
+.image .caption {
+  width: 100%;
+  text-align: left;
+  font-size: 14px;
+  color: var(--muted-color);
+}
+.image_loading {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 7px 0;
+  background-color: var(--muted-border-color);
+  --spinner-color: var(--color);
+  min-height: 5.5em;
+}
+
+.callout {
+  display: flex;
+  width: 100%;
+  border-radius: 3px;
+  background: var(--muted-border-color);
+  padding: 16px 16px 16px 12px;
+}
+.callout > .emoji {
+  flex-grow: 0;
+  margin-right: 7px;
+  font-size: var(--font-size);
+}
+.callout > .content {
+  flex-grow: 1;
+}
+.callout > .content > p {
+  margin: 0;
+}
+
+.column_list {
+  display: flex;
+  flex-direction: row;
+}
+.column_list > .col {
+  flex-grow: 0;
+  width: fit-content;
+  display: flex;
+  flex-direction: row;
+}
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.bookmark_box {
+  margin: 13px 0;
+}
+.bookmark_box > .caption {
+  color: var(--muted-color);
+  font-size: 14px;
+}
+.bookmark {
+  width: 100%;
+  height: 135px;
+  display: flex;
+  border: 1px solid rgba(55, 53, 47, 0.16);
+  border-radius: 7px;
+  margin: 0;
+  position: relative;
+}
+[data-theme="dark"] .bookmark {
+  border-color: rgba(212, 212, 211, 0.16);
+}
+.bookmark:hover {
+  background-color: rgb(230, 230, 230);
+}
+[data-theme="dark"] .bookmark:hover {
+  background-color: rgb(43, 45, 48);
+}
+.bookmark > .informations {
+  width: 100%;
+  padding: 17px 23px;
+}
+.bookmark > .informations > h1 {
+  font-size: 14px;
+  margin-bottom: 3px;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  overflow: hidden;
+  max-height: 1.8em;
+  line-height: 1.8em;
+}
+.bookmark > .informations > h2 {
+  font-size: 12px;
+  font-weight: 300;
+  margin-bottom: 3px;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  overflow: hidden;
+  max-height: 3.6em;
+  line-height: 1.8em;
+}
+.bookmark > .informations > h3 {
+  font-size: 12px;
+  margin: 0;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  overflow: hidden;
+  max-height: 1.8em;
+  line-height: 1.8em;
+}
+.bookmark > .link {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}

@@ -1,0 +1,17 @@
+.blod {
+  font-weight: 900;
+}
+.italic {
+  font-style: italic;
+}
+.strikethrough {
+  text-decoration: line-through;
+}
+.underline {
+  text-decoration: underline;
+}
+
+.link {
+  text-decoration: underline;
+  cursor: pointer;
+}

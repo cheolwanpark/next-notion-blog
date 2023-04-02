@@ -1,43 +1,99 @@
-import { contentBold, contentReg } from "@/services/font";
+import { content, ui } from "@/services/font";
 import { PageMeta } from "@/services/notion/types";
 import styles from "@/styles/posts.module.css";
 import classNames from "classnames";
 import dayjs from "dayjs";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 export const Posts = ({ posts, size }: { posts: PageMeta[]; size: number }) => {
+  const router = useRouter();
+  const { page } = router.query;
+
+  const [pageIdx, _setPageIdx] = useState(Number.parseInt(page as string) || 0);
+  const startIdx = pageIdx * size;
+  const prevButtonExists = pageIdx > 0;
+  const nextButtonExists = startIdx + size < posts.length;
+  const currentPosts = posts.slice(startIdx, startIdx + size);
+
+  useEffect(() => {
+    _setPageIdx(0);
+  }, [posts]);
+
+  const scrollToTop = () => window.scrollTo({ top: 0, behavior: "auto" });
+  const setPageIdx = (idx: number) => {
+    _setPageIdx(idx);
+    const pageIdx = idx > 0 ? idx.toString() : "0";
+    router.push({ query: { ...router.query, page: pageIdx } }, undefined, {
+      shallow: true,
+    });
+  };
+  const prev = () => {
+    scrollToTop();
+    setPageIdx(pageIdx - 1);
+  };
+  const next = () => {
+    scrollToTop();
+    setPageIdx(pageIdx + 1);
+  };
+
   return (
-    <section className={styles.posts}>
-      {posts.slice(0, size).map((post) => {
-        const published = dayjs(post.published).format("MMMM DD, YYYY");
-        return (
-          <article key={post.path} className={styles.post}>
-            <Link
-              href={`/post/${post.path}`}
-              className={styles.link}
+    <>
+      <section className={styles.posts}>
+        {currentPosts.map((post, idx) => {
+          const published = dayjs(post.published).format("MMMM DD, YYYY");
+          return (
+            <article key={idx} className={classNames(styles.post, content)}>
+              <Link
+                href={`/post/${post.path}`}
+                className={styles.link}
+                data-nopico
+              ></Link>
+              <hgroup>
+                <h1>{post.title}</h1>
+                <h2>{post.description}</h2>
+              </hgroup>
+              <ul className={styles.tags}>
+                {post.tags.map((tag) => {
+                  return (
+                    <li key={tag}>
+                      <Link href={`/tag/${tag}`} data-nopico>
+                        #{tag}
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+              <p
+                className={styles.additional}
+              >{`${published} · ${post.author}`}</p>
+            </article>
+          );
+        })}
+        <div className={styles.navigator}>
+          {prevButtonExists && (
+            <button
+              className={classNames(styles.button, ui)}
+              style={{ float: "left" }}
+              onClick={prev}
               data-nopico
-            ></Link>
-            <hgroup>
-              <h1 className={contentBold}>{post.title}</h1>
-              <h2 className={contentReg}>{post.description}</h2>
-            </hgroup>
-            <ul className={styles.tags}>
-              {post.tags.map((tag) => {
-                return (
-                  <li className={contentBold}>
-                    <Link href={`/tag/${tag}`} data-nopico>
-                      #{tag}
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
-            <p
-              className={classNames(styles.additional, contentReg)}
-            >{`${published} · ${post.author}`}</p>
-          </article>
-        );
-      })}
-    </section>
+            >
+              « PREV
+            </button>
+          )}
+          {nextButtonExists && (
+            <button
+              className={classNames(styles.button, ui)}
+              style={{ float: "right" }}
+              onClick={next}
+              data-nopico
+            >
+              NEXT »
+            </button>
+          )}
+        </div>
+      </section>
+    </>
   );
 };
