@@ -1,13 +1,24 @@
 import { BlockWithChildren } from "@/services/notion/types/block";
 import { Block } from "./components/block";
 import styles from "@/styles/notion/components.module.css";
+import { PageMeta } from "@/services/notion/types";
+import { NotionHead } from "./head";
 
-export const NotionRenderer = ({ blocks }: { blocks: BlockWithChildren[] }) => {
+export const NotionRenderer = ({
+  blocks,
+  meta,
+}: {
+  blocks: BlockWithChildren[];
+  meta?: PageMeta;
+}) => {
   return (
-    <div className={styles.renderer}>
-      {blocks.map((block, idx, arr) => {
-        return <Block block={block} blocks={arr} idx={idx} key={idx} />;
-      })}
-    </div>
+    <>
+      {meta && <NotionHead meta={meta} />}
+      <div className={styles.renderer}>
+        {blocks.map((block, idx, arr) => {
+          return <Block block={block} blocks={arr} idx={idx} key={idx} />;
+        })}
+      </div>
+    </>
   );
 };

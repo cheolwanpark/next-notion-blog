@@ -25,7 +25,7 @@ export default function PostPage({
   } else {
     return (
       <article className={content} data-nopico>
-        <NotionRenderer blocks={blocks} />
+        <NotionRenderer blocks={blocks} meta={meta} />
       </article>
     );
   }
