@@ -2,11 +2,12 @@ import { SearchablePosts } from "@/components/searchable_posts";
 import { config } from "@/config";
 import { ui } from "@/services/font";
 import { query } from "@/services/notion/query";
-import { PageMeta } from "@/services/notion/types";
-import { GetServerSideProps } from "next";
+import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
 import { useRouter } from "next/router";
 
-export default function Home({ pages }: { pages: PageMeta[] }) {
+export default function Home({
+  pages,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   const router = useRouter();
   const { tag } = router.query;
   return (
@@ -17,7 +18,7 @@ export default function Home({ pages }: { pages: PageMeta[] }) {
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
+export const getStaticProps: GetStaticProps = async (ctx) => {
   const PAGES_PER_LOAD = 100;
   let response = await query({
     query: {
@@ -44,5 +45,13 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     props: {
       pages,
     },
+    revalidate: config.revalidateTime,
+  };
+};
+
+export const getStaticPaths: GetStaticPaths = async (ctx) => {
+  return {
+    paths: [],
+    fallback: "blocking",
   };
 };
