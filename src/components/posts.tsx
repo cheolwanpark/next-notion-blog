@@ -11,19 +11,14 @@ export const Posts = ({ posts, size }: { posts: PageMeta[]; size: number }) => {
   const router = useRouter();
   const { page } = router.query;
 
-  const [pageIdx, _setPageIdx] = useState(Number.parseInt(page as string) || 0);
+  const pageIdx = Number.parseInt(page as string) || 0;
   const startIdx = pageIdx * size;
   const prevButtonExists = pageIdx > 0;
   const nextButtonExists = startIdx + size < posts.length;
   const currentPosts = posts.slice(startIdx, startIdx + size);
 
-  useEffect(() => {
-    _setPageIdx(0);
-  }, [posts]);
-
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "auto" });
   const setPageIdx = (idx: number) => {
-    _setPageIdx(idx);
     const pageIdx = idx > 0 ? idx.toString() : "0";
     router.push({ query: { ...router.query, page: pageIdx } }, undefined, {
       shallow: true,
