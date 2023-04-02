@@ -2,14 +2,15 @@ import { Intro } from "@/components/intro";
 import { Posts } from "@/components/posts";
 import { config } from "@/config";
 import { query } from "@/services/notion/query";
-import { PageMeta } from "@/services/notion/types";
-import { GetServerSideProps } from "next";
+import { GetStaticProps, InferGetStaticPropsType } from "next";
 import Link from "next/link";
 import styles from "@/styles/homepage.module.css";
 import classNames from "classnames";
 import { ui } from "@/services/font";
 
-export default function Home({ pages }: { pages: PageMeta[] }) {
+export default function Home({
+  pages,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <>
       <Intro />
@@ -25,7 +26,7 @@ export default function Home({ pages }: { pages: PageMeta[] }) {
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
+export const getStaticProps: GetStaticProps = async (ctx) => {
   const PAGES_PER_LOAD = config.previewPosts;
   let response = await query({
     sorts: [
