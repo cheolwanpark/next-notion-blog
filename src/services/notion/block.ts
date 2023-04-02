@@ -90,7 +90,7 @@ const retrieveImageAdditionalInfo = async (
       ? block.image.external.url
       : block.image.file.url;
   const { width, height } = await probeIamgeSize(url);
-  const cacheExpiryTime = dayjs.utc().add(config.imageCachingTime, "seconds");
+  const cacheExpiryTime = dayjs.utc().add(config.revalidateTime, "seconds");
   return {
     ...block,
     dim: {

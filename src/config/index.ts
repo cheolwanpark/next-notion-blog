@@ -5,7 +5,7 @@ export const config = {
   blogTitle: siteConfig.blogTitle,
   owner: siteConfig.owner,
   github: siteConfig.github,
-  imageCachingTime: siteConfig.imageCachingTime,
+  revalidateTime: siteConfig.revalidateTime,
   postsPerPage: siteConfig.postsPerPage,
   previewPosts: siteConfig.previewPosts,
   notion: notionConfig,

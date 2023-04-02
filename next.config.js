@@ -3,7 +3,7 @@ const { siteConfig } = require("./site.config");
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    minimumCacheTTL: siteConfig.imageCachingTime,
+    minimumCacheTTL: siteConfig.revalidateTime,
     remotePatterns: [
       {
         protocol: "https",
