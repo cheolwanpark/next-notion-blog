@@ -1,5 +1,20 @@
 import { PageMeta } from "./page";
 
+export type QueryResult = {
+  next_cursor: string | null;
+  pages: PageMeta[];
+};
+
+export type Sort =
+  | {
+      property: string;
+      direction: "ascending" | "descending";
+    }
+  | {
+      timestamp: "created_time" | "last_edited_time";
+      direction: "ascending" | "descending";
+    };
+
 export type Query =
   | NextPageQuery
   | TagQuery

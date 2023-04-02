@@ -39,7 +39,7 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
   };
   try {
     const queryResult = await query({
-      path: ctx.params!.path as string,
+      query: { path: ctx.params!.path as string },
     });
     if (queryResult.pages.length !== 1) {
       return createProp(null, []);
