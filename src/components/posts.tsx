@@ -5,7 +5,7 @@ import classNames from "classnames";
 import dayjs from "dayjs";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const Posts = ({ posts, size }: { posts: PageMeta[]; size: number }) => {
   const router = useRouter();
@@ -17,6 +17,11 @@ export const Posts = ({ posts, size }: { posts: PageMeta[]; size: number }) => {
   const nextButtonExists = startIdx + size < posts.length;
   const currentPosts = posts.slice(startIdx, startIdx + size);
 
+  useEffect(() => {
+    _setPageIdx(0);
+  }, [posts]);
+
+  const scrollToTop = () => window.scrollTo({ top: 0, behavior: "auto" });
   const setPageIdx = (idx: number) => {
     _setPageIdx(idx);
     const pageIdx = idx > 0 ? idx.toString() : "0";
@@ -24,8 +29,6 @@ export const Posts = ({ posts, size }: { posts: PageMeta[]; size: number }) => {
       shallow: true,
     });
   };
-
-  const scrollToTop = () => window.scrollTo({ top: 0, behavior: "auto" });
   const prev = () => {
     scrollToTop();
     setPageIdx(pageIdx - 1);
