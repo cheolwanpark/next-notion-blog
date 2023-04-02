@@ -19,7 +19,7 @@ export const Posts = ({ posts, size }: { posts: PageMeta[]; size: number }) => {
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "auto" });
   const setPageIdx = (idx: number) => {
     const pageIdx = idx > 0 ? idx.toString() : "0";
-    router.push({ query: { ...router.query, page: pageIdx } }, undefined, {
+    router.replace({ query: { ...router.query, page: pageIdx } }, undefined, {
       shallow: true,
     });
   };

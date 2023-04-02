@@ -26,9 +26,13 @@ export const SearchablePosts = ({
 
   const onSearchKeywordChangeImpl = () => {
     const keyword = searchFieldRef.current?.value() || "";
-    router.push({ query: { ...router.query, page: 0, keyword } }, undefined, {
-      shallow: true,
-    });
+    router.replace(
+      { query: { ...router.query, page: 0, keyword } },
+      undefined,
+      {
+        shallow: true,
+      },
+    );
   };
   const onSearchKeywordChange = () => {
     if (inputTimeout.current) {
