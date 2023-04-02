@@ -1,0 +1,10 @@
+a.allposts {
+  font-size: 15px;
+  font-weight: 900;
+  float: right;
+  color: var(--color);
+}
+
+a.allposts:hover {
+  color: var(--primary);
+}

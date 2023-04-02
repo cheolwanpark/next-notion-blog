@@ -1,6 +1,6 @@
 import "@picocss/pico/css/pico.min.css";
 import "@/styles/globals.css";
-import "@/styles/nopico.css";
+import "@/styles/picocustom.css";
 import type { AppProps } from "next/app";
 import { Navigation } from "@/components/navigation";
 import { DarkModeContext } from "@/services/darkmode";

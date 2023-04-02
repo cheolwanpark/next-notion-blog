@@ -44,3 +44,8 @@ article[data-nopico] {
   background: none;
   box-shadow: none;
 }
+
+h1 {
+  --font-size: 2rem;
+  --typography-spacing-vertical: 1.5rem;
+}

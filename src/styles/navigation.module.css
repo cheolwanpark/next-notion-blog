@@ -5,6 +5,15 @@
 .title:hover {
   color: var(--primary);
 }
+
+.buttons {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+}
+.buttons > li > a {
+  margin-top: -5px;
+}
 .button {
   color: var(--color);
 }
