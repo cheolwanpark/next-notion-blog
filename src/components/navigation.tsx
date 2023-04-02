@@ -4,11 +4,7 @@ import { ui } from "@/services/font";
 import classNames from "classnames";
 import Link from "next/link";
 import { createElement, useContext } from "react";
-import {
-  BsFillBrightnessHighFill,
-  BsFillMoonFill,
-  BsSearch,
-} from "react-icons/bs";
+import { BsFillBrightnessHighFill, BsFillMoonFill } from "react-icons/bs";
 import styles from "@/styles/navigation.module.css";
 
 export const Navigation = () => {
@@ -26,7 +22,12 @@ export const Navigation = () => {
           </Link>
         </li>
       </ul>
-      <ul>
+      <ul className={styles.buttons}>
+        <li>
+          <Link href="/post" className={styles.button} data-nopico>
+            <strong>POSTS</strong>
+          </Link>
+        </li>
         <li>
           <button
             onClick={toggleDarkMode}
@@ -34,11 +35,6 @@ export const Navigation = () => {
             data-nopico
           >
             {createElement(darkModeIcon)}
-          </button>
-        </li>
-        <li>
-          <button className={styles.button} data-nopico>
-            <BsSearch />
           </button>
         </li>
       </ul>

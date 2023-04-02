@@ -1,6 +1,6 @@
 .posts {
   display:flex;
-  margin: 17px 0;
+  margin: 7px 0;
   flex-direction: column;
   align-items: center;
 }
@@ -43,7 +43,7 @@
 }
 
 .additional {
-  color: var(--muted-color);
+  color: var(--color);
   font-size: 12px;
   margin-bottom: 0;
   text-align: start;
@@ -71,4 +71,11 @@
 
 .navigator > .button:hover {
   color: var(--primary);
+}
+
+.searchfield {
+  font-size: 15px;
+  color: var(--color);
+  --form-element-spacing-vertical: 0.5rem;
+  --form-element-spacing-horizontal: 0.75rem;
 }

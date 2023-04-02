@@ -1,32 +1,21 @@
-import { Intro } from "@/components/intro";
-import { Posts } from "@/components/posts";
+import { SearchablePosts } from "@/components/searchable_posts";
 import { config } from "@/config";
+import { ui } from "@/services/font";
 import { query } from "@/services/notion/query";
 import { PageMeta } from "@/services/notion/types";
 import { GetServerSideProps } from "next";
-import Link from "next/link";
-import styles from "@/styles/homepage.module.css";
-import classNames from "classnames";
-import { ui } from "@/services/font";
 
 export default function Home({ pages }: { pages: PageMeta[] }) {
   return (
     <>
-      <Intro />
-      <Posts posts={pages} size={config.previewPosts} />
-      <Link
-        href="/post"
-        className={classNames(styles.allposts, ui)}
-        data-nopico
-      >
-        All Posts →
-      </Link>
+      <h1 className={ui}>All Posts</h1>
+      <SearchablePosts posts={pages} size={config.postsPerPage} />
     </>
   );
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const PAGES_PER_LOAD = config.previewPosts;
+  const PAGES_PER_LOAD = 100;
   let response = await query({
     sorts: [
       {
@@ -36,9 +25,17 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     ],
     page_size: PAGES_PER_LOAD,
   });
+  const pages = response.pages;
+  while (response.next_cursor) {
+    response = await query({
+      query: { cursor: response.next_cursor },
+      page_size: PAGES_PER_LOAD,
+    });
+    pages.push(...response.pages);
+  }
   return {
     props: {
-      pages: response.pages,
+      pages,
     },
   };
 };

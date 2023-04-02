@@ -6,5 +6,7 @@ export const config = {
   owner: siteConfig.owner,
   github: siteConfig.github,
   imageCachingTime: siteConfig.imageCachingTime,
+  postsPerPage: siteConfig.postsPerPage,
+  previewPosts: siteConfig.previewPosts,
   notion: notionConfig,
 };
