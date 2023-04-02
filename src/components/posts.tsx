@@ -5,7 +5,6 @@ import classNames from "classnames";
 import dayjs from "dayjs";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
 
 export const Posts = ({ posts, size }: { posts: PageMeta[]; size: number }) => {
   const router = useRouter();

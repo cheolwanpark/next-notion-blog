@@ -1,4 +1,4 @@
-import { Posts } from "@/components/posts";
+import { SearchablePosts } from "@/components/searchable_posts";
 import { config } from "@/config";
 import { ui } from "@/services/font";
 import { query } from "@/services/notion/query";
@@ -12,7 +12,7 @@ export default function Home({ pages }: { pages: PageMeta[] }) {
   return (
     <>
       <h1 className={ui}>#{tag}</h1>
-      <Posts posts={pages} size={config.postsPerPage} />
+      <SearchablePosts posts={pages} size={config.postsPerPage} />
     </>
   );
 }

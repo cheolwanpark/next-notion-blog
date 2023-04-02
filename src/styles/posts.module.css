@@ -72,3 +72,10 @@
 .navigator > .button:hover {
   color: var(--primary);
 }
+
+.searchfield {
+  font-size: 15px;
+  color: var(--color);
+  --form-element-spacing-vertical: 0.5rem;
+  --form-element-spacing-horizontal: 0.75rem;
+}
