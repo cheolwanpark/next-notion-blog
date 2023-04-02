@@ -9,6 +9,7 @@ import { BlockWithChildren } from "@/services/notion/types/block";
 import { content } from "@/services/font";
 import { useRouter } from "next/router";
 import { Spinner } from "@/components/spinner";
+import { config } from "@/config";
 
 export default function PostPage({
   meta,
@@ -34,7 +35,7 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
   const createProp = (meta: PageMeta | null, blocks: BlockWithChildren[]) => {
     return {
       props: { meta, blocks },
-      revalidate: 24 * 60 * 60,
+      revalidate: config.revalidateTime,
     };
   };
   try {

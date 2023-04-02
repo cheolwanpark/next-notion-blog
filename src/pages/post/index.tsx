@@ -2,10 +2,11 @@ import { SearchablePosts } from "@/components/searchable_posts";
 import { config } from "@/config";
 import { ui } from "@/services/font";
 import { query } from "@/services/notion/query";
-import { PageMeta } from "@/services/notion/types";
-import { GetServerSideProps } from "next";
+import { GetStaticProps, InferGetStaticPropsType } from "next";
 
-export default function Home({ pages }: { pages: PageMeta[] }) {
+export default function Home({
+  pages,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <>
       <h1 className={ui}>All Posts</h1>
@@ -14,7 +15,7 @@ export default function Home({ pages }: { pages: PageMeta[] }) {
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
+export const getStaticProps: GetStaticProps = async (ctx) => {
   const PAGES_PER_LOAD = 100;
   let response = await query({
     sorts: [
@@ -37,5 +38,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     props: {
       pages,
     },
+    revalidate: config.revalidateTime,
   };
 };
