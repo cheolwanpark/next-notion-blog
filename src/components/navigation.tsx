@@ -30,6 +30,7 @@ export const Navigation = () => {
         </li>
         <li>
           <button
+            aria-label="toggle dark mode button"
             onClick={toggleDarkMode}
             className={styles.button}
             data-nopico

@@ -23,6 +23,7 @@ export type ImageBlockExtended = ImageBlockObjectResponse & {
     width: number;
     height: number;
   };
+  blurDataURL: string;
   cacheExpiryTime: string;
 };
 

@@ -25,6 +25,7 @@ export const Intro = () => {
         {config.github !== "" && (
           <li>
             <Link
+              aria-label="github link"
               href={`https://github.com/${config.github}`}
               target="_blank"
               data-nopico

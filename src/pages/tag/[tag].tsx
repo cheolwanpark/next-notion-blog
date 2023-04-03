@@ -1,3 +1,4 @@
+import { MetaHead } from "@/components/head";
 import { SearchablePosts } from "@/components/searchable_posts";
 import { config } from "@/config";
 import { ui } from "@/services/font";
@@ -12,6 +13,11 @@ export default function Home({
   const { tag } = router.query;
   return (
     <>
+      <MetaHead
+        title={`${config.blogTitle} | ${tag}`}
+        description={`${tag} posts`}
+        url={`${config.baseURL}/tag/${tag}`}
+      />
       <h1 className={ui}>#{tag}</h1>
       <SearchablePosts posts={pages} size={config.postsPerPage} />
     </>
@@ -45,7 +51,7 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
     props: {
       pages,
     },
-    revalidate: config.revalidateTime,
+    revalidate: config.postsListRevalidateTime,
   };
 };
 

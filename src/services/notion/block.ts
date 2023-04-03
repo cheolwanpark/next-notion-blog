@@ -7,8 +7,8 @@ import {
 } from "@notionhq/client/build/src/api-endpoints";
 import dayjs from "dayjs";
 import pMap from "p-map";
+import { getPlaiceholder } from "plaiceholder";
 import pMemoize from "p-memoize";
-import probeIamgeSize from "probe-image-size";
 import { getMetadata } from "../webmetadata";
 import { notion } from "./api";
 import {
@@ -89,14 +89,15 @@ const retrieveImageAdditionalInfo = async (
     block.image.type === "external"
       ? block.image.external.url
       : block.image.file.url;
-  const { width, height } = await probeIamgeSize(url);
+  const { base64, img } = await getPlaiceholder(url, { size: 16 });
   const cacheExpiryTime = dayjs.utc().add(config.revalidateTime, "seconds");
   return {
     ...block,
     dim: {
-      width,
-      height,
+      width: img.width,
+      height: img.height,
     },
+    blurDataURL: base64,
     cacheExpiryTime: cacheExpiryTime.format(),
   };
 };

@@ -1,3 +1,4 @@
+import { MetaHead } from "@/components/head";
 import { SearchablePosts } from "@/components/searchable_posts";
 import { config } from "@/config";
 import { ui } from "@/services/font";
@@ -9,6 +10,11 @@ export default function Home({
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <>
+      <MetaHead
+        title={`${config.blogTitle} | All Posts`}
+        description={`all posts`}
+        url={`${config.baseURL}/post`}
+      />
       <h1 className={ui}>All Posts</h1>
       <SearchablePosts posts={pages} size={config.postsPerPage} />
     </>
@@ -38,6 +44,6 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
     props: {
       pages,
     },
-    revalidate: config.revalidateTime,
+    revalidate: config.postsListRevalidateTime,
   };
 };

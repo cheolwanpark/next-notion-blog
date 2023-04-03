@@ -3,32 +3,28 @@ import { query } from "@/services/notion/query";
 import { PageMeta } from "@/services/notion/types";
 import { getBlocks } from "@/services/notion/block";
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
-import { isServer } from "@/services/utils";
 import { NotionRenderer } from "@/components/notion";
 import { BlockWithChildren } from "@/services/notion/types/block";
 import { content } from "@/services/font";
-import { useRouter } from "next/router";
-import { Spinner } from "@/components/spinner";
 import { config } from "@/config";
+import { MetaHead } from "@/components/head";
 
 export default function PostPage({
   meta,
   blocks,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  if (!isServer) {
-    console.log(meta);
-    console.log(blocks);
-  }
-  const router = useRouter();
-  if (router.isFallback) {
-    return <Spinner />;
-  } else {
-    return (
+  return (
+    <>
+      <MetaHead
+        title={`${meta.title}`}
+        description={meta.description}
+        url={`${config.baseURL}/post/${meta.path}`}
+      />
       <article className={content} data-nopico>
         <NotionRenderer blocks={blocks} meta={meta} />
       </article>
-    );
-  }
+    </>
+  );
 }
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
