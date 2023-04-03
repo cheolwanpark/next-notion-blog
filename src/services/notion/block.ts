@@ -89,7 +89,7 @@ const retrieveImageAdditionalInfo = async (
     block.image.type === "external"
       ? block.image.external.url
       : block.image.file.url;
-  const { base64, img } = await getPlaiceholder(url, { size: 8 });
+  const { base64, img } = await getPlaiceholder(url, { size: 16 });
   const cacheExpiryTime = dayjs.utc().add(config.revalidateTime, "seconds");
   return {
     ...block,
