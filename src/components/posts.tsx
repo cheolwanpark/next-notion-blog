@@ -59,9 +59,9 @@ export const Posts = ({ posts, size }: { posts: PageMeta[]; size: number }) => {
                   );
                 })}
               </ul>
-              <p
-                className={styles.additional}
-              >{`${published} · ${post.author}`}</p>
+              <p className={styles.additional}>
+                {`${published} · ${post.author}`}
+              </p>
             </article>
           );
         })}
