@@ -40,6 +40,7 @@ export const Posts = ({ posts, size }: { posts: PageMeta[]; size: number }) => {
           return (
             <article key={idx} className={classNames(styles.post, content)}>
               <Link
+                aria-label={`link to the ${post.title}`}
                 href={`/post/${post.path}`}
                 className={styles.link}
                 data-nopico
