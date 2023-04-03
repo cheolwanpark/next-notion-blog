@@ -24,6 +24,7 @@ export const NotionImage = ({
           height={block.dim.height}
           alt=""
           unoptimized={renewed}
+          blurDataURL={block.blurDataURL}
         />
         <div className={styles.caption}>
           <RichText richTexts={block.image.caption} />
