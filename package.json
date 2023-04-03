@@ -12,6 +12,7 @@
     "@notionhq/client": "^2.2.3",
     "@picocss/pico": "^1.5.7",
     "@types/probe-image-size": "^7.2.0",
+    "autoprefixer": "^10.4.14",
     "classnames": "^2.3.2",
     "clipboard-copy": "^4.0.1",
     "dayjs": "^1.11.7",

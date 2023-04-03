@@ -54,6 +54,7 @@ export const Code = ({
         </code>
       </pre>
       <button
+        aria-label="copy code"
         onClick={copyToClipboard}
         className={styles.copy_button}
         data-nopico

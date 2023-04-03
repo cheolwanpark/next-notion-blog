@@ -7,12 +7,14 @@ import Link from "next/link";
 import styles from "@/styles/homepage.module.css";
 import classNames from "classnames";
 import { ui } from "@/services/font";
+import { MetaHead } from "@/components/head";
 
 export default function Home({
   pages,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <>
+      <MetaHead />
       <Intro />
       <Posts posts={pages} size={config.previewPosts} />
       <Link
@@ -41,5 +43,6 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
     props: {
       pages: response.pages,
     },
+    revalidate: config.postsListRevalidateTime,
   };
 };
