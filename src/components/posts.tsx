@@ -69,6 +69,7 @@ export const Posts = ({ posts, size }: { posts: PageMeta[]; size: number }) => {
         <div className={styles.navigator}>
           {prevButtonExists && (
             <button
+              aria-label="previous page"
               className={classNames(styles.button, ui)}
               style={{ float: "left" }}
               onClick={prev}
@@ -79,6 +80,7 @@ export const Posts = ({ posts, size }: { posts: PageMeta[]; size: number }) => {
           )}
           {nextButtonExists && (
             <button
+              aria-label="next page"
               className={classNames(styles.button, ui)}
               style={{ float: "right" }}
               onClick={next}
