@@ -38,7 +38,7 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
     const queryResult = await query({
       query: { path: ctx.params!.path as string },
     });
-    if (queryResult.pages.length !== 1) {
+    if (queryResult.pages.length < 1) {
       return createProp(null, []);
     }
     const meta = queryResult.pages[0];
