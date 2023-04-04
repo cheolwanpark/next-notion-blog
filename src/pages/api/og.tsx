@@ -15,9 +15,11 @@ export default async function handler(req: NextRequest) {
     const fontData = await font;
     const { searchParams } = new URL(req.url);
 
-    const hasTitle = searchParams.has("title");
-    const title = hasTitle
-      ? searchParams.get("title")?.slice(0, 100)
+    const rawTitle = searchParams.has("title")
+      ? searchParams.get("title")
+      : null;
+    const title = rawTitle
+      ? decodeURIComponent(rawTitle)
       : siteConfig.defaultSiteDescription;
 
     return new ImageResponse(
