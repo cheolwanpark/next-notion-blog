@@ -14,7 +14,7 @@ export const MetaHead = ({
   description = description || config.defaultSiteDescription;
   url = url || config.baseURL;
   const ogImageURL = `${config.baseURL}/api/og${
-    title === config.blogTitle ? "" : `?title=${title}`
+    title === config.blogTitle ? "" : `?title=${encodeURIComponent(title)}`
   }`;
   return (
     <Head>
@@ -22,6 +22,7 @@ export const MetaHead = ({
       <meta name="description" content={description} />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       <meta property="og:title" content={title} />
+      <meta property="og:description" content={description}></meta>
       <meta property="og:site_name" content={config.blogTitle} />
       <meta property="og:type" content="blog" />
       <meta property="og:url" content={url} />
