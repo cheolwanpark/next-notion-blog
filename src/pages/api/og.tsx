@@ -1,6 +1,11 @@
 import { ImageResponse } from "@vercel/og";
 import { NextRequest } from "next/server";
-import { siteConfig } from "../../../site.config";
+
+export const siteConfig = {
+  blogTitle: "Covil.log",
+  defaultSiteDescription: "코딩빌런의 블로그",
+  baseURL: "https://blog.codingvillain.com",
+};
 
 export const config = {
   runtime: "edge",
