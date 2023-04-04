@@ -7,7 +7,7 @@ export const config = {
 };
 
 const font = fetch(
-  new URL("../../../public/NotoSerifKR.woff", import.meta.url),
+  new URL("../../../public/NotoSerifKR.otf", import.meta.url),
 ).then((res) => res.arrayBuffer());
 
 export default async function handler(req: NextRequest) {
