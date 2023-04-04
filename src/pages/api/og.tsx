@@ -1,18 +1,13 @@
 import { ImageResponse } from "@vercel/og";
 import { NextRequest } from "next/server";
-
-export const siteConfig = {
-  blogTitle: "Covil.log",
-  defaultSiteDescription: "코딩빌런의 블로그",
-  baseURL: "https://blog.codingvillain.com",
-};
+import { siteConfig } from "../../../site.config";
 
 export const config = {
   runtime: "edge",
 };
 
 const font = fetch(
-  new URL("../../../public/NotoSerifKR-SemiBold.otf", import.meta.url),
+  new URL("../../../public/NotoSerifKR.otf", import.meta.url),
 ).then((res) => res.arrayBuffer());
 
 export default async function handler(req: NextRequest) {
