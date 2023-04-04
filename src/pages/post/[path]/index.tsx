@@ -8,10 +8,12 @@ import { BlockWithChildren } from "@/services/notion/types/block";
 import { content } from "@/services/font";
 import { config } from "@/config";
 import { MetaHead } from "@/components/head";
+import dayjs from "dayjs";
 
 export default function PostPage({
   meta,
   blocks,
+  revalidatedTime,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <>
@@ -23,14 +25,16 @@ export default function PostPage({
       <article className={content} data-nopico>
         <NotionRenderer blocks={blocks} meta={meta} />
       </article>
+      <input type="hidden" name="Revalidated Time" value={revalidatedTime} />
     </>
   );
 }
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
   const createProp = (meta: PageMeta | null, blocks: BlockWithChildren[]) => {
+    const revalidatedTime = dayjs().utc().format("YYYY/MM/DD HH:mm:ss Z");
     return {
-      props: { meta, blocks },
+      props: { meta, blocks, revalidatedTime },
       revalidate: config.revalidateTime,
     };
   };
