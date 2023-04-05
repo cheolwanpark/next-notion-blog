@@ -7,6 +7,7 @@ export const config = {
   github: siteConfig.github,
   postsListRevalidateTime: siteConfig.postsListRevalidateTime,
   revalidateTime: siteConfig.revalidateTime,
+  optimizeExpiringImages: siteConfig.optimizeExpiringImages,
   postsPerPage: siteConfig.postsPerPage,
   previewPosts: siteConfig.previewPosts,
   baseURL: siteConfig.baseURL,

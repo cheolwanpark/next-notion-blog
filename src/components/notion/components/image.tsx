@@ -2,37 +2,21 @@ import {
   ImageBlockExtended,
   WithChildren,
 } from "@/services/notion/types/block";
-import dayjs from "dayjs";
 import Image from "next/image";
 import styles from "@/styles/notion/components.module.css";
 import { RichText } from "./richtext";
-import useSWR from "swr";
 import { Spinner } from "@/components/spinner";
+import { useState } from "react";
+import { config } from "@/config";
 
 export const NotionImage = ({
   block,
 }: {
   block: ImageBlockExtended & WithChildren;
 }) => {
-  const { url, renewed } = useImageUrl(block);
-  if (url) {
-    return (
-      <div className={styles.image}>
-        <Image
-          src={url}
-          width={block.dim.width}
-          height={block.dim.height}
-          alt=""
-          unoptimized={renewed}
-          placeholder="blur"
-          blurDataURL={block.blurDataURL}
-        />
-        <div className={styles.caption}>
-          <RichText richTexts={block.image.caption} />
-        </div>
-      </div>
-    );
-  } else {
+  const { url, expiring, reload, reloading } = useImage(block);
+
+  if (reloading) {
     return (
       <div
         className={styles.image_loading}
@@ -42,45 +26,64 @@ export const NotionImage = ({
       </div>
     );
   }
+
+  const optimize = !expiring || config.optimizeExpiringImages;
+  return (
+    <div className={styles.image}>
+      <Image
+        src={url}
+        width={block.dim.width}
+        height={block.dim.height}
+        alt=""
+        unoptimized={!optimize}
+        placeholder="blur"
+        blurDataURL={block.blurDataURL}
+        onError={reload}
+      />
+      <div className={styles.caption}>
+        <RichText richTexts={block.image.caption} />
+      </div>
+    </div>
+  );
 };
 
-const useImageUrl = (block: ImageBlockExtended) => {
-  const { expired } = getImageUrl(block);
-  const { data, isValidating, error } = useSWR<{
-    block: ImageBlockExtended;
-    renewed: boolean;
-  }>([block.id], async () => {
-    if (expired) {
-      const res = await fetch(`/api/notion/block?id=${block.id}`);
-      // @ts-ignore
-      return { block: (await res.json()).block, renewed: true };
-    } else {
-      return { block: block, renewed: false };
+const useImage = (block: ImageBlockExtended) => {
+  const image = getImage(block);
+  const expiring = image.expiring;
+  const [url, setURL] = useState(image.url);
+  const [reloading, setReloading] = useState(false);
+
+  const reload = async () => {
+    if (!image.expiring) return;
+
+    setReloading(true);
+    const res = await fetch(`/api/notion/block?id=${block.id}`);
+    if (res.ok) {
+      const json = await res.json();
+      const reloadedImage = getImage(json.block);
+      setURL(reloadedImage.url);
     }
-  });
-  return {
-    url: isValidating || error || !data ? null : getImageUrl(data.block).url,
-    renewed: data ? data.renewed : true,
+    setReloading(false);
   };
+
+  return { url, expiring, reload, reloading };
 };
 
-const getImageUrl = (
+const getImage = (
   block: ImageBlockExtended,
 ): {
   url: string;
-  expired: boolean;
+  expiring: boolean;
 } => {
   if (block.image.type === "external") {
     return {
       url: block.image.external.url,
-      expired: false,
+      expiring: false,
     };
   } else {
-    const currentTime = dayjs.utc();
-    const expiryTime = dayjs.utc(block.cacheExpiryTime).subtract(10, "seconds");
     return {
       url: block.image.file.url,
-      expired: currentTime.isAfter(expiryTime),
+      expiring: true,
     };
   }
 };

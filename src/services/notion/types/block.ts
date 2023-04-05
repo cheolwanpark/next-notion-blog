@@ -24,7 +24,6 @@ export type ImageBlockExtended = ImageBlockObjectResponse & {
     height: number;
   };
   blurDataURL: string;
-  cacheExpiryTime: string;
 };
 
 export type BookmarkBlockExtended = BookmarkBlockObjectResponse & {
