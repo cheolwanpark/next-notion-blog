@@ -43,6 +43,6 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
     props: {
       pages: response.pages,
     },
-    revalidate: config.postsListRevalidateTime,
+    revalidate: config.revalidateTime,
   };
 };

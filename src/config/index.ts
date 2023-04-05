@@ -5,7 +5,6 @@ export const config = {
   blogTitle: siteConfig.blogTitle,
   owner: siteConfig.owner,
   github: siteConfig.github,
-  postsListRevalidateTime: siteConfig.postsListRevalidateTime,
   revalidateTime: siteConfig.revalidateTime,
   optimizeExpiringImages: siteConfig.optimizeExpiringImages,
   postsPerPage: siteConfig.postsPerPage,
