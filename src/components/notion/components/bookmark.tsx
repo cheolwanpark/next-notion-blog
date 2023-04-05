@@ -21,10 +21,7 @@ export const Bookmark = ({
         <div className={styles.informations}>
           <div className={styles.title}>
             {metadata.icon && (
-              <img
-                src={metadata.icon}
-                alt={`${metadata.title ? metadata.title : metadata.url}'s icon`}
-              />
+              <i style={{ backgroundImage: `url(${metadata.icon})` }}> </i>
             )}
             {metadata.title && <h1>{metadata.title}</h1>}
           </div>

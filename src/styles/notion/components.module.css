@@ -183,8 +183,10 @@
   display: flex;
   align-items: center;
 }
-.bookmark > .informations > .title > img {
-  max-height: 1.4em;
+.bookmark > .informations > .title > i {
+  display: inline-block;
+  background-size: cover;
+  height: 1.4em;
   aspect-ratio: 1/1;
   margin-right: 7px;
 }
@@ -199,7 +201,7 @@
   line-height: 1.8em;
 }
 .bookmark > .informations > h2 {
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 300;
   margin-bottom: 5px;
   display: -webkit-box;
@@ -212,7 +214,7 @@
   line-height: 1.8em;
 }
 .bookmark > .informations > h3 {
-  font-size: 5px;
+  font-size: 12px;
   margin: 0;
   white-space: nowrap;
   text-overflow: ellipsis;
