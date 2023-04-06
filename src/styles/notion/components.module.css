@@ -14,6 +14,19 @@
   font-size: 1.25rem;
   margin: 1rem 0;
 }
+.heading1 > a,
+.heading2 > a,
+.heading3 > a {
+  opacity: 0;
+}
+.heading1 > *:hover ~ a,
+.heading2 > *:hover ~ a,
+.heading3 > *:hover ~ a,
+.heading1 > a:hover,
+.heading2 > a:hover,
+.heading3 > a:hover {
+  opacity: 1;
+} 
 
 .quote {
   border-left: 3px solid currentcolor;
