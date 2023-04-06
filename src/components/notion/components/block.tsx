@@ -1,6 +1,6 @@
 import { BlockWithChildren } from "@/services/notion/types/block";
 import dynamic from "next/dynamic";
-import { Blank } from "./blank";
+import { Blank } from "@/components/blank";
 import { Bookmark } from "./bookmark";
 import { Callout } from "./callout";
 import { Column, ColumnList } from "./columnlist";
