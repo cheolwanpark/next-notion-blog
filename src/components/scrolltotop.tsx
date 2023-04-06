@@ -26,7 +26,6 @@ export const ScrollToTopButton = ({
       }
     };
 
-    console.log(window.scrollY);
     window.addEventListener("scroll", onScroll);
     return () => {
       window.removeEventListener("scroll", onScroll);
