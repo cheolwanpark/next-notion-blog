@@ -7,6 +7,7 @@ import { DarkModeContext } from "@/services/darkmode";
 import { useState } from "react";
 import { Footer } from "@/components/footer";
 import "@/services/dayjs";
+import { Analytics } from "@vercel/analytics/react";
 
 export default function App({ Component, pageProps }: AppProps) {
   const [isDarkMode, setMode] = useState(false);
@@ -19,6 +20,7 @@ export default function App({ Component, pageProps }: AppProps) {
         </main>
         <Footer />
       </div>
+      <Analytics />
     </DarkModeContext.Provider>
   );
 }

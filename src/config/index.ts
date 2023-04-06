@@ -5,11 +5,12 @@ export const config = {
   blogTitle: siteConfig.blogTitle,
   owner: siteConfig.owner,
   github: siteConfig.github,
-  postsListRevalidateTime: siteConfig.postsListRevalidateTime,
   revalidateTime: siteConfig.revalidateTime,
+  optimizeExpiringImages: siteConfig.optimizeExpiringImages,
   postsPerPage: siteConfig.postsPerPage,
   previewPosts: siteConfig.previewPosts,
   baseURL: siteConfig.baseURL,
   defaultSiteDescription: siteConfig.defaultSiteDescription,
   notion: notionConfig,
+  secret: process.env["SECRET"] || "secret",
 };

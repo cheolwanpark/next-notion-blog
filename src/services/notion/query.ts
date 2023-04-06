@@ -21,16 +21,28 @@ import {
 const queryImpl = async ({
   query,
   sorts,
+  publicOnly = true,
   page_size,
 }: {
   query?: Query;
   sorts?: Sort[];
+  publicOnly?: boolean;
   page_size?: number;
 }): Promise<QueryResult> => {
+  let filter: any = buildFilter(query);
+  if (publicOnly) {
+    const publicFilter = {
+      property: "Public",
+      checkbox: {
+        equals: true,
+      },
+    };
+    filter = filter ? { and: [filter, publicFilter] } : { and: [publicFilter] };
+  }
   const response = await notion.databases.query({
     database_id: config.notion.databaseID,
     // @ts-ignore
-    filter: buildFilter(query),
+    filter,
     sorts,
     start_cursor: isNextPageQuery(query) ? query.cursor : undefined,
     page_size: page_size,

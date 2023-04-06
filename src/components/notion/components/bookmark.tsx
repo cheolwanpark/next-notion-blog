@@ -19,7 +19,12 @@ export const Bookmark = ({
     <div className={styles.bookmark_box}>
       <div className={styles.bookmark}>
         <div className={styles.informations}>
-          {metadata.title && <h1>{metadata.title}</h1>}
+          <div className={styles.title}>
+            {metadata.icon && (
+              <i style={{ backgroundImage: `url(${metadata.icon})` }}> </i>
+            )}
+            {metadata.title && <h1>{metadata.title}</h1>}
+          </div>
           {metadata.description && <h2>{metadata.description}</h2>}
           {metadata.url && <h3>{metadata.url}</h3>}
         </div>
