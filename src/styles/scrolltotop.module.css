@@ -1,0 +1,23 @@
+.button {
+  position: fixed;
+  width: fit-content;
+  height: fit-content;
+  right: 2rem;
+  bottom: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--background-color);
+}
+
+@media (max-width: 768px) {
+  .button {
+    display: none;
+  }
+}
+
+@media(max-width: 1200px) {
+  .button {
+    right: 0.5rem;
+  }
+}

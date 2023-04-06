@@ -8,7 +8,7 @@ import classNames from "classnames";
 import { getColorClass } from "./colors";
 import { RichText } from "./richtext";
 import { Block } from "./block";
-import { Blank } from "./blank";
+import { Blank } from "@/components/blank";
 
 export const BulletedList = ({
   block,

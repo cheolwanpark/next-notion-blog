@@ -8,7 +8,7 @@ export const Footer = () => {
   return (
     <footer className={classNames(styles.footer, ui)}>
       <span>{`© 2023 ${config.owner}`}</span>
-      <span>
+      <span className={styles.powered_by}>
         Powered by&nbsp;
         <Link href="https://nextjs.org/" target="_blank" data-nopico>
           nextjs
