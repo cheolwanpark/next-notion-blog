@@ -243,3 +243,15 @@
   top: 0;
   bottom: 0;
 }
+
+.equation {
+  width: 100%;
+  padding: 14px 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.equation.error {
+  color: rgb(255, 17, 17);
+  font-weight: 900;
+}

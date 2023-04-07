@@ -10,6 +10,7 @@ import { NotionImage } from "./image";
 import { BulletedList, NumberedList } from "./list";
 import { Paragraph } from "./paragraph";
 import { Quote } from "./quote";
+import { Equation } from "./equation";
 
 export const Block = ({
   block,
@@ -49,6 +50,8 @@ export const Block = ({
       return <Column block={block} />;
     case "bookmark":
       return <Bookmark block={block} />;
+    case "equation":
+      return <Equation block={block} />;
     default:
       return <Blank />;
   }
