@@ -11,6 +11,7 @@ import { BulletedList, NumberedList } from "./list";
 import { Paragraph } from "./paragraph";
 import { Quote } from "./quote";
 import { Equation } from "./equation";
+import { Video } from "./video";
 
 export const Block = ({
   block,
@@ -52,6 +53,8 @@ export const Block = ({
       return <Bookmark block={block} />;
     case "equation":
       return <Equation block={block} />;
+    case "video":
+      return <Video block={block} />;
     default:
       return <Blank />;
   }
