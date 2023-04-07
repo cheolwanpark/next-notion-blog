@@ -1,17 +1,23 @@
 import { BlockWithChildren } from "@/services/notion/types/block";
-import dynamic from "next/dynamic";
 import { Blank } from "@/components/blank";
-import { Bookmark } from "./bookmark";
-import { Callout } from "./callout";
-import { Column, ColumnList } from "./columnlist";
-import { Divider } from "./divider";
-import { Heading1, Heading2, Heading3 } from "./headings";
-import { NotionImage } from "./image";
-import { BulletedList, NumberedList } from "./list";
-import { Paragraph } from "./paragraph";
-import { Quote } from "./quote";
-import { Equation } from "./equation";
-import { Video } from "./video";
+import {
+  Bookmark,
+  BulletedList,
+  Callout,
+  Code,
+  Column,
+  ColumnList,
+  Divider,
+  Equation,
+  Heading1,
+  Heading2,
+  Heading3,
+  NotionImage,
+  NumberedList,
+  Paragraph,
+  Quote,
+  Video,
+} from "./lazy";
 
 export const Block = ({
   block,
@@ -59,10 +65,3 @@ export const Block = ({
       return <Blank />;
   }
 };
-
-const Code = dynamic(() =>
-  import("./code").then(async (mod) => {
-    await import("@/services/prism");
-    return mod.Code;
-  }),
-);
