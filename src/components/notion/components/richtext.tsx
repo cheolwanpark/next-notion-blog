@@ -3,6 +3,7 @@ import styles from "@/styles/notion/richtext.module.css";
 import classNames from "classnames";
 import Link from "next/link";
 import { getColorClass } from "./colors";
+import { renderKatex } from "@/services/katex";
 
 // TODO: implement mention, equation type
 export const RichText = ({
@@ -15,7 +16,7 @@ export const RichText = ({
       {richTexts.map((richText, idx) => {
         const style = getClassNames(richText);
         const color = getColorClass(richText.annotations.color);
-        const className = classNames(...style, color, "richtext");
+        const className = classNames(...style, color);
         if (richText.type === "text") {
           const content = richText.text.content;
           const link = richText.text.link ? richText.text.link.url : null;
@@ -29,6 +30,15 @@ export const RichText = ({
                 <NewLineAppliedText content={content} />
               )}
             </span>
+          );
+        } else if (richText.type === "equation") {
+          const html = renderKatex(richText.equation.expression);
+          return (
+            <span
+              dangerouslySetInnerHTML={{ __html: html || "Katex Error!" }}
+              className={classNames(styles.equation, className)}
+              key={idx}
+            />
           );
         } else {
           return <span key={idx}></span>;
