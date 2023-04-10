@@ -1,4 +1,5 @@
 import "@picocss/pico/css/pico.min.css";
+import "katex/dist/katex.min.css";
 import "@/styles/globals.css";
 import "@/styles/picocustom.css";
 import type { AppProps } from "next/app";
