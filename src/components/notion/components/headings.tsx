@@ -23,7 +23,7 @@ export const Heading1 = ({
     <h1
       className={classNames(
         styles.heading1,
-        getColorClass(block.heading_1.color),
+        getColorClass(block.heading_1.color, true),
       )}
       id={id}
     >
@@ -45,7 +45,7 @@ export const Heading2 = ({
     <h2
       className={classNames(
         styles.heading2,
-        getColorClass(block.heading_2.color),
+        getColorClass(block.heading_2.color, true),
       )}
       id={id}
     >
@@ -67,7 +67,7 @@ export const Heading3 = ({
     <h3
       className={classNames(
         styles.heading3,
-        getColorClass(block.heading_3.color),
+        getColorClass(block.heading_3.color, true),
       )}
       id={id}
     >

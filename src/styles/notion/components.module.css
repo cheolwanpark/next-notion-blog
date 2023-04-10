@@ -5,14 +5,17 @@
 .heading1 {
   font-size: 1.875em;
   margin: 1.3rem 0;
+  color: var(--h1-color);
 }
 .heading2 {
   font-size: 1.5rem;
   margin: 1.15rem 0;
+  color: var(--h2-color);
 }
 .heading3 {
   font-size: 1.25rem;
   margin: 1rem 0;
+  color: var(--h3-color);
 }
 .heading1 > a,
 .heading2 > a,

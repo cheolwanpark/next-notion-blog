@@ -1,5 +1,6 @@
 const { siteConfig } = require("./site.config");
 const { withPlaiceholder } = require("@plaiceholder/next");
+const path = require("path");
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -17,6 +18,9 @@ const nextConfig = {
         hostname: "images.unsplash.com",
       },
     ],
+  },
+  sassOptions: {
+    includePaths: [path.join(__dirname, "src/styles")],
   },
 };
 
