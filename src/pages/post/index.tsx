@@ -1,7 +1,6 @@
 import { MetaHead } from "@/components/head";
 import { SearchablePosts } from "@/components/searchable_posts";
 import { config } from "@/config";
-import { ui } from "@/services/font";
 import { query } from "@/services/notion/query";
 import { GetStaticProps, InferGetStaticPropsType } from "next";
 
@@ -15,7 +14,7 @@ export default function Home({
         description={`all posts`}
         url={`${config.baseURL}/post`}
       />
-      <h1 className={ui}>All Posts</h1>
+      <h1>All Posts</h1>
       <SearchablePosts posts={pages} size={config.postsPerPage} />
     </>
   );

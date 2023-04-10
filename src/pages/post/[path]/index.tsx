@@ -5,7 +5,6 @@ import { getBlocks } from "@/services/notion/block";
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
 import { NotionRenderer } from "@/components/notion";
 import { BlockWithChildren } from "@/services/notion/types/block";
-import { content } from "@/services/font";
 import { config } from "@/config";
 import { MetaHead } from "@/components/head";
 import dayjs from "dayjs";
@@ -23,7 +22,7 @@ export default function PostPage({
         description={meta.description}
         url={`${config.baseURL}/post/${meta.path}`}
       />
-      <article className={content} data-nopico>
+      <article data-nopico>
         <NotionRenderer blocks={blocks} meta={meta} />
       </article>
       <ScrollToTopButton />

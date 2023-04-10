@@ -9,6 +9,8 @@ import { useEffect, useState } from "react";
 import { Footer } from "@/components/footer";
 import "@/services/dayjs";
 import { Analytics } from "@vercel/analytics/react";
+import classNames from "classnames";
+import { NotoSansKR } from "@/services/font";
 
 export default function App({ Component, pageProps }: AppProps) {
   const [isDarkMode, _setMode] = useState<boolean | null>(null);
@@ -34,12 +36,14 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <DarkModeContext.Provider value={{ isDarkMode, setMode }}>
-      <Navigation />
-      <main className="container main">
-        <Component {...pageProps} />
-      </main>
-      <Footer />
-      <Analytics />
+      <div className={NotoSansKR.className}>
+        <Navigation />
+        <main className={classNames("container", "main")}>
+          <Component {...pageProps} />
+        </main>
+        <Footer />
+        <Analytics />
+      </div>
     </DarkModeContext.Provider>
   );
 }

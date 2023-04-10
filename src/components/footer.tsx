@@ -1,12 +1,10 @@
 import { config } from "@/config";
 import Link from "next/link";
 import styles from "@/styles/footer.module.css";
-import classNames from "classnames";
-import { ui } from "@/services/font";
 
 export const Footer = () => {
   return (
-    <footer className={classNames(styles.footer, ui)}>
+    <footer className={styles.footer}>
       <span>{`© 2023 ${config.owner}`}</span>
       <span className={styles.powered_by}>
         Powered by&nbsp;
