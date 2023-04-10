@@ -12,6 +12,8 @@
   padding: 24px 24px;
   margin: 12px 0;
   width: 100%;
+  background-color: var(--card-background-color);
+  border: 1px solid var(--muted-border-color);
 }
 .post > hgroup {
   margin-bottom: 7px;

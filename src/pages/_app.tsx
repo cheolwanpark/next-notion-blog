@@ -1,4 +1,4 @@
-import "@picocss/pico/css/pico.min.css";
+import "@/styles/picocss.scss";
 import "katex/dist/katex.min.css";
 import "@/styles/globals.css";
 import "@/styles/picocustom.css";
