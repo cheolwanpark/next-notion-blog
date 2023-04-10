@@ -1,17 +1,7 @@
-import classNames from "classnames";
-import { Noto_Sans_Display, Noto_Serif_KR } from "next/font/google";
+import { Noto_Sans_KR } from "next/font/google";
 
-const ui_ = Noto_Sans_Display({
-  weight: ["300", "900"],
-  style: ["normal", "italic"],
-  subsets: ["latin-ext"],
-});
-
-const content_ = Noto_Serif_KR({
-  weight: ["300", "900"],
+export const NotoSansKR = Noto_Sans_KR({
+  weight: ["300", "700"],
   style: ["normal"],
   subsets: ["latin"],
 });
-
-export const ui = classNames(ui_.className);
-export const content = classNames(content_.className);

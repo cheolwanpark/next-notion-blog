@@ -1,7 +1,5 @@
-import { content, ui } from "@/services/font";
 import { PageMeta } from "@/services/notion/types";
 import styles from "@/styles/posts.module.css";
-import classNames from "classnames";
 import dayjs from "dayjs";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -38,7 +36,7 @@ export const Posts = ({ posts, size }: { posts: PageMeta[]; size: number }) => {
         {currentPosts.map((post, idx) => {
           const published = dayjs(post.published).format("MMMM DD, YYYY");
           return (
-            <article key={idx} className={classNames(styles.post, content)}>
+            <article key={idx} className={styles.post}>
               <Link
                 aria-label={`link to the ${post.title}`}
                 href={`/post/${post.path}`}
@@ -70,7 +68,7 @@ export const Posts = ({ posts, size }: { posts: PageMeta[]; size: number }) => {
           {prevButtonExists && (
             <button
               aria-label="previous page"
-              className={classNames(styles.button, ui)}
+              className={styles.button}
               style={{ float: "left" }}
               onClick={prev}
               data-nopico
@@ -81,7 +79,7 @@ export const Posts = ({ posts, size }: { posts: PageMeta[]; size: number }) => {
           {nextButtonExists && (
             <button
               aria-label="next page"
-              className={classNames(styles.button, ui)}
+              className={styles.button}
               style={{ float: "right" }}
               onClick={next}
               data-nopico

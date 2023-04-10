@@ -1,13 +1,11 @@
 import { config } from "@/config";
-import { content } from "@/services/font";
 import Link from "next/link";
 import { BsGithub } from "react-icons/bs";
 import styles from "@/styles/intro.module.css";
-import classNames from "classnames";
 
 export const Intro = () => {
   return (
-    <article className={classNames(styles.intro, content)} data-nopico>
+    <article className={styles.intro} data-nopico>
       <hgroup>
         <h1>{config.blogTitle}</h1>
         <h2>

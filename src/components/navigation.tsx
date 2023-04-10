@@ -1,7 +1,5 @@
 import { config } from "@/config";
 import { DarkModeContext } from "@/services/darkmode";
-import { ui } from "@/services/font";
-import classNames from "classnames";
 import Link from "next/link";
 import { createElement, useContext } from "react";
 import { BsFillBrightnessHighFill, BsFillMoonFill } from "react-icons/bs";
@@ -14,7 +12,7 @@ export const Navigation = () => {
     setMode(!isDarkMode);
   };
   return (
-    <nav className={classNames("container", ui)}>
+    <nav className={"container"}>
       <ul>
         <li className={styles.title}>
           <Link href="/" data-nopico>
