@@ -1,7 +1,7 @@
 import { WithChildren } from "@/services/notion/types/block";
 import { QuoteBlockObjectResponse } from "@notionhq/client/build/src/api-endpoints";
 import classNames from "classnames";
-import styles from "@/styles/notion/components.module.css";
+import styles from "@/styles/notion/components.module.scss";
 import { getColorClass } from "./colors";
 import { RichText } from "./richtext";
 

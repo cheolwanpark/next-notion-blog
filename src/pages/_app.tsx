@@ -1,7 +1,7 @@
 import "@/styles/picocss.scss";
 import "katex/dist/katex.min.css";
-import "@/styles/globals.css";
-import "@/styles/picocustom.css";
+import "@/styles/globals.scss";
+import "@/styles/picocustom.scss";
 import type { AppProps } from "next/app";
 import { Navigation } from "@/components/navigation";
 import { DarkModeContext } from "@/services/darkmode";

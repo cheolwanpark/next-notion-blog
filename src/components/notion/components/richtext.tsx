@@ -1,5 +1,5 @@
 import { RichTextItemResponse } from "@notionhq/client/build/src/api-endpoints";
-import styles from "@/styles/notion/richtext.module.css";
+import styles from "@/styles/notion/richtext.module.scss";
 import classNames from "classnames";
 import Link from "next/link";
 import { getColorClass } from "./colors";

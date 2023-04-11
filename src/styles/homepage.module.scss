@@ -3,8 +3,8 @@ a.allposts {
   font-weight: 900;
   float: right;
   color: var(--color);
-}
 
-a.allposts:hover {
-  color: var(--primary);
+  &:hover {
+    color: var(--primary);
+  }
 }

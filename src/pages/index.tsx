@@ -4,7 +4,7 @@ import { config } from "@/config";
 import { query } from "@/services/notion/query";
 import { GetStaticProps, InferGetStaticPropsType } from "next";
 import Link from "next/link";
-import styles from "@/styles/homepage.module.css";
+import styles from "@/styles/homepage.module.scss";
 import { MetaHead } from "@/components/head";
 
 export default function Home({
@@ -15,11 +15,7 @@ export default function Home({
       <MetaHead />
       <Intro />
       <Posts posts={pages} size={config.previewPosts} />
-      <Link
-        href="/post"
-        className={styles.allposts}
-        data-nopico
-      >
+      <Link href="/post" className={styles.allposts} data-nopico>
         All Posts →
       </Link>
     </>

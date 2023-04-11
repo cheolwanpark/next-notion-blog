@@ -5,7 +5,7 @@ import {
   Heading3BlockObjectResponse,
 } from "@notionhq/client/build/src/api-endpoints";
 import { RichText } from "./richtext";
-import styles from "@/styles/notion/components.module.css";
+import styles from "@/styles/notion/components.module.scss";
 import { getColorClass } from "./colors";
 import classNames from "classnames";
 import { BsLink45Deg } from "react-icons/bs";

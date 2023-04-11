@@ -1,4 +1,4 @@
-import colors from "@/styles/notion/colors.module.css";
+import colors from "@/styles/notion/colors.module.scss";
 
 export const getColorClass = (
   color: string,

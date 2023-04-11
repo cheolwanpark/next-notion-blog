@@ -1,6 +1,6 @@
 import { WithChildren } from "@/services/notion/types/block";
 import { CodeBlockObjectResponse } from "@notionhq/client/build/src/api-endpoints";
-import styles from "@/styles/notion/components.module.css";
+import styles from "@/styles/notion/components.module.scss";
 import { plainText } from "@/services/notion/utils";
 import { createElement, useContext, useEffect, useRef, useState } from "react";
 import { highlightElement } from "prismjs";
