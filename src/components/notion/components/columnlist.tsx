@@ -3,7 +3,7 @@ import {
   ColumnBlockObjectResponse,
   ColumnListBlockObjectResponse,
 } from "@notionhq/client/build/src/api-endpoints";
-import styles from "@/styles/notion/components.module.css";
+import styles from "@/styles/notion/components.module.scss";
 import { Block } from "./block";
 
 const defaultSpacerWidth = 32;

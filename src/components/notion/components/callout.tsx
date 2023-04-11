@@ -1,6 +1,6 @@
 import { WithChildren } from "@/services/notion/types/block";
 import { CalloutBlockObjectResponse } from "@notionhq/client/build/src/api-endpoints";
-import styles from "@/styles/notion/components.module.css";
+import styles from "@/styles/notion/components.module.scss";
 import { RichText } from "./richtext";
 import { Block } from "./block";
 

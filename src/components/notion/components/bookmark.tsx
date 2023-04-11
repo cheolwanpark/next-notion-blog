@@ -2,7 +2,7 @@ import {
   BookmarkBlockExtended,
   WithChildren,
 } from "@/services/notion/types/block";
-import styles from "@/styles/notion/components.module.css";
+import styles from "@/styles/notion/components.module.scss";
 import Link from "next/link";
 import { RichText } from "./richtext";
 

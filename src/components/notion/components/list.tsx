@@ -3,7 +3,7 @@ import {
   BulletedListItemBlockObjectResponse,
   NumberedListItemBlockObjectResponse,
 } from "@notionhq/client/build/src/api-endpoints";
-import styles from "@/styles/notion/components.module.css";
+import styles from "@/styles/notion/components.module.scss";
 import classNames from "classnames";
 import { getColorClass } from "./colors";
 import { RichText } from "./richtext";

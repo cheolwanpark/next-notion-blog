@@ -1,6 +1,6 @@
 import { WithChildren } from "@/services/notion/types/block";
 import { EquationBlockObjectResponse } from "@notionhq/client/build/src/api-endpoints";
-import styles from "@/styles/notion/components.module.css";
+import styles from "@/styles/notion/components.module.scss";
 import classNames from "classnames";
 import { renderKatex } from "@/services/katex";
 
