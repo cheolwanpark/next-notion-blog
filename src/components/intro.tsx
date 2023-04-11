@@ -1,7 +1,7 @@
 import { config } from "@/config";
 import Link from "next/link";
 import { BsGithub } from "react-icons/bs";
-import styles from "@/styles/intro.module.css";
+import styles from "@/styles/intro.module.scss";
 
 export const Intro = () => {
   return (

@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { ElementRef, useRef } from "react";
 import { Posts } from "./posts";
 import { TextField } from "./textfield";
-import styles from "@/styles/posts.module.css";
+import styles from "@/styles/posts.module.scss";
 
 export const SearchablePosts = ({
   posts,

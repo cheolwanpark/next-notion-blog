@@ -3,7 +3,8 @@ import { DarkModeContext } from "@/services/darkmode";
 import Link from "next/link";
 import { createElement, useContext } from "react";
 import { BsFillBrightnessHighFill, BsFillMoonFill } from "react-icons/bs";
-import styles from "@/styles/navigation.module.css";
+import styles from "@/styles/navigation.module.scss";
+import classNames from "classnames";
 
 export const Navigation = () => {
   const { isDarkMode, setMode } = useContext(DarkModeContext);
@@ -12,7 +13,7 @@ export const Navigation = () => {
     setMode(!isDarkMode);
   };
   return (
-    <nav className={"container"}>
+    <nav className={classNames("container", styles.navigation)}>
       <ul>
         <li className={styles.title}>
           <Link href="/" data-nopico>

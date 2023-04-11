@@ -1,0 +1,33 @@
+@import "~@picocss/pico/scss/variables";
+@import "mixins.scss";
+
+main.main {
+  width: 100%;
+  padding: var(--gap);
+  --font-size: 15px;
+}
+
+@include smMediaQuery {
+  main.main {
+    max-width: map-get($viewports, "sm");
+  }
+}
+
+@include mdMediaQuery {
+  main.main {
+    max-width: map-get($viewports, "md");
+  }
+}
+
+@include lgMediaQuery {
+  main.main {
+    max-width: var(--main-width);
+    --font-size: 16px;
+  }
+}
+
+@include xlMediaQuery {
+  main.main {
+    --font-size: 17px;
+  }
+}

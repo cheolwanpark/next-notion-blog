@@ -1,0 +1,48 @@
+@import "mixins.scss";
+
+.footer {
+  width: 100%;
+  padding: var(--gap);
+  margin: auto;
+  text-align: center;
+  line-height: 24px;
+  font-size: 12px;
+  font-weight: bold;
+  color: var(--muted-color);
+
+  .powered_by {
+    display: none;
+  }
+
+  span {
+    margin: 0 15px;
+  }
+
+  a {
+    text-decoration: underline;
+    &:hover {
+      color: var(--primary);
+    }
+  }
+}
+
+@include smMediaQuery {
+  .footer {
+    max-width: 510px;
+  }
+}
+
+@include mdMediaQuery {
+  .footer {
+    max-width: 700px;
+    .powered_by {
+      display: inline-block;
+    }
+  }
+}
+
+@include lgMediaQuery {
+  .footer {
+    max-width: var(--main-width);
+  }
+}
