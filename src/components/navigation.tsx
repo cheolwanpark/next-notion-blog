@@ -16,14 +16,19 @@ export const Navigation = () => {
     <nav className={classNames("container", styles.navigation)}>
       <ul>
         <li className={styles.title}>
-          <Link href="/" data-nopico>
+          <Link href="/" aria-label="Link to Main page" data-nopico>
             <strong>{config.blogTitle}</strong>
           </Link>
         </li>
       </ul>
       <ul className={styles.buttons}>
         <li>
-          <Link href="/post" className={styles.button} data-nopico>
+          <Link
+            href="/post"
+            className={styles.button}
+            aria-label="Link to Posts page"
+            data-nopico
+          >
             <strong>POSTS</strong>
           </Link>
         </li>

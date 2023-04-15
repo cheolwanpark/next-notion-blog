@@ -23,7 +23,12 @@ export const RichText = ({
           return (
             <span className={className} key={idx}>
               {link ? (
-                <Link className={styles.link} href={link} data-nopico>
+                <Link
+                  className={styles.link}
+                  href={link}
+                  aria-label={`Link to ${content}`}
+                  data-nopico
+                >
                   <NewLineAppliedText content={content} />
                 </Link>
               ) : (

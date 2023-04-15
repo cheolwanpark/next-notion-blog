@@ -32,6 +32,7 @@ export const Bookmark = ({
           href={metadata.url}
           target="_blank"
           className={styles.link}
+          aria-label={`Link to ${metadata.title}`}
           data-nopico
         ></Link>
       </div>
