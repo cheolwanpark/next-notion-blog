@@ -28,7 +28,11 @@ export const Heading1 = ({
       id={id}
     >
       <RichText richTexts={block.heading_1.rich_text} />
-      <Link href={`#${encodeURIComponent(id)}`} data-nopico>
+      <Link
+        href={`#${encodeURIComponent(id)}`}
+        aria-label={`Link to ${id} section`}
+        data-nopico
+      >
         <BsLink45Deg />
       </Link>
     </h1>
@@ -50,7 +54,11 @@ export const Heading2 = ({
       id={id}
     >
       <RichText richTexts={block.heading_2.rich_text} />
-      <Link href={`#${encodeURIComponent(id)}`} data-nopico>
+      <Link
+        href={`#${encodeURIComponent(id)}`}
+        aria-label={`Link to ${id} section`}
+        data-nopico
+      >
         <BsLink45Deg />
       </Link>
     </h2>
@@ -72,7 +80,11 @@ export const Heading3 = ({
       id={id}
     >
       <RichText richTexts={block.heading_3.rich_text} />
-      <Link href={`#${encodeURIComponent(id)}`} data-nopico>
+      <Link
+        href={`#${encodeURIComponent(id)}`}
+        aria-label={`Link to ${id} section`}
+        data-nopico
+      >
         <BsLink45Deg />
       </Link>
     </h3>

@@ -15,7 +15,12 @@ export default function Home({
       <MetaHead />
       <Intro />
       <Posts posts={pages} size={config.previewPosts} />
-      <Link href="/post" className={styles.allposts} data-nopico>
+      <Link
+        href="/post"
+        className={styles.allposts}
+        aria-label={`Link to Posts page`}
+        data-nopico
+      >
         All Posts →
       </Link>
     </>

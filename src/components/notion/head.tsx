@@ -16,7 +16,11 @@ export const NotionHead = ({ meta }: { meta: PageMeta }) => {
         {meta.tags.map((tag) => {
           return (
             <li key={tag}>
-              <Link href={`/tag/${tag}`} data-nopico>
+              <Link
+                href={`/tag/${tag}`}
+                aria-label={`Link to #${tag} page`}
+                data-nopico
+              >
                 #{tag}
               </Link>
             </li>
