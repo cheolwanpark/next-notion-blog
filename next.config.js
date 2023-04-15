@@ -22,6 +22,9 @@ const nextConfig = {
   sassOptions: {
     includePaths: [path.join(__dirname, "src/styles")],
   },
+  experimental: {
+    optimizeCss: true,
+  },
 };
 
 module.exports = withPlaiceholder(nextConfig);
