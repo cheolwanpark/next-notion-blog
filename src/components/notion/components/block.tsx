@@ -1,6 +1,17 @@
 import { BlockWithChildren } from "@/services/notion/types/block";
 import { Blank } from "@/components/blank";
-import dynamic from "next/dynamic";
+import { Paragraph } from "./paragraph";
+import { Heading1, Heading2, Heading3 } from "./headings";
+import { Quote } from "./quote";
+import { BulletedList, NumberedList } from "./list";
+import { Divider } from "./divider";
+import { NotionImage } from "./image";
+import { Callout } from "./callout";
+import { Column, ColumnList } from "./columnlist";
+import { Bookmark } from "./bookmark";
+import { Equation } from "./equation";
+import { Video } from "./video";
+import { Code } from "./code";
 
 export const Block = ({
   block,
@@ -48,67 +59,3 @@ export const Block = ({
       return <Blank />;
   }
 };
-
-// lazy load
-const Paragraph = dynamic(() =>
-  import("./paragraph").then(async (mod) => mod.Paragraph),
-);
-
-const Heading1 = dynamic(() =>
-  import("./headings").then(async (mod) => mod.Heading1),
-);
-
-const Heading2 = dynamic(() =>
-  import("./headings").then(async (mod) => mod.Heading2),
-);
-
-const Heading3 = dynamic(() =>
-  import("./headings").then(async (mod) => mod.Heading3),
-);
-
-const Quote = dynamic(() => import("./quote").then(async (mod) => mod.Quote));
-
-const BulletedList = dynamic(() =>
-  import("./list").then(async (mod) => mod.BulletedList),
-);
-
-const NumberedList = dynamic(() =>
-  import("./list").then(async (mod) => mod.NumberedList),
-);
-
-const Divider = dynamic(() =>
-  import("./divider").then(async (mod) => mod.Divider),
-);
-
-const Code = dynamic(() =>
-  import("./code").then(async (mod) => {
-    await import("@/services/prism");
-    return mod.Code;
-  }),
-);
-
-const NotionImage = dynamic(() =>
-  import("./image").then(async (mod) => mod.NotionImage),
-);
-
-const Callout = dynamic(() =>
-  import("./callout").then(async (mod) => mod.Callout),
-);
-
-const ColumnList = dynamic(() =>
-  import("./columnlist").then(async (mod) => mod.ColumnList),
-);
-
-const Column = dynamic(() =>
-  import("./columnlist").then(async (mod) => mod.Column),
-);
-
-const Bookmark = dynamic(() =>
-  import("./bookmark").then(async (mod) => mod.Bookmark),
-);
-
-const Equation = dynamic(() =>
-  import("./equation").then(async (mod) => mod.Equation),
-);
-
-const Video = dynamic(() => import("./video").then(async (mod) => mod.Video));

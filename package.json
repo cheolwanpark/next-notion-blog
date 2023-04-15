@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@next/bundle-analyzer": "^13.3.0",
     "@notionhq/client": "^2.2.3",
     "@picocss/pico": "^1.5.7",
     "@plaiceholder/next": "^2.5.0",

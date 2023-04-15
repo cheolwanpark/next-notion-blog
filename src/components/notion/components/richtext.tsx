@@ -3,14 +3,17 @@ import styles from "@/styles/notion/richtext.module.scss";
 import classNames from "classnames";
 import Link from "next/link";
 import { getColorClass } from "./colors";
-import { renderKatex } from "@/services/katex";
+import dynamic from "next/dynamic";
+
+type RichTextProps = {
+  richTexts: RichTextItemResponse[];
+};
 
 // TODO: implement mention, equation type
-export const RichText = ({
-  richTexts,
-}: {
-  richTexts: RichTextItemResponse[];
-}) => {
+const RichTextImpl = (
+  { richTexts }: RichTextProps,
+  renderKatex: (expression: string) => string | null,
+) => {
   return (
     <>
       {richTexts.map((richText, idx) => {
@@ -77,3 +80,9 @@ const NewLineAppliedText = ({ content }: { content: string }) => {
     </>
   );
 };
+
+export const RichText = dynamic(() =>
+  import("@/services/katex").then((mod) => {
+    return (props: RichTextProps) => RichTextImpl(props, mod.renderKatex);
+  }),
+);

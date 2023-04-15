@@ -9,8 +9,9 @@ import classNames from "classnames";
 import { DarkModeContext } from "@/services/darkmode";
 import { RichText } from "./richtext";
 import copy from "clipboard-copy";
+import dynamic from "next/dynamic";
 
-export const Code = ({
+const CodeImpl = ({
   block,
 }: {
   block: CodeBlockObjectResponse & WithChildren;
@@ -69,3 +70,9 @@ export const Code = ({
     </div>
   );
 };
+
+export const Code = dynamic(() =>
+  import("@/services/prism").then(async (mod) => {
+    return CodeImpl;
+  }),
+);
