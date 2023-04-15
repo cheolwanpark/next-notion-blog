@@ -8,7 +8,6 @@ import { RichText } from "./richtext";
 import { Spinner } from "@/components/spinner";
 import { useState } from "react";
 import { config } from "@/config";
-import classNames from "classnames";
 
 export const NotionImage = ({
   block,
@@ -19,11 +18,16 @@ export const NotionImage = ({
 
   if (reloading) {
     return (
-      <div
-        className={classNames(styles.image, styles.loading)}
-        style={{ aspectRatio: block.dim.width / block.dim.height }}
-      >
-        <Spinner />
+      <div className={styles.image}>
+        <div
+          className={styles.loading}
+          style={{ aspectRatio: block.dim.width / block.dim.height }}
+        >
+          <Spinner />
+        </div>
+        <div className={styles.caption}>
+          <RichText richTexts={block.image.caption} />
+        </div>
       </div>
     );
   }
