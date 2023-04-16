@@ -2,10 +2,10 @@
 
 .footer {
   width: 100%;
-  padding: var(--gap);
+  height: var(--nav-height);
   margin: auto;
   text-align: center;
-  line-height: 24px;
+  line-height: var(--nav-height);
   font-size: 12px;
   font-weight: bold;
   color: var(--muted-color);

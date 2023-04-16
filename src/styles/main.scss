@@ -3,6 +3,7 @@
 
 main.main {
   width: 100%;
+  min-height: calc(100vh - 2 * var(--nav-height));
   padding: var(--gap);
   --font-size: 15px;
 }
