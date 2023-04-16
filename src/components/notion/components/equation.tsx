@@ -2,13 +2,16 @@ import { WithChildren } from "@/services/notion/types/block";
 import { EquationBlockObjectResponse } from "@notionhq/client/build/src/api-endpoints";
 import styles from "@/styles/notion/components.module.scss";
 import classNames from "classnames";
-import { renderKatex } from "@/services/katex";
+import dynamic from "next/dynamic";
 
-export const Equation = ({
-  block,
-}: {
+type EquationProps = {
   block: EquationBlockObjectResponse & WithChildren;
-}) => {
+};
+
+const EquationImpl = (
+  { block }: EquationProps,
+  renderKatex: (expression: string) => string | null,
+) => {
   const html = renderKatex(block.equation.expression);
   return (
     <div
@@ -17,3 +20,9 @@ export const Equation = ({
     />
   );
 };
+
+export const Equation = dynamic(() =>
+  import("@/services/katex").then((mod) => {
+    return (props: EquationProps) => EquationImpl(props, mod.renderKatex);
+  }),
+);
