@@ -1,4 +1,4 @@
-import { WithChildren } from "@/services/notion/types/block";
+import { ExtendBlock } from "@/services/notion/types/block";
 import { ParagraphBlockObjectResponse } from "@notionhq/client/build/src/api-endpoints";
 import classNames from "classnames";
 import { getColorClass } from "./colors";
@@ -8,7 +8,7 @@ import { RichText } from "./richtext";
 export const Paragraph = ({
   block,
 }: {
-  block: ParagraphBlockObjectResponse & WithChildren;
+  block: ExtendBlock<ParagraphBlockObjectResponse>;
 }) => {
   return (
     <p className={classNames(getColorClass(block.paragraph.color))}>

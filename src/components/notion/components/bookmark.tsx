@@ -1,6 +1,6 @@
 import {
   BookmarkBlockExtended,
-  WithChildren,
+  ExtendBlock,
 } from "@/services/notion/types/block";
 import styles from "@/styles/notion/components.module.scss";
 import Link from "next/link";
@@ -9,7 +9,7 @@ import { RichText } from "./richtext";
 export const Bookmark = ({
   block,
 }: {
-  block: BookmarkBlockExtended & WithChildren;
+  block: ExtendBlock<BookmarkBlockExtended>;
 }) => {
   const {
     metadata,

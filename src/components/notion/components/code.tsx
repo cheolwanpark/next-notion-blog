@@ -1,4 +1,3 @@
-import { WithChildren } from "@/services/notion/types/block";
 import { CodeBlockObjectResponse } from "@notionhq/client/build/src/api-endpoints";
 import styles from "@/styles/notion/components.module.scss";
 import { plainText } from "@/services/notion/utils";
@@ -10,11 +9,12 @@ import { DarkModeContext } from "@/services/darkmode";
 import { RichText } from "./richtext";
 import copy from "clipboard-copy";
 import dynamic from "next/dynamic";
+import { ExtendBlock } from "@/services/notion/types/block";
 
 const CodeImpl = ({
   block,
 }: {
-  block: CodeBlockObjectResponse & WithChildren;
+  block: ExtendBlock<CodeBlockObjectResponse>;
 }) => {
   const content = plainText(block.code.rich_text);
   const { isDarkMode } = useContext(DarkModeContext);

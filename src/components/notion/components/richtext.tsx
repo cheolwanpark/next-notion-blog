@@ -3,17 +3,14 @@ import styles from "@/styles/notion/richtext.module.scss";
 import classNames from "classnames";
 import Link from "next/link";
 import { getColorClass } from "./colors";
-import dynamic from "next/dynamic";
+import { RichTextObject } from "@/services/notion/types/block";
 
 type RichTextProps = {
-  richTexts: RichTextItemResponse[];
+  richTexts: RichTextObject[];
 };
 
 // TODO: implement mention, equation type
-const RichTextImpl = (
-  { richTexts }: RichTextProps,
-  renderKatex: (expression: string) => string | null,
-) => {
+export const RichText = ({ richTexts }: RichTextProps) => {
   return (
     <>
       {richTexts.map((richText, idx) => {
@@ -40,10 +37,9 @@ const RichTextImpl = (
             </span>
           );
         } else if (richText.type === "equation") {
-          const html = renderKatex(richText.equation.expression);
           return (
             <span
-              dangerouslySetInnerHTML={{ __html: html || "Katex Error!" }}
+              dangerouslySetInnerHTML={{ __html: richText.katexHtml || "" }}
               className={classNames(styles.equation, className)}
               key={idx}
             />
@@ -80,9 +76,3 @@ const NewLineAppliedText = ({ content }: { content: string }) => {
     </>
   );
 };
-
-export const RichText = dynamic(() =>
-  import("@/services/katex").then((mod) => {
-    return (props: RichTextProps) => RichTextImpl(props, mod.renderKatex);
-  }),
-);

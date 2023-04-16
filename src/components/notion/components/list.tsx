@@ -1,4 +1,4 @@
-import { BlockWithChildren, WithChildren } from "@/services/notion/types/block";
+import { BlockWithChildren, ExtendBlock } from "@/services/notion/types/block";
 import {
   BulletedListItemBlockObjectResponse,
   NumberedListItemBlockObjectResponse,
@@ -15,7 +15,7 @@ export const BulletedList = ({
   blocks,
   idx,
 }: {
-  block: BulletedListItemBlockObjectResponse & WithChildren;
+  block: ExtendBlock<BulletedListItemBlockObjectResponse>;
   blocks: BlockWithChildren[];
   idx: number;
 }) => {
@@ -49,7 +49,7 @@ export const NumberedList = ({
   blocks,
   idx,
 }: {
-  block: NumberedListItemBlockObjectResponse & WithChildren;
+  block: ExtendBlock<NumberedListItemBlockObjectResponse>;
   blocks: BlockWithChildren[];
   idx: number;
 }) => {
