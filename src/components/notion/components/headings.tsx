@@ -1,4 +1,3 @@
-import { WithChildren } from "@/services/notion/types/block";
 import {
   Heading1BlockObjectResponse,
   Heading2BlockObjectResponse,
@@ -11,12 +10,13 @@ import classNames from "classnames";
 import { BsLink45Deg } from "react-icons/bs";
 import { plainText } from "@/services/notion/utils";
 import Link from "next/link";
+import { ExtendBlock } from "@/services/notion/types/block";
 
 // TODO: support childs
 export const Heading1 = ({
   block,
 }: {
-  block: Heading1BlockObjectResponse & WithChildren;
+  block: ExtendBlock<Heading1BlockObjectResponse>;
 }) => {
   const id = plainText(block.heading_1.rich_text);
   return (
@@ -42,7 +42,7 @@ export const Heading1 = ({
 export const Heading2 = ({
   block,
 }: {
-  block: Heading2BlockObjectResponse & WithChildren;
+  block: ExtendBlock<Heading2BlockObjectResponse>;
 }) => {
   const id = plainText(block.heading_2.rich_text);
   return (
@@ -68,7 +68,7 @@ export const Heading2 = ({
 export const Heading3 = ({
   block,
 }: {
-  block: Heading3BlockObjectResponse & WithChildren;
+  block: ExtendBlock<Heading3BlockObjectResponse>;
 }) => {
   const id = plainText(block.heading_3.rich_text);
   return (

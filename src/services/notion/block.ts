@@ -1,11 +1,13 @@
-import { config } from "@/config";
 import { isFullBlock } from "@notionhq/client";
 import {
+  BlockObjectResponse,
   BookmarkBlockObjectResponse,
+  EquationBlockObjectResponse,
+  EquationRichTextItemResponse,
   ImageBlockObjectResponse,
   ListBlockChildrenResponse,
+  RichTextItemResponse,
 } from "@notionhq/client/build/src/api-endpoints";
-import dayjs from "dayjs";
 import pMap from "p-map";
 import { getPlaiceholder } from "plaiceholder";
 import pMemoize from "p-memoize";
@@ -15,19 +17,15 @@ import {
   BlockObject,
   BlockWithChildren,
   BookmarkBlockExtended,
+  EquationBlockExtended,
   ImageBlockExtended,
 } from "./types/block";
+import { renderKatex } from "../katex";
 
 const getBlockImpl = async (blockID: string): Promise<BlockObject | null> => {
   const block = await notion.blocks.retrieve({ block_id: blockID });
   if (!isFullBlock(block)) return null;
-  if (block.type === "image") {
-    return await retrieveImageAdditionalInfo(block);
-  } else if (block.type === "bookmark") {
-    return await retrieveBookmarkAdditionalInfo(block);
-  } else {
-    return block;
-  }
+  return await retrieveAdditionalInfo(block);
 };
 
 export const getBlock = pMemoize(getBlockImpl);
@@ -56,13 +54,11 @@ const getBlocksImpl = async (
 const processResponse = async (
   response: ListBlockChildrenResponse,
 ): Promise<BlockWithChildren[]> => {
-  const fullBlocks = response.results.filter(isFullBlock).map(async (block) => {
-    if (block.type === "image") return await retrieveImageAdditionalInfo(block);
-    else if (block.type === "bookmark")
-      return await retrieveBookmarkAdditionalInfo(block);
-    else return block;
-  });
-  return await pMap(fullBlocks, retrieveChildren, { concurrency: 2 });
+  const fullBlocks = response.results
+    .filter(isFullBlock)
+    .map(retrieveAdditionalInfo);
+  const blocks = await pMap(fullBlocks, retrieveChildren, { concurrency: 2 });
+  return renderAllEquations(blocks);
 };
 
 const retrieveChildren = async (
@@ -79,6 +75,20 @@ const retrieveChildren = async (
       ...block,
       children: [],
     };
+  }
+};
+
+const retrieveAdditionalInfo = async (
+  block: BlockObjectResponse,
+): Promise<BlockObject> => {
+  if (block.type === "image") {
+    return await retrieveImageAdditionalInfo(block);
+  } else if (block.type === "bookmark") {
+    return await retrieveBookmarkAdditionalInfo(block);
+  } else if (block.type === "equation") {
+    return retrieveEquationAdditionalInfo(block);
+  } else {
+    return block;
   }
 };
 
@@ -109,6 +119,45 @@ const retrieveBookmarkAdditionalInfo = async (
     ...block,
     metadata,
   };
+};
+
+const retrieveEquationAdditionalInfo = (
+  block: EquationBlockObjectResponse,
+): EquationBlockExtended => {
+  return {
+    ...block,
+    katexHtml: renderKatex(block.equation.expression) || "",
+  };
+};
+
+const renderAllEquations = (obj: any): any => {
+  if (Array.isArray(obj)) {
+    return obj.map(renderAllEquations);
+  } else if (obj && typeof obj === "object") {
+    if (isRichTextWithEquation(obj)) {
+      return {
+        ...obj,
+        katexHtml: renderKatex(obj.equation.expression) || "",
+      };
+    }
+    for (let key in obj) {
+      if (obj.hasOwnProperty(key)) obj[key] = renderAllEquations(obj[key]);
+    }
+    return obj;
+  } else {
+    return obj;
+  }
+};
+
+const isRichTextWithEquation = (
+  item: any,
+): item is EquationRichTextItemResponse => {
+  const plain_text_exists =
+    (<RichTextItemResponse>item).plain_text !== undefined;
+  const annotations_exists =
+    (<RichTextItemResponse>item).annotations !== undefined;
+  const type_match = (<RichTextItemResponse>item).type === "equation";
+  return plain_text_exists && annotations_exists && type_match;
 };
 
 export const getBlocks = pMemoize(getBlocksImpl);

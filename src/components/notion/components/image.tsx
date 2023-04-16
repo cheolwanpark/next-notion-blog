@@ -1,7 +1,4 @@
-import {
-  ImageBlockExtended,
-  WithChildren,
-} from "@/services/notion/types/block";
+import { ExtendBlock, ImageBlockExtended } from "@/services/notion/types/block";
 import Image from "next/image";
 import styles from "@/styles/notion/components.module.scss";
 import { RichText } from "./richtext";
@@ -12,7 +9,7 @@ import { config } from "@/config";
 export const NotionImage = ({
   block,
 }: {
-  block: ImageBlockExtended & WithChildren;
+  block: ExtendBlock<ImageBlockExtended>;
 }) => {
   const { url, expiring, reload, reloading } = useImage(block);
 

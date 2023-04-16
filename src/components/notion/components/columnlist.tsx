@@ -1,10 +1,10 @@
-import { WithChildren } from "@/services/notion/types/block";
 import {
   ColumnBlockObjectResponse,
   ColumnListBlockObjectResponse,
 } from "@notionhq/client/build/src/api-endpoints";
 import styles from "@/styles/notion/components.module.scss";
 import { Block } from "./block";
+import { ExtendBlock } from "@/services/notion/types/block";
 
 const defaultSpacerWidth = 32;
 
@@ -12,7 +12,7 @@ export const ColumnList = ({
   block,
   spacerWidth,
 }: {
-  block: ColumnListBlockObjectResponse & WithChildren;
+  block: ExtendBlock<ColumnListBlockObjectResponse>;
   spacerWidth?: number;
 }) => {
   const spacerW = spacerWidth || defaultSpacerWidth;
@@ -54,7 +54,7 @@ export const ColumnList = ({
 export const Column = ({
   block,
 }: {
-  block: ColumnBlockObjectResponse & WithChildren;
+  block: ExtendBlock<ColumnBlockObjectResponse>;
 }) => {
   return (
     <div className={styles.column}>

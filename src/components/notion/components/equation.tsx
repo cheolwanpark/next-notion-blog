@@ -1,28 +1,18 @@
-import { WithChildren } from "@/services/notion/types/block";
-import { EquationBlockObjectResponse } from "@notionhq/client/build/src/api-endpoints";
+import {
+  EquationBlockExtended,
+  ExtendBlock,
+} from "@/services/notion/types/block";
 import styles from "@/styles/notion/components.module.scss";
-import classNames from "classnames";
-import dynamic from "next/dynamic";
 
 type EquationProps = {
-  block: EquationBlockObjectResponse & WithChildren;
+  block: ExtendBlock<EquationBlockExtended>;
 };
 
-const EquationImpl = (
-  { block }: EquationProps,
-  renderKatex: (expression: string) => string | null,
-) => {
-  const html = renderKatex(block.equation.expression);
+export const Equation = ({ block }: EquationProps) => {
   return (
     <div
-      className={classNames(styles.equation, { [styles.error]: !html })}
-      dangerouslySetInnerHTML={{ __html: html || "KaTex Error!" }}
+      className={styles.equation}
+      dangerouslySetInnerHTML={{ __html: block.katexHtml }}
     />
   );
 };
-
-export const Equation = dynamic(() =>
-  import("@/services/katex").then((mod) => {
-    return (props: EquationProps) => EquationImpl(props, mod.renderKatex);
-  }),
-);

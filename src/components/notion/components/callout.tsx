@@ -1,13 +1,13 @@
-import { WithChildren } from "@/services/notion/types/block";
 import { CalloutBlockObjectResponse } from "@notionhq/client/build/src/api-endpoints";
 import styles from "@/styles/notion/components.module.scss";
 import { RichText } from "./richtext";
 import { Block } from "./block";
+import { ExtendBlock } from "@/services/notion/types/block";
 
 export const Callout = ({
   block,
 }: {
-  block: CalloutBlockObjectResponse & WithChildren;
+  block: ExtendBlock<CalloutBlockObjectResponse>;
 }) => {
   const icon = getIcon(block);
   return (
