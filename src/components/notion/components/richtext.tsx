@@ -1,16 +1,19 @@
 import { RichTextItemResponse } from "@notionhq/client/build/src/api-endpoints";
-import styles from "@/styles/notion/richtext.module.css";
+import styles from "@/styles/notion/richtext.module.scss";
 import classNames from "classnames";
 import Link from "next/link";
 import { getColorClass } from "./colors";
-import { renderKatex } from "@/services/katex";
+import dynamic from "next/dynamic";
+
+type RichTextProps = {
+  richTexts: RichTextItemResponse[];
+};
 
 // TODO: implement mention, equation type
-export const RichText = ({
-  richTexts,
-}: {
-  richTexts: RichTextItemResponse[];
-}) => {
+const RichTextImpl = (
+  { richTexts }: RichTextProps,
+  renderKatex: (expression: string) => string | null,
+) => {
   return (
     <>
       {richTexts.map((richText, idx) => {
@@ -23,7 +26,12 @@ export const RichText = ({
           return (
             <span className={className} key={idx}>
               {link ? (
-                <Link className={styles.link} href={link} data-nopico>
+                <Link
+                  className={styles.link}
+                  href={link}
+                  aria-label={`Link to ${content}`}
+                  data-nopico
+                >
                   <NewLineAppliedText content={content} />
                 </Link>
               ) : (
@@ -72,3 +80,9 @@ const NewLineAppliedText = ({ content }: { content: string }) => {
     </>
   );
 };
+
+export const RichText = dynamic(() =>
+  import("@/services/katex").then((mod) => {
+    return (props: RichTextProps) => RichTextImpl(props, mod.renderKatex);
+  }),
+);

@@ -1,7 +1,6 @@
 import { MetaHead } from "@/components/head";
 import { SearchablePosts } from "@/components/searchable_posts";
 import { config } from "@/config";
-import { ui } from "@/services/font";
 import { query } from "@/services/notion/query";
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
 import { useRouter } from "next/router";
@@ -18,7 +17,7 @@ export default function Home({
         description={`${tag} posts`}
         url={`${config.baseURL}/tag/${tag}`}
       />
-      <h1 className={ui}>#{tag}</h1>
+      <h1>#{tag}</h1>
       <SearchablePosts posts={pages} size={config.postsPerPage} />
     </>
   );

@@ -1,23 +1,17 @@
 import { BlockWithChildren } from "@/services/notion/types/block";
 import { Blank } from "@/components/blank";
-import {
-  Bookmark,
-  BulletedList,
-  Callout,
-  Code,
-  Column,
-  ColumnList,
-  Divider,
-  Equation,
-  Heading1,
-  Heading2,
-  Heading3,
-  NotionImage,
-  NumberedList,
-  Paragraph,
-  Quote,
-  Video,
-} from "./lazy";
+import { Paragraph } from "./paragraph";
+import { Heading1, Heading2, Heading3 } from "./headings";
+import { Quote } from "./quote";
+import { BulletedList, NumberedList } from "./list";
+import { Divider } from "./divider";
+import { NotionImage } from "./image";
+import { Callout } from "./callout";
+import { Column, ColumnList } from "./columnlist";
+import { Bookmark } from "./bookmark";
+import { Equation } from "./equation";
+import { Video } from "./video";
+import { Code } from "./code";
 
 export const Block = ({
   block,

@@ -1,0 +1,37 @@
+.intro {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  margin: 48px 0 48px 0;
+  padding: 24px 0;
+
+  h1 {
+    font-size: 34px;
+    margin-bottom: 12px;
+  }
+
+  h2 {
+    font-size: 16px;
+    line-height: 1.5em;
+    margin-bottom: 0;
+  }
+
+  hgroup {
+    margin-bottom: 12px;
+  }
+
+  .contacts {
+    padding: 0;
+    margin: 0;
+
+    li {
+      list-style: none;
+      float: left;
+      color: var(--color);
+
+      &:hover {
+        color: var(--primary);
+      }
+    }
+  }
+}

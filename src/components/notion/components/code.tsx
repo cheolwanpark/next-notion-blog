@@ -1,6 +1,6 @@
 import { WithChildren } from "@/services/notion/types/block";
 import { CodeBlockObjectResponse } from "@notionhq/client/build/src/api-endpoints";
-import styles from "@/styles/notion/components.module.css";
+import styles from "@/styles/notion/components.module.scss";
 import { plainText } from "@/services/notion/utils";
 import { createElement, useContext, useEffect, useRef, useState } from "react";
 import { highlightElement } from "prismjs";
@@ -9,8 +9,9 @@ import classNames from "classnames";
 import { DarkModeContext } from "@/services/darkmode";
 import { RichText } from "./richtext";
 import copy from "clipboard-copy";
+import dynamic from "next/dynamic";
 
-export const Code = ({
+const CodeImpl = ({
   block,
 }: {
   block: CodeBlockObjectResponse & WithChildren;
@@ -69,3 +70,9 @@ export const Code = ({
     </div>
   );
 };
+
+export const Code = dynamic(() =>
+  import("@/services/prism").then(async (mod) => {
+    return CodeImpl;
+  }),
+);

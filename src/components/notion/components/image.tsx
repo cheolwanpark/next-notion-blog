@@ -3,7 +3,7 @@ import {
   WithChildren,
 } from "@/services/notion/types/block";
 import Image from "next/image";
-import styles from "@/styles/notion/components.module.css";
+import styles from "@/styles/notion/components.module.scss";
 import { RichText } from "./richtext";
 import { Spinner } from "@/components/spinner";
 import { useState } from "react";
@@ -18,11 +18,16 @@ export const NotionImage = ({
 
   if (reloading) {
     return (
-      <div
-        className={styles.image_loading}
-        style={{ aspectRatio: block.dim.width / block.dim.height }}
-      >
-        <Spinner />
+      <div className={styles.image}>
+        <div
+          className={styles.loading}
+          style={{ aspectRatio: block.dim.width / block.dim.height }}
+        >
+          <Spinner />
+        </div>
+        <div className={styles.caption}>
+          <RichText richTexts={block.image.caption} />
+        </div>
       </div>
     );
   }

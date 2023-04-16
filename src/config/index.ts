@@ -12,5 +12,4 @@ export const config = {
   baseURL: siteConfig.baseURL,
   defaultSiteDescription: siteConfig.defaultSiteDescription,
   notion: notionConfig,
-  secret: process.env["SECRET"] || "secret",
 };

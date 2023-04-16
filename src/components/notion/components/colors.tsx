@@ -1,9 +1,12 @@
-import colors from "@/styles/notion/colors.module.css";
+import colors from "@/styles/notion/colors.module.scss";
 
-export const getColorClass = (color: string) => {
+export const getColorClass = (
+  color: string,
+  ignoreDefault: boolean = false,
+) => {
   switch (color) {
     case "default":
-      return colors.default;
+      return ignoreDefault ? null : colors.default;
     case "blue":
       return colors.blue;
     case "brown":

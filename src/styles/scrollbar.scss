@@ -1,0 +1,23 @@
+::-webkit-scrollbar {
+  background: transparent;
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: #d3d1cb;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #aeaca6;
+}
+::-webkit-scrollbar-track {
+  background: #edece9;
+}
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: #666562;
+}
+[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+  background: #464543;
+}
+[data-theme="dark"] ::-webkit-scrollbar-track {
+  background: #302f2f;
+}

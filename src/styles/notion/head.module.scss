@@ -1,0 +1,40 @@
+.head {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 50px;
+  width: 100%;
+
+  > {
+    hgroup {
+      margin-bottom: 7px;
+    }
+
+    .tags {
+      padding: 0;
+      margin-bottom: 7px;
+      z-index: 999;
+    
+      li {
+        list-style: none;
+        float: left;
+        font-size: 15px;
+        margin-right: 11px;
+        margin-bottom: 0;
+        font-weight: 900;
+    
+        &:hover {
+          color: var(--primary);
+        }
+      }
+    }
+
+    .additional {
+      color: var(--color);
+      font-size: 13px;
+      margin-bottom: 0;
+      text-align: start;
+    }
+  }
+}

@@ -4,7 +4,7 @@ import { extractYoutubeVideoId } from "@/services/youtube";
 import { VideoBlockObjectResponse } from "@notionhq/client/build/src/api-endpoints";
 import classNames from "classnames";
 import YouTube from "react-youtube";
-import styles from "@/styles/notion/components.module.css";
+import styles from "@/styles/notion/components.module.scss";
 
 export const Video = ({
   block,

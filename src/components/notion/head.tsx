@@ -1,5 +1,6 @@
 import { PageMeta } from "@/services/notion/types";
-import styles from "@/styles/notion/head.module.css";
+import styles from "@/styles/notion/head.module.scss";
+import componentStyles from "@/styles/notion/components.module.scss";
 import dayjs from "dayjs";
 import Link from "next/link";
 
@@ -15,7 +16,11 @@ export const NotionHead = ({ meta }: { meta: PageMeta }) => {
         {meta.tags.map((tag) => {
           return (
             <li key={tag}>
-              <Link href={`/tag/${tag}`} data-nopico>
+              <Link
+                href={`/tag/${tag}`}
+                aria-label={`Link to #${tag} page`}
+                data-nopico
+              >
                 #{tag}
               </Link>
             </li>
@@ -23,7 +28,7 @@ export const NotionHead = ({ meta }: { meta: PageMeta }) => {
         })}
       </ul>
       <p className={styles.additional}>{`${published} · ${meta.author}`}</p>
-      <div className={styles.divider}></div>
+      <div className={componentStyles.divider}></div>
     </section>
   );
 };
