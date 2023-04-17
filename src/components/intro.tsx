@@ -9,14 +9,17 @@ export const Intro = () => {
       <hgroup>
         <h1>{config.blogTitle}</h1>
         <h2>
-          Welcome to demo of hugo’s theme PaperMod.
+          안녕하세요 👋
           <br />
-          PaperMod is a simple but fast and responsive theme with useful
-          feature-set that enhances UX.
+          코딩빌런의 개발 블로그입니다.
           <br />
-          Do give a 🌟 on Github !
+          렌더링과 머신러닝, 웹 등 다양한 분야에 관심을 가지고 공부하고
+          있습니다.
           <br />
-          PaperMod is based on theme Paper.
+          이 블로그에는 공부하거나 개발하면서 정리할 필요를 느낀 내용들을 작성할
+          예정입니다.
+          <br />
+          이곳에 있는 글이 여러분에게 도움이 된다면 좋겠습니다 😊
         </h2>
       </hgroup>
       <ul className={styles.contacts}>

@@ -30,6 +30,10 @@ export const MetaHead = ({
       <meta property="og:image" content={ogImageURL} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
+      <meta
+        name="google-site-verification"
+        content={config.googleSiteVerificationMetaTag}
+      />
     </Head>
   );
 };

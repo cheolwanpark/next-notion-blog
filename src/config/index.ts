@@ -8,8 +8,9 @@ export const config = {
   revalidateTime: siteConfig.revalidateTime,
   optimizeExpiringImages: siteConfig.optimizeExpiringImages,
   postsPerPage: siteConfig.postsPerPage,
-  previewPosts: siteConfig.previewPosts,
+  previewPosts: 3,
   baseURL: siteConfig.baseURL,
   defaultSiteDescription: siteConfig.defaultSiteDescription,
+  googleSiteVerificationMetaTag: siteConfig.googleSiteVerificationMetaTag,
   notion: notionConfig,
 };

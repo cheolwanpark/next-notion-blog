@@ -1,8 +1,10 @@
 .navigation {
+  height: var(--nav-height);
+
   .title {
     font-size: 24px;
     color: var(--h1-color);
-  
+
     &:hover {
       color: var(--primary);
     }
@@ -12,18 +14,16 @@
     display: flex;
     align-items: center;
     font-size: 16px;
-  
-    > li > a{
+
+    > li > a {
       margin-top: -5px;
     }
-  
+
     .button {
       color: var(--h1-color);
       &:hover {
         color: var(--primary);
-  
       }
     }
   }
 }
-
