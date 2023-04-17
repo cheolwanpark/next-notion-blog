@@ -56,9 +56,10 @@ const processResponse = async (
 ): Promise<BlockWithChildren[]> => {
   const fullBlocks = response.results
     .filter(isFullBlock)
+    .map(renderAllEquations)
     .map(retrieveAdditionalInfo);
   const blocks = await pMap(fullBlocks, retrieveChildren, { concurrency: 2 });
-  return renderAllEquations(blocks);
+  return blocks;
 };
 
 const retrieveChildren = async (
