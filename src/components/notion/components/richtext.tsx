@@ -26,6 +26,7 @@ export const RichText = ({ richTexts }: RichTextProps) => {
                 <Link
                   className={styles.link}
                   href={link}
+                  target="_blank"
                   aria-label={`Link to ${content}`}
                   data-nopico
                 >

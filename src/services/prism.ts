@@ -25,3 +25,4 @@ import "prismjs/components/prism-yaml.js";
 import "prismjs/components/prism-typescript.min";
 import "prismjs/components/prism-jsx.min";
 import "prismjs/components/prism-tsx.min";
+import "prismjs/components/prism-json.js";

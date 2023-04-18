@@ -9,6 +9,7 @@
   color: $color;
   > {
     a {
+      position: absolute;
       opacity: 0;
     }
 
@@ -90,6 +91,8 @@
 // Code
 .code {
   position: relative;
+  margin-bottom: var(--typography-spacing-vertical);
+
   > .copy_button {
     position: absolute;
     top: 3px;
