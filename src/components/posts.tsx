@@ -3,6 +3,7 @@ import styles from "@/styles/posts.module.scss";
 import dayjs from "dayjs";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { NewLineAppliedText } from "./newlinetext";
 
 export const Posts = ({ posts, size }: { posts: PageMeta[]; size: number }) => {
   const router = useRouter();
@@ -45,7 +46,9 @@ export const Posts = ({ posts, size }: { posts: PageMeta[]; size: number }) => {
               ></Link>
               <hgroup>
                 <h1>{post.title}</h1>
-                <h2>{post.description}</h2>
+                <h2>
+                  <NewLineAppliedText content={post.description} />
+                </h2>
               </hgroup>
               <ul className={styles.tags}>
                 {post.tags.map((tag) => {

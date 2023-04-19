@@ -9,6 +9,7 @@
   --nav-height: 50px;
   --main-width: 720px;
   --font-family: unset;
+  --line-height: 1.7;
   --typography-spacing-vertical: 0.7rem;
 }
 
@@ -25,4 +26,5 @@
 
 body {
   background-color: var(--background-color);
+  word-break: break-all;
 }

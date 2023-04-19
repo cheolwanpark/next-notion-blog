@@ -3,6 +3,7 @@ import styles from "@/styles/notion/head.module.scss";
 import componentStyles from "@/styles/notion/components.module.scss";
 import dayjs from "dayjs";
 import Link from "next/link";
+import { NewLineAppliedText } from "../newlinetext";
 
 export const NotionHead = ({ meta }: { meta: PageMeta }) => {
   const published = dayjs(meta.published).format("MMMM DD, YYYY");
@@ -10,7 +11,9 @@ export const NotionHead = ({ meta }: { meta: PageMeta }) => {
     <section className={styles.head}>
       <hgroup>
         <h1>{meta.title}</h1>
-        <h2>{meta.description}</h2>
+        <h2>
+          <NewLineAppliedText content={meta.description} />
+        </h2>
       </hgroup>
       <ul className={styles.tags}>
         {meta.tags.map((tag) => {

@@ -4,6 +4,7 @@ import classNames from "classnames";
 import Link from "next/link";
 import { getColorClass } from "./colors";
 import { RichTextObject } from "@/services/notion/types/block";
+import { NewLineAppliedText } from "@/components/newlinetext";
 
 type RichTextProps = {
   richTexts: RichTextObject[];
@@ -61,19 +62,4 @@ const getClassNames = (richText: RichTextItemResponse) => {
   if (style.strikethrough) classNames.push(styles.strikethrough);
   if (style.underline) classNames.push(styles.underline);
   return classNames;
-};
-
-const NewLineAppliedText = ({ content }: { content: string }) => {
-  return (
-    <>
-      {content.split("\n").map((substr, idx, arr) => {
-        const isMiddle = idx < arr.length - 1;
-        return (
-          <span key={idx}>
-            {substr} {isMiddle && <br />}
-          </span>
-        );
-      })}
-    </>
-  );
 };
