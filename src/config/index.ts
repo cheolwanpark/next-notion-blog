@@ -1,4 +1,5 @@
 import { siteConfig } from "../../site.config";
+import { giscusConfig } from "./giscus";
 import { notionConfig } from "./notion";
 
 export const config = {
@@ -13,4 +14,5 @@ export const config = {
   defaultSiteDescription: siteConfig.defaultSiteDescription,
   googleSiteVerificationMetaTag: siteConfig.googleSiteVerificationMetaTag,
   notion: notionConfig,
+  giscus: giscusConfig,
 };

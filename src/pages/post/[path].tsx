@@ -9,6 +9,7 @@ import { config } from "@/config";
 import { MetaHead } from "@/components/head";
 import dayjs from "dayjs";
 import { ScrollToTopButton } from "@/components/scrolltotop";
+import { Comments } from "@/components/comments";
 
 export default function PostPage({
   meta,
@@ -25,6 +26,7 @@ export default function PostPage({
       <article data-nopico>
         <NotionRenderer blocks={blocks} meta={meta} />
       </article>
+      <Comments title={meta.title} />
       <ScrollToTopButton />
       <input type="hidden" name="Revalidated Time" value={revalidatedTime} />
     </>

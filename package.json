@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@giscus/react": "^2.2.8",
     "@next/bundle-analyzer": "^13.3.0",
     "@notionhq/client": "^2.2.3",
     "@picocss/pico": "^1.5.9",
