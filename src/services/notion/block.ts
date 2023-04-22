@@ -21,14 +21,13 @@ import {
   ImageBlockExtended,
 } from "./types/block";
 import { renderKatex } from "../katex";
+import { isImage } from "../utils";
 
 const getBlockImpl = async (blockID: string): Promise<BlockObject | null> => {
   const block = await notion.blocks.retrieve({ block_id: blockID });
   if (!isFullBlock(block)) return null;
-  return await retrieveAdditionalInfo(block);
+  return await processBlock(block);
 };
-
-export const getBlock = pMemoize(getBlockImpl);
 
 const getBlocksImpl = async (
   parentID: string,
@@ -54,12 +53,20 @@ const getBlocksImpl = async (
 const processResponse = async (
   response: ListBlockChildrenResponse,
 ): Promise<BlockWithChildren[]> => {
-  const fullBlocks = response.results
-    .filter(isFullBlock)
-    .map(renderAllEquations)
-    .map(retrieveAdditionalInfo);
-  const blocks = await pMap(fullBlocks, retrieveChildren, { concurrency: 2 });
-  return blocks;
+  const fullBlocks = response.results.filter(isFullBlock).map(processBlock);
+  const blocksWithChildren = await pMap(fullBlocks, retrieveChildren, {
+    concurrency: 2,
+  });
+  return blocksWithChildren;
+};
+
+const processBlock = async (
+  block: BlockObjectResponse,
+): Promise<BlockObject> => {
+  const convertedBlock = await convertEmbedBlocks(block);
+  const blockWithAdditionalInfo = await retrieveAdditionalInfo(convertedBlock);
+  const equationRenderedBlock = renderAllEquations(blockWithAdditionalInfo);
+  return equationRenderedBlock;
 };
 
 const retrieveChildren = async (
@@ -161,4 +168,36 @@ const isRichTextWithEquation = (
   return plain_text_exists && annotations_exists && type_match;
 };
 
+const convertEmbedBlocks = async (
+  block: BlockObjectResponse,
+): Promise<BlockObjectResponse> => {
+  if (block.type !== "embed") return block;
+
+  const { url, caption } = block.embed;
+  const isImageURL = await isImage(url);
+  if (isImageURL) {
+    return {
+      ...block,
+      type: "image",
+      image: {
+        type: "external",
+        external: {
+          url,
+        },
+        caption,
+      },
+    };
+  } else {
+    return {
+      ...block,
+      type: "bookmark",
+      bookmark: {
+        url,
+        caption,
+      },
+    };
+  }
+};
+
+export const getBlock = pMemoize(getBlockImpl);
 export const getBlocks = pMemoize(getBlocksImpl);
