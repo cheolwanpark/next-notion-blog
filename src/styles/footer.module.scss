@@ -3,8 +3,9 @@
 .footer {
   width: 100%;
   height: var(--nav-height);
+  display: flex;
+  justify-content: center;
   margin: auto;
-  text-align: center;
   line-height: var(--nav-height);
   font-size: 12px;
   font-weight: bold;
