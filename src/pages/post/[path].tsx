@@ -46,14 +46,18 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
       query: { path: ctx.params!.path as string },
     });
     if (queryResult.pages.length < 1) {
-      return createProp(null, []);
+      return {
+        notFound: true,
+      };
     }
     const meta = queryResult.pages[0];
     const blocks = await getBlocks(meta.id);
     return createProp(meta, blocks);
   } catch (error) {
     if (isNotFoundError(error)) {
-      return createProp(null, []);
+      return {
+        notFound: true,
+      };
     }
     throw error;
   }
