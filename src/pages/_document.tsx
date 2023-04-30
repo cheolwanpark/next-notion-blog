@@ -11,7 +11,7 @@ export default function Document() {
           strategy="beforeInteractive"
         />
       </Head>
-      <body>
+      <body className="body">
         <Main />
         <NextScript />
       </body>
