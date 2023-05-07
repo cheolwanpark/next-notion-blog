@@ -1,7 +1,7 @@
 const siteConfig = {
   owner: "Cheolwan-Park",
   blogTitle: "codingvillain",
-  github: "Cheolwan-Park",
+  github: "cheolwanpark",
   databseID: "392acd2f7b5849e784cc4b0009aeabf5",
   revalidateTime: 15 * 60,
   optimizeExpiringImages: false,
