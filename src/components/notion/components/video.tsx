@@ -1,3 +1,5 @@
+'use client'
+
 import { Blank } from "@/components/blank";
 import { extractYoutubeVideoId } from "@/services/youtube";
 import { VideoBlockObjectResponse } from "@notionhq/client/build/src/api-endpoints";

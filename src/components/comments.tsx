@@ -1,11 +1,12 @@
+'use client'
+
 import { config } from "@/config";
-import { DarkModeContext } from "@/services/darkmode";
+import { useDarkMode } from "@/components/providers";
 import Giscus from "@giscus/react";
-import { useContext } from "react";
 import { Blank } from "./blank";
 
 export const Comments = ({ title }: { title: string }) => {
-  const { isDarkMode } = useContext(DarkModeContext);
+  const { isDarkMode } = useDarkMode();
   if (!config.giscus) return <Blank />;
   return (
     <Giscus

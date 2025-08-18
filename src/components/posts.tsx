@@ -1,35 +1,49 @@
+'use client'
+
 import { PageMeta } from "@/services/notion/types";
 import styles from "@/styles/posts.module.scss";
 import dayjs from "dayjs";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import { NewLineAppliedText } from "./newlinetext";
+import { useCallback } from "react";
 
 export const Posts = ({ posts, size }: { posts: PageMeta[]; size: number }) => {
   const router = useRouter();
-  const { page } = router.query;
-
-  const pageIdx = Number.parseInt(page as string) || 0;
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  
+  const page = searchParams?.get('page') || '0';
+  const pageIdx = Number.parseInt(page) || 0;
   const startIdx = pageIdx * size;
   const prevButtonExists = pageIdx > 0;
   const nextButtonExists = startIdx + size < posts.length;
   const currentPosts = posts.slice(startIdx, startIdx + size);
 
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "auto" });
-  const setPageIdx = (idx: number) => {
-    const pageIdx = idx > 0 ? idx.toString() : "0";
-    router.replace({ query: { ...router.query, page: pageIdx } }, undefined, {
-      shallow: true,
-    });
-  };
-  const prev = () => {
+  
+  const setPageIdx = useCallback((idx: number) => {
+    const params = new URLSearchParams(searchParams?.toString() || '');
+    
+    if (idx > 0) {
+      params.set('page', idx.toString());
+    } else {
+      params.delete('page');
+    }
+    
+    const newUrl = `${pathname}?${params.toString()}`;
+    router.replace(newUrl);
+  }, [router, searchParams, pathname]);
+
+  const prev = useCallback(() => {
     scrollToTop();
     setPageIdx(pageIdx - 1);
-  };
-  const next = () => {
+  }, [pageIdx, setPageIdx]);
+
+  const next = useCallback(() => {
     scrollToTop();
     setPageIdx(pageIdx + 1);
-  };
+  }, [pageIdx, setPageIdx]);
 
   return (
     <>

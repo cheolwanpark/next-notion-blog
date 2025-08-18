@@ -1,11 +1,13 @@
+'use client'
+
 import { CodeBlockObjectResponse } from "@notionhq/client/build/src/api-endpoints";
 import styles from "@/styles/notion/components.module.scss";
 import { plainText } from "@/services/notion/utils";
-import { createElement, useContext, useEffect, useRef, useState } from "react";
+import { createElement, useEffect, useRef, useState } from "react";
 import { highlightElement } from "prismjs";
 import { BsClipboard, BsClipboardCheck } from "react-icons/bs";
 import classNames from "classnames";
-import { DarkModeContext } from "@/services/darkmode";
+import { useDarkMode } from "@/components/providers";
 import { RichText } from "./richtext";
 import copy from "clipboard-copy";
 import dynamic from "next/dynamic";
@@ -17,7 +19,7 @@ const CodeImpl = ({
   block: ExtendBlock<CodeBlockObjectResponse>;
 }) => {
   const content = plainText(block.code.rich_text);
-  const { isDarkMode } = useContext(DarkModeContext);
+  const { isDarkMode } = useDarkMode();
 
   const codeRef = useRef(null);
   useEffect(() => {

@@ -1,3 +1,5 @@
+'use client'
+
 import { ExtendBlock, ImageBlockExtended } from "@/services/notion/types/block";
 import Image from "next/image";
 import styles from "@/styles/notion/components.module.scss";

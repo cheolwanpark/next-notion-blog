@@ -1,6 +1,8 @@
+'use client'
+
 import { PageMeta } from "@/services/notion/types";
-import { useRouter } from "next/router";
-import { ElementRef, useRef } from "react";
+import { useRouter, useSearchParams, usePathname } from "next/navigation";
+import { ElementRef, useRef, useCallback } from "react";
 import { Posts } from "./posts";
 import { TextField } from "./textfield";
 import styles from "@/styles/posts.module.scss";
@@ -15,26 +17,34 @@ export const SearchablePosts = ({
   const searchFieldRef = useRef<ElementRef<typeof TextField>>(null);
   const inputTimeout = useRef<number | null>(null);
   const router = useRouter();
-  const { keyword } = router.query;
-  const query = keyword ? (keyword as string).toLowerCase() : "";
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  
+  const keyword = searchParams?.get('keyword') || '';
+  const query = keyword.toLowerCase();
 
-  posts = posts.filter((post) => {
+  const filteredPosts = posts.filter((post) => {
     const titleMatch = post.title.toLowerCase().includes(query);
     const descMatch = post.description.toLowerCase().includes(query);
     return titleMatch || descMatch;
   });
 
-  const onSearchKeywordChangeImpl = () => {
-    const keyword = searchFieldRef.current?.value() || "";
-    router.replace(
-      { query: { ...router.query, page: 0, keyword } },
-      undefined,
-      {
-        shallow: true,
-      },
-    );
-  };
-  const onSearchKeywordChange = () => {
+  const onSearchKeywordChangeImpl = useCallback(() => {
+    const newKeyword = searchFieldRef.current?.value() || "";
+    const params = new URLSearchParams(searchParams?.toString() || '');
+    
+    if (newKeyword) {
+      params.set('keyword', newKeyword);
+    } else {
+      params.delete('keyword');
+    }
+    params.delete('page'); // Reset page when searching
+    
+    const newUrl = `${pathname}?${params.toString()}`;
+    router.replace(newUrl);
+  }, [router, searchParams, pathname]);
+
+  const onSearchKeywordChange = useCallback(() => {
     if (inputTimeout.current) {
       clearTimeout(inputTimeout.current);
       inputTimeout.current = null;
@@ -43,19 +53,19 @@ export const SearchablePosts = ({
       onSearchKeywordChangeImpl,
       300,
     ) as unknown as number;
-  };
+  }, [onSearchKeywordChangeImpl]);
 
   return (
     <>
       <TextField
         id="searchfield"
-        default={keyword ? (keyword as string) : ""}
+        default={keyword}
         placeholder="Search Keyword"
         onInput={onSearchKeywordChange}
         ref={searchFieldRef}
         className={styles.searchfield}
       />
-      <Posts posts={posts} size={size} />
+      <Posts posts={filteredPosts} size={size} />
     </>
   );
 };

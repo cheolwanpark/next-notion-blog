@@ -1,26 +1,22 @@
-import { ImageResponse } from "@vercel/og";
-import { NextRequest } from "next/server";
-import { siteConfig } from "../../../site.config";
+import { ImageResponse } from "@vercel/og"
+import { NextRequest } from "next/server"
+import { config } from "@/config"
 
-export const config = {
-  runtime: "edge",
-};
+export const runtime = "edge"
 
 const font = fetch(
-  new URL("../../../public/NotoSerifKR.otf", import.meta.url),
-).then((res) => res.arrayBuffer());
+  new URL("../../../../public/NotoSerifKR.otf", import.meta.url),
+).then((res) => res.arrayBuffer())
 
-export default async function handler(req: NextRequest) {
+export async function GET(req: NextRequest) {
   try {
-    const fontData = await font;
-    const { searchParams } = new URL(req.url);
+    const fontData = await font
+    const { searchParams } = new URL(req.url)
 
-    const encodedTitle = searchParams.has("title")
-      ? searchParams.get("title")
-      : null;
+    const encodedTitle = searchParams.get("title")
     const title = encodedTitle
       ? decodeURIComponent(encodedTitle)
-      : siteConfig.defaultSiteDescription;
+      : config.defaultSiteDescription
 
     return new ImageResponse(
       (
@@ -38,7 +34,7 @@ export default async function handler(req: NextRequest) {
           <img
             alt="BlogIcon"
             height={300}
-            src={`${siteConfig.baseURL}/favicon-highres.png`}
+            src={`${config.baseURL}/favicon-highres.png`}
             width={300}
           />
           <div
@@ -57,7 +53,7 @@ export default async function handler(req: NextRequest) {
               maxWidth: 600,
             }}
           >
-            <div style={{ fontSize: 70 }}>{siteConfig.blogTitle}</div>
+            <div style={{ fontSize: 70 }}>{config.blogTitle}</div>
             <div style={{ fontSize: 28, marginTop: 14 }}>{title}</div>
           </div>
         </div>
@@ -73,10 +69,11 @@ export default async function handler(req: NextRequest) {
           },
         ],
       },
-    );
+    )
   } catch (e: any) {
+    console.error('Error generating OG image:', e)
     return new Response(`Failed to generate the image`, {
       status: 500,
-    });
+    })
   }
 }

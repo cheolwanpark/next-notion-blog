@@ -1,13 +1,15 @@
+'use client'
+
 import { config } from "@/config";
-import { DarkModeContext } from "@/services/darkmode";
+import { useDarkMode } from "@/components/providers";
 import Link from "next/link";
-import { createElement, useContext } from "react";
+import { createElement } from "react";
 import { BsFillBrightnessHighFill, BsFillMoonFill } from "react-icons/bs";
 import styles from "@/styles/navigation.module.scss";
 import classNames from "classnames";
 
 export const Navigation = () => {
-  const { isDarkMode, setMode } = useContext(DarkModeContext);
+  const { isDarkMode, setMode } = useDarkMode();
   const darkModeIcon = isDarkMode ? BsFillBrightnessHighFill : BsFillMoonFill;
   const toggleDarkMode = () => {
     setMode(!isDarkMode);
