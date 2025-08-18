@@ -11,6 +11,7 @@ import "@/services/dayjs";
 import { Analytics } from "@vercel/analytics/react";
 import classNames from "classnames";
 import { NotoSansKR } from "@/services/font";
+import { WebVitals } from "@/components/web-vitals";
 
 export default function App({ Component, pageProps }: AppProps) {
   const [isDarkMode, _setMode] = useState<boolean | null>(null);
@@ -37,6 +38,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <DarkModeContext.Provider value={{ isDarkMode, setMode }}>
       <div className={NotoSansKR.className}>
+        <WebVitals />
         <Navigation />
         <main className={classNames("container", "main")}>
           <Component {...pageProps} />

@@ -8,6 +8,15 @@ const path = require("path");
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  
+  // Bundle optimizations for better performance
+  bundlePagesRouterDependencies: true, // Auto-bundle all dependencies
+  
+  experimental: {
+    // optimizeCss: true, // Disabled due to critters dependency issue
+    webpackBuildWorker: true, // Parallel webpack builds
+  },
+  
   images: {
     minimumCacheTTL: siteConfig.revalidateTime,
     formats: ["image/avif", "image/webp"],
