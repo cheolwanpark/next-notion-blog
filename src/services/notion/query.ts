@@ -47,9 +47,15 @@ const queryImpl = async ({
     start_cursor: isNextPageQuery(query) ? query.cursor : undefined,
     page_size: page_size,
   });
+  // Filter out database objects from results
+  const pageResults = response.results.filter(
+    (result): result is PageObjectResponse | PartialPageObjectResponse =>
+      result.object === "page"
+  );
+  
   return {
     next_cursor: response.next_cursor,
-    pages: extractPageMeta(response.results),
+    pages: extractPageMeta(pageResults),
   };
 };
 

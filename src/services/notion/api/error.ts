@@ -94,7 +94,8 @@ export const notionErrorHandler = <T extends (...args: any[]) => Promise<any>>(
         switch (error.code) {
           case APIErrorCode.RateLimited:
             {
-              const retryAfterVal = error.headers.get("Retry-After");
+              const headers = error.headers as Headers | undefined;
+              const retryAfterVal = headers?.get("Retry-After");
               const retryAfter = retryAfterVal
                 ? Number(retryAfterVal)
                 : Number.NaN;
