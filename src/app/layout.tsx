@@ -64,7 +64,7 @@ export default async function RootLayout({
   const theme = cookieStore.get("theme")?.value || "light"
 
   return (
-    <html lang="ko" className={NotoSansKR.className}>
+    <html lang="ko" className={NotoSansKR.className} data-theme={theme}>
       <head>
         <Script
           id="prevent-flash"
@@ -88,8 +88,19 @@ export default async function RootLayout({
                 return (theme || localStorage.getItem("mode")) === "dark";
               }
               if (haveSetDarkMode()) {
-                document.documentElement.setAttribute("data-theme", "dark");
-                document.body.setAttribute("data-theme", "dark");
+                if (document.documentElement.getAttribute("data-theme") !== "dark") {
+                  document.documentElement.setAttribute("data-theme", "dark");
+                }
+                if (document.body.getAttribute("data-theme") !== "dark") {
+                  document.body.setAttribute("data-theme", "dark");
+                }
+              } else {
+                if (document.documentElement.getAttribute("data-theme") !== "light") {
+                  document.documentElement.setAttribute("data-theme", "light");
+                }
+                if (document.body.getAttribute("data-theme") !== "light") {
+                  document.body.setAttribute("data-theme", "light");
+                }
               }
             `,
           }}

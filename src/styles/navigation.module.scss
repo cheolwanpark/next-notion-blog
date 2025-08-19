@@ -19,6 +19,10 @@
       margin-top: -5px;
     }
 
+    > li > form {
+      margin-top: 13px;
+    }
+
     .button {
       color: var(--h1-color);
       &:hover {
