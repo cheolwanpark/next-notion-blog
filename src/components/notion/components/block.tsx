@@ -22,6 +22,20 @@ export const Block = ({
   blocks: BlockWithChildren[];
   idx: number;
 }) => {
+  // Calculate if this image should have priority loading
+  // Priority for first 2 images in the post
+  const isPriorityImage = () => {
+    if (block.type !== 'image') return false;
+    
+    let imageCount = 0;
+    for (let i = 0; i <= idx; i++) {
+      if (blocks[i].type === 'image') {
+        imageCount++;
+      }
+    }
+    return imageCount <= 2;
+  };
+
   switch (block.type) {
     case "paragraph":
       return <Paragraph block={block} />;
@@ -42,7 +56,7 @@ export const Block = ({
     case "code":
       return <Code block={block} />;
     case "image":
-      return <NotionImage block={block} />;
+      return <NotionImage block={block} priority={isPriorityImage()} />;
     case "callout":
       return <Callout block={block} />;
     case "column_list":

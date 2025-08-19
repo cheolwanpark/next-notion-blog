@@ -1,7 +1,7 @@
-import { SearchablePosts } from "@/components/searchable_posts"
+import { Suspense } from 'react'
 import { config } from "@/config"
-import { query } from "@/services/notion/query"
-import { PageMeta } from "@/services/notion/types"
+import { PostsList } from '@/components/streaming/posts-list'
+import { PostsListSkeleton } from '@/components/streaming/posts-list-skeleton'
 
 export const metadata = {
   title: `All Posts | ${config.blogTitle}`,
@@ -13,35 +13,18 @@ export const metadata = {
   },
 }
 
-// Server Component for all posts page
-export default async function AllPostsPage() {
-  // Fetch all posts with pagination (converted from getStaticProps)
-  const PAGES_PER_LOAD = 100
-  let response = await query({
-    sorts: [
-      {
-        property: "Published",
-        direction: "descending",
-      },
-    ],
-    page_size: PAGES_PER_LOAD,
-  })
-  
-  const pages: PageMeta[] = response.pages
-  
-  // Continue fetching if there are more pages
-  while (response.next_cursor) {
-    response = await query({
-      query: { cursor: response.next_cursor },
-      page_size: PAGES_PER_LOAD,
-    })
-    pages.push(...response.pages)
-  }
-
+// Server Component with streaming - static shell, dynamic content
+// Note: PPR will be enabled when upgrading to Next.js canary
+export default function AllPostsPage() {
   return (
     <>
+      {/* Static shell - prerendered at build time */}
       <h1>All Posts</h1>
-      <SearchablePosts posts={pages} size={config.postsPerPage} />
+      
+      {/* Dynamic content - streamed at request time */}
+      <Suspense fallback={<PostsListSkeleton />}>
+        <PostsList />
+      </Suspense>
     </>
   )
 }

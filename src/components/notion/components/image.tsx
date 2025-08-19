@@ -10,8 +10,10 @@ import { config } from "@/config";
 
 export const NotionImage = ({
   block,
+  priority = false,
 }: {
   block: ExtendBlock<ImageBlockExtended>;
+  priority?: boolean;
 }) => {
   const { url, expiring, reload, reloading } = useImage(block);
 
@@ -42,6 +44,8 @@ export const NotionImage = ({
         unoptimized={!optimize}
         placeholder="blur"
         blurDataURL={block.blurDataURL}
+        priority={priority}
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         onError={reload}
       />
       <div className={styles.caption}>

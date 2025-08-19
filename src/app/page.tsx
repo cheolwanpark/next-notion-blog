@@ -1,27 +1,22 @@
 import { Intro } from "@/components/intro"
 import { Posts } from "@/components/posts"
 import { config } from "@/config"
-import { query } from "@/services/notion/query"
+import { getHomepageData } from "@/lib/parallel-data"
 import Link from "next/link"
 import styles from "@/styles/homepage.module.scss"
 
-// This is now a Server Component - direct data fetching!
+// Server Component with parallel data fetching for optimal performance
+// Note: PPR will be enabled when upgrading to Next.js canary
 export default async function HomePage() {
-  // Direct data fetching in component (replaces getStaticProps)
-  const response = await query({
-    sorts: [
-      {
-        property: "Published",
-        direction: "descending",
-      },
-    ],
-    page_size: config.previewPosts,
-  })
+  // Fetch homepage data
+  const homepageData = await getHomepageData(config.previewPosts)
+  
+  const { posts, popularTags, stats } = homepageData
 
   return (
     <>
       <Intro />
-      <Posts posts={response.pages} size={config.previewPosts} />
+      <Posts posts={posts} size={config.previewPosts} />
       <Link
         href="/post"
         className={styles.allposts}
@@ -30,6 +25,13 @@ export default async function HomePage() {
       >
         All Posts →
       </Link>
+      
+      {/* Popular tags could be added to homepage in the future */}
+      {/* <div className={styles.popularTags}>
+        {popularTags.slice(0, 3).map(({ tag }) => (
+          <Link key={tag} href={`/tag/${tag}`}>#{tag}</Link>
+        ))}
+      </div> */}
     </>
   )
 }

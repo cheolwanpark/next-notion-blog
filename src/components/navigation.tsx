@@ -2,18 +2,14 @@
 
 import { config } from "@/config";
 import { useDarkMode } from "@/components/providers";
+import { ModernThemeToggle } from "@/components/modern-theme-toggle";
 import Link from "next/link";
-import { createElement } from "react";
-import { BsFillBrightnessHighFill, BsFillMoonFill } from "react-icons/bs";
 import styles from "@/styles/navigation.module.scss";
 import classNames from "classnames";
 
 export const Navigation = () => {
-  const { isDarkMode, setMode } = useDarkMode();
-  const darkModeIcon = isDarkMode ? BsFillBrightnessHighFill : BsFillMoonFill;
-  const toggleDarkMode = () => {
-    setMode(!isDarkMode);
-  };
+  const { isDarkMode } = useDarkMode();
+  
   return (
     <nav className={classNames("container", styles.navigation)}>
       <ul>
@@ -34,15 +30,8 @@ export const Navigation = () => {
             <strong>POSTS</strong>
           </Link>
         </li>
-        <li>
-          <button
-            aria-label="toggle dark mode button"
-            onClick={toggleDarkMode}
-            className={styles.button}
-            data-nopico
-          >
-            {createElement(darkModeIcon)}
-          </button>
+        <li style={{ position: 'relative' }}>
+          <ModernThemeToggle initialTheme={isDarkMode === true ? 'dark' : 'light'} />
         </li>
       </ul>
     </nav>

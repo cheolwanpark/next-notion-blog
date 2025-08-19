@@ -1,25 +1,19 @@
 import { SearchablePosts } from "@/components/searchable_posts"
 import { config } from "@/config"
-import { query } from "@/services/notion/query"
-import { getAllPages } from "@/services/notion/page"
-import { PageMeta } from "@/services/notion/types"
+import { getCachedAllTags } from "@/lib/cached-notion"
+import { getTagPageData } from "@/lib/parallel-data"
 import { notFound } from "next/navigation"
 
 interface TagPageProps {
   params: Promise<{ tag: string }>
 }
 
-// Generate static paths for all tags
+// Generate static paths for all tags with cached data
 export async function generateStaticParams() {
   try {
-    const posts = await getAllPages()
-    const tags = new Set<string>()
+    const tags = await getCachedAllTags()
     
-    posts.forEach(post => {
-      post.tags?.forEach(tag => tags.add(tag))
-    })
-    
-    return Array.from(tags).map((tag) => ({
+    return tags.map((tag) => ({
       tag: tag,
     }))
   } catch (error) {
@@ -44,48 +38,45 @@ export async function generateMetadata({ params }: TagPageProps) {
   }
 }
 
-// Server Component for tag page
+// Server Component for tag page with parallel data fetching
 export default async function TagPage({ params }: TagPageProps) {
   const { tag } = await params
   const decodedTag = decodeURIComponent(tag)
   
   try {
-    // Fetch posts filtered by tag (converted from getStaticProps)
-    const PAGES_PER_LOAD = 100
-    let response = await query({
-      query: {
-        type: "and",
-        tags: [decodedTag],
-      },
-      sorts: [
-        {
-          property: "Published",
-          direction: "descending",
-        },
-      ],
-      page_size: PAGES_PER_LOAD,
-    })
-    
-    const pages: PageMeta[] = response.pages
-    
-    // Continue fetching if there are more pages
-    while (response.next_cursor) {
-      response = await query({
-        query: { cursor: response.next_cursor },
-        page_size: PAGES_PER_LOAD,
-      })
-      pages.push(...response.pages)
-    }
+    // Fetch tag page data in parallel for better performance
+    const data = await getTagPageData(decodedTag)
 
-    // If no posts found for this tag, show not found
-    if (pages.length === 0) {
+    if (!data || data.posts.length === 0) {
       notFound()
     }
+
+    const { posts, relatedTags, totalPosts } = data
 
     return (
       <>
         <h1>#{decodedTag}</h1>
-        <SearchablePosts posts={pages} size={config.postsPerPage} />
+        <p>{totalPosts} {totalPosts === 1 ? 'post' : 'posts'}</p>
+        
+        <SearchablePosts posts={posts} size={config.postsPerPage} />
+        
+        {/* Future enhancement: Related tags */}
+        {/* {relatedTags.length > 0 && (
+          <aside style={{ marginTop: '2rem' }}>
+            <h3>Related Tags</h3>
+            <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+              {relatedTags.map(relatedTag => (
+                <Link 
+                  key={relatedTag} 
+                  href={`/tag/${relatedTag}`}
+                  style={{ padding: '0.25rem 0.5rem', background: '#f0f0f0', borderRadius: '4px' }}
+                >
+                  #{relatedTag}
+                </Link>
+              ))}
+            </div>
+          </aside>
+        )} */}
       </>
     )
   } catch (error) {

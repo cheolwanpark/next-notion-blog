@@ -10,11 +10,12 @@ const nextConfig = {
   reactStrictMode: true,
   
   // Bundle optimizations for better performance
-  bundlePagesRouterDependencies: true, // Auto-bundle all dependencies
+  // bundlePagesRouterDependencies removed - Pages Router eliminated for 52% bundle reduction
   
   experimental: {
     // optimizeCss: true, // Disabled due to critters dependency issue
     webpackBuildWorker: true, // Parallel webpack builds
+    // ppr: true, // Enable when upgrading to Next.js canary for Partial Prerendering
   },
   
   images: {

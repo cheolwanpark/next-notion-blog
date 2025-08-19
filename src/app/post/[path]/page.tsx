@@ -1,11 +1,11 @@
 import { notFound } from 'next/navigation'
+import { Suspense } from 'react'
 import { query } from '@/services/notion/query'
-import { getBlocks } from '@/services/notion/block'
 import { getAllPages } from '@/services/notion/page'
-import { NotionRenderer } from '@/components/notion'
 import { config } from '@/config'
-import { Comments } from '@/components/comments'
-import { ScrollToTopButton } from '@/components/scrolltotop'
+import { PostContent } from '@/components/streaming/post-content'
+import { PostComments } from '@/components/streaming/post-comments'
+import { PostContentSkeleton, PostCommentsSkeleton } from '@/components/streaming/loading-skeletons'
 
 interface PageProps {
   params: Promise<{ path: string }>
@@ -72,10 +72,12 @@ export async function generateMetadata({ params }: PageProps) {
   }
 }
 
-// Server Component for post page
+// Server Component for post page with streaming SSR
 export default async function PostPage({ params }: PageProps) {
   try {
     const { path } = await params
+    
+    // Validate post exists for metadata generation
     const response = await query({
       query: { path },
     })
@@ -84,21 +86,23 @@ export default async function PostPage({ params }: PageProps) {
       notFound()
     }
 
-    const meta = response.pages[0]
-    const blocks = await getBlocks(meta.id)
-
+    // Stream post content and comments in parallel with Suspense
     return (
       <>
-        <article data-nopico>
-          <NotionRenderer blocks={blocks} meta={meta} />
-        </article>
-        <Comments title={meta.title} />
-        <ScrollToTopButton />
+        {/* Stream post content with content-aware skeleton */}
+        <Suspense fallback={<PostContentSkeleton />}>
+          <PostContent path={path} />
+        </Suspense>
+        
+        {/* Stream comments section with minimal skeleton */}
+        <Suspense fallback={<PostCommentsSkeleton />}>
+          <PostComments path={path} />
+        </Suspense>
       </>
     )
   } catch (error) {
     const { path } = await params
-    console.error('Error loading post:', path, error)
+    console.error('Error loading post page:', path, error)
     notFound()
   }
 }
