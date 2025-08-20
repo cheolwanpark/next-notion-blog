@@ -31,9 +31,8 @@ test.describe('Dark Mode Functionality', () => {
     
     // Click toggle button
     await darkModeToggle.click()
-    await page.waitForTimeout(500) // Wait for theme transition
     
-    // Check that theme has changed
+    // Check that theme has changed immediately (no wait needed)
     const newBodyTheme = await page.locator('body').getAttribute('data-theme')
     const newHtmlTheme = await initialHtml.getAttribute('data-theme')
     const newTheme = newBodyTheme || newHtmlTheme
@@ -49,7 +48,6 @@ test.describe('Dark Mode Functionality', () => {
     
     // Toggle again to return to original state
     await darkModeToggle.click()
-    await page.waitForTimeout(500)
     
     const finalBodyTheme = await page.locator('body').getAttribute('data-theme')
     const finalHtmlTheme = await initialHtml.getAttribute('data-theme')
@@ -64,7 +62,6 @@ test.describe('Dark Mode Functionality', () => {
 
     // Toggle to dark mode
     await darkModeToggle.click()
-    await page.waitForTimeout(500)
     
     // Get current theme
     const bodyTheme = await page.locator('body').getAttribute('data-theme')
@@ -89,7 +86,6 @@ test.describe('Dark Mode Functionality', () => {
 
     // Set to dark mode
     await darkModeToggle.click()
-    await page.waitForTimeout(500)
     
     // Navigate to posts page
     const postsLink = page.getByRole('link', { name: /posts?/i }).first()
@@ -126,7 +122,6 @@ test.describe('Dark Mode Functionality', () => {
     
     // Toggle to dark mode
     await darkModeToggle.click()
-    await page.waitForTimeout(500)
     
     // Test dark theme colors
     const darkBgColor = await body.evaluate(el => getComputedStyle(el).backgroundColor)
@@ -183,7 +178,6 @@ test.describe('Dark Mode Functionality', () => {
                         await page.locator('html').getAttribute('data-theme')
     
     await page.keyboard.press('Enter')
-    await page.waitForTimeout(500)
     
     const newTheme = await page.locator('body').getAttribute('data-theme') || 
                      await page.locator('html').getAttribute('data-theme')
@@ -192,7 +186,6 @@ test.describe('Dark Mode Functionality', () => {
     
     // Test with Space key
     await page.keyboard.press('Space')
-    await page.waitForTimeout(500)
     
     const finalTheme = await page.locator('body').getAttribute('data-theme') || 
                        await page.locator('html').getAttribute('data-theme')
@@ -213,7 +206,6 @@ test.describe('Dark Mode Functionality', () => {
                         await page.locator('html').getAttribute('data-theme')
     
     await darkModeToggle.tap()
-    await page.waitForTimeout(500)
     
     const newTheme = await page.locator('body').getAttribute('data-theme') || 
                      await page.locator('html').getAttribute('data-theme')

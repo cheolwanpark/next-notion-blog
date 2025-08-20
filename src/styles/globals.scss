@@ -13,6 +13,39 @@
   --typography-spacing-vertical: 0.7rem;
 }
 
+/* Smooth transitions for theme changes */
+/* Apply transitions only to specific properties that change with themes */
+body,
+[data-theme] body,
+.body {
+  transition: color 0.2s cubic-bezier(0.4, 0, 0.2, 1), 
+              background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Theme-aware elements that should transition smoothly */
+.theme-transition,
+h1, h2, h3, h4, h5, h6,
+p, span, div,
+nav, article, section,
+button:not([data-nopico]),
+a:not([data-nopico]) {
+  transition: color 0.2s cubic-bezier(0.4, 0, 0.2, 1), 
+              background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Exclude elements that should NOT transition to prevent blinking */
+img, svg, iframe, video, canvas, picture,
+[data-nopico], [data-nopico] *,
+code, pre,
+.no-transition,
+.spinner,
+[class*="prism"],
+[class*="token"] {
+  transition: none !important;
+}
+
 :root:not([data-theme="dark"]),
 [data-theme="light"] {
   --background-color: rgb(245, 245, 245);

@@ -1,10 +1,11 @@
 'use client'
 
-import { useDarkMode } from "@/components/providers";
-import { ModernThemeToggle } from "@/components/modern-theme-toggle";
+import { SimpleThemeToggle } from "@/components/simple-theme-toggle";
 
+/**
+ * Simple wrapper for the theme toggle - no complex state management needed
+ * The SimpleThemeToggle handles everything internally for instant toggling
+ */
 export const ThemeToggleWrapper = () => {
-  const { isDarkMode } = useDarkMode();
-  
-  return <ModernThemeToggle initialTheme={isDarkMode === true ? 'dark' : 'light'} />;
+  return <SimpleThemeToggle />;
 };
