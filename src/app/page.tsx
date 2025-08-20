@@ -1,5 +1,5 @@
 import { Intro } from "@/components/intro"
-import { Posts } from "@/components/posts"
+import { PostsServer } from "@/components/posts-server"
 import { config } from "@/config"
 import { getHomepageData } from "@/lib/parallel-data"
 import Link from "next/link"
@@ -16,7 +16,7 @@ export default async function HomePage() {
   return (
     <>
       <Intro />
-      <Posts posts={posts} size={config.previewPosts} />
+      <PostsServer posts={posts} size={config.previewPosts} currentPage={0} />
       <Link
         href="/post"
         className={styles.allposts}

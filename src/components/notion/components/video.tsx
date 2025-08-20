@@ -1,6 +1,5 @@
 'use client'
 
-import { Blank } from "@/components/blank";
 import { extractYoutubeVideoId } from "@/services/youtube";
 import { VideoBlockObjectResponse } from "@notionhq/client/build/src/api-endpoints";
 import classNames from "classnames";
@@ -21,10 +20,8 @@ export const Video = ({
         className={classNames(styles.video, styles.youtube)}
         iframeClassName={styles.iframe}
       />
-    ) : (
-      <Blank />
-    );
+    ) : null;
   } else {
-    return <Blank />;
+    return null;
   }
 };

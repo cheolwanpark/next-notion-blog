@@ -3,11 +3,10 @@
 import { config } from "@/config";
 import { useDarkMode } from "@/components/providers";
 import Giscus from "@giscus/react";
-import { Blank } from "./blank";
 
 export const Comments = ({ title }: { title: string }) => {
   const { isDarkMode } = useDarkMode();
-  if (!config.giscus) return <Blank />;
+  if (!config.giscus) return null;
   return (
     <Giscus
       id="comments"

@@ -1,5 +1,4 @@
 import { BlockWithChildren } from "@/services/notion/types/block";
-import { Blank } from "@/components/blank";
 import { Paragraph } from "./paragraph";
 import { Heading1, Heading2, Heading3 } from "./headings";
 import { Quote } from "./quote";
@@ -70,6 +69,6 @@ export const Block = ({
     case "video":
       return <Video block={block} />;
     default:
-      return <Blank />;
+      return null;
   }
 };

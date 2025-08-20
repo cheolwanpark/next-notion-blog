@@ -3,7 +3,6 @@
 import { BsArrowUp, BsArrowUpCircle } from "react-icons/bs";
 import styles from "@/styles/scrolltotop.module.scss";
 import { useEffect, useState } from "react";
-import { Blank } from "./blank";
 
 export const ScrollToTopButton = ({
   scrollThreshold,
@@ -43,7 +42,5 @@ export const ScrollToTopButton = ({
     >
       <BsArrowUpCircle size={32} />
     </button>
-  ) : (
-    <Blank />
-  );
+  ) : null;
 };

@@ -8,7 +8,6 @@ import classNames from "classnames";
 import { getColorClass } from "./colors";
 import { RichText } from "./richtext";
 import { Block } from "./block";
-import { Blank } from "@/components/blank";
 
 export const BulletedList = ({
   block,
@@ -20,7 +19,7 @@ export const BulletedList = ({
   idx: number;
 }) => {
   if (!isFirstListItem(blocks, idx)) {
-    return <Blank />;
+    return null;
   }
   const itemBlocks = mergeNeighboringListItems(block, blocks, idx);
   return (
@@ -54,7 +53,7 @@ export const NumberedList = ({
   idx: number;
 }) => {
   if (!isFirstListItem(blocks, idx)) {
-    return <Blank />;
+    return null;
   }
   const itemBlocks = mergeNeighboringListItems(block, blocks, idx);
   return (

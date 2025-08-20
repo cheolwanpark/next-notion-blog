@@ -6,7 +6,6 @@ import { useFormStatus } from 'react-dom'
 import { useRouter, useSearchParams, usePathname } from "next/navigation"
 import { useRef, useCallback, useEffect, startTransition } from "react"
 import { Posts } from "./posts"
-import { TextField } from "./textfield"
 import { searchPosts } from "@/app/actions/search"
 import styles from "@/styles/posts.module.scss"
 

@@ -74,7 +74,7 @@ const CodeImpl = ({
 };
 
 export const Code = dynamic(() =>
-  import("@/services/prism").then(async (mod) => {
+  import("@/services/prism-optimized").then(async (mod) => {
     return CodeImpl;
   }),
 );
