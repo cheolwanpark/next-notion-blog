@@ -3,7 +3,7 @@ import styles from "@/styles/notion/richtext.module.scss";
 import classNames from "classnames";
 import Link from "next/link";
 import { getColorClass } from "./colors";
-import { RichTextObject } from "@/services/notion/types/block";
+import { RichTextObject } from "@/services/notion/types";
 import { NewLineAppliedText } from "@/components/newlinetext";
 
 type RichTextProps = {

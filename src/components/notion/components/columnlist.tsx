@@ -4,7 +4,7 @@ import {
 } from "@notionhq/client/build/src/api-endpoints";
 import styles from "@/styles/notion/components.module.scss";
 import { Block } from "./block";
-import { ExtendBlock } from "@/services/notion/types/block";
+import { ExtendBlock } from "@/services/notion/types";
 
 const defaultSpacerWidth = 32;
 

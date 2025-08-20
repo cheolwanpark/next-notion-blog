@@ -1,7 +1,7 @@
 import {
   EquationBlockExtended,
   ExtendBlock,
-} from "@/services/notion/types/block";
+} from "@/services/notion/types";
 import styles from "@/styles/notion/components.module.scss";
 
 type EquationProps = {

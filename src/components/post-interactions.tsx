@@ -19,7 +19,7 @@ interface PostInteractionsProps {
   initialBookmarked?: boolean
 }
 
-function InteractionButton({ 
+const InteractionButton = ({ 
   icon: Icon, 
   activeIcon: ActiveIcon, 
   isActive, 
@@ -31,7 +31,7 @@ function InteractionButton({
   isActive: boolean
   label: string
   activeLabel: string
-}) {
+}) => {
   const { pending } = useFormStatus()
   
   return (
@@ -80,11 +80,11 @@ function InteractionButton({
   )
 }
 
-export function PostInteractions({ 
+export const PostInteractions = ({ 
   postId, 
   initialLiked = false, 
   initialBookmarked = false 
-}: PostInteractionsProps) {
+}: PostInteractionsProps) => {
   // Form states for like and bookmark actions
   const [likeState, likeAction] = useActionState(toggleLike, {
     success: true,

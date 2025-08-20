@@ -1,4 +1,4 @@
-import { BlockWithChildren } from "@/services/notion/types/block";
+import { BlockWithChildren } from "@/services/notion/types";
 import { Block } from "./components/block";
 import styles from "@/styles/notion/components.module.scss";
 import { PageMeta } from "@/services/notion/types";

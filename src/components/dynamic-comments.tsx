@@ -27,7 +27,7 @@ interface DynamicCommentsProps {
   title: string
 }
 
-export function DynamicComments({ title }: DynamicCommentsProps) {
+export const DynamicComments = ({ title }: DynamicCommentsProps) => {
   return (
     <Suspense fallback={
       <div style={{ 

@@ -1,4 +1,4 @@
-import { BlockWithChildren } from "@/services/notion/types/block";
+import { BlockWithChildren } from "@/services/notion/types";
 import { Paragraph } from "./paragraph";
 import { Heading1, Heading2, Heading3 } from "./headings";
 import { Quote } from "./quote";

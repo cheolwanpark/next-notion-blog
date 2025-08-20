@@ -2,7 +2,7 @@
 
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import { useCallback } from "react";
-import styles from "@/styles/posts.module.scss";
+import styles from "@/styles/components/posts.module.scss";
 
 interface PaginationControlsProps {
   currentPage: number;

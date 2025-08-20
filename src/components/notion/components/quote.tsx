@@ -3,7 +3,7 @@ import classNames from "classnames";
 import styles from "@/styles/notion/components.module.scss";
 import { getColorClass } from "./colors";
 import { RichText } from "./richtext";
-import { ExtendBlock } from "@/services/notion/types/block";
+import { ExtendBlock } from "@/services/notion/types";
 
 // TODO: support childs
 export const Quote = ({

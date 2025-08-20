@@ -3,7 +3,7 @@ import { PostsServer } from "@/components/posts-server"
 import { config } from "@/config"
 import { getHomepageData } from "@/lib/parallel-data"
 import Link from "next/link"
-import styles from "@/styles/homepage.module.scss"
+import styles from "@/styles/components/homepage.module.scss"
 
 // Server Component with parallel data fetching for optimal performance
 // Note: PPR will be enabled when upgrading to Next.js canary
@@ -11,7 +11,12 @@ export default async function HomePage() {
   // Fetch homepage data
   const homepageData = await getHomepageData(config.previewPosts)
   
-  const { posts, popularTags, stats } = homepageData
+  // Handle potential null response with fallbacks
+  const { posts, popularTags, stats } = homepageData || {
+    posts: [],
+    popularTags: [],
+    stats: { totalPosts: 0, totalTags: 0, recentPostsCount: 0, lastUpdated: new Date().toISOString() }
+  }
 
   return (
     <>

@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useState } from 'react'
 import { BsFillBrightnessHighFill, BsFillMoonFill } from 'react-icons/bs'
-import styles from '@/styles/navigation.module.scss'
+import styles from '@/styles/components/navigation.module.scss'
 
 export type Theme = 'light' | 'dark'
 
@@ -14,7 +14,7 @@ interface SimpleThemeToggleProps {
  * Simple, fast theme toggle with instant feedback
  * No server actions, no forms, no delays - just instant theme switching
  */
-export function SimpleThemeToggle({ className }: SimpleThemeToggleProps) {
+export const SimpleThemeToggle = ({ className }: SimpleThemeToggleProps) => {
   const [theme, setTheme] = useState<Theme | null>(null)
   const [isTransitioning, setIsTransitioning] = useState(false)
 

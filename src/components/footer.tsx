@@ -1,6 +1,6 @@
 import { config } from "@/config";
 import Link from "next/link";
-import styles from "@/styles/footer.module.scss";
+import styles from "@/styles/components/footer.module.scss";
 
 export const Footer = () => {
   return (

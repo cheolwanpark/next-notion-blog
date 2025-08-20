@@ -1,4 +1,4 @@
-import { BlockWithChildren, ExtendBlock } from "@/services/notion/types/block";
+import { BlockWithChildren, ExtendBlock } from "@/services/notion/types";
 import {
   BulletedListItemBlockObjectResponse,
   NumberedListItemBlockObjectResponse,

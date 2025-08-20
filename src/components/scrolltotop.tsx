@@ -1,7 +1,7 @@
 'use client'
 
 import { BsArrowUp, BsArrowUpCircle } from "react-icons/bs";
-import styles from "@/styles/scrolltotop.module.scss";
+import styles from "@/styles/components/scrolltotop.module.scss";
 import { useEffect, useState } from "react";
 
 export const ScrollToTopButton = ({

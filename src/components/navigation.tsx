@@ -1,7 +1,7 @@
 import { config } from "@/config";
 import { SimpleThemeToggle } from "@/components/simple-theme-toggle";
 import Link from "next/link";
-import styles from "@/styles/navigation.module.scss";
+import styles from "@/styles/components/navigation.module.scss";
 import classNames from "classnames";
 
 export const Navigation = () => {

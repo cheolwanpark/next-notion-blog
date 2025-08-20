@@ -10,7 +10,7 @@ import classNames from "classnames";
 import { BsLink45Deg } from "react-icons/bs";
 import { plainText } from "@/services/notion/utils";
 import Link from "next/link";
-import { ExtendBlock } from "@/services/notion/types/block";
+import { ExtendBlock } from "@/services/notion/types";
 
 // TODO: support childs
 export const Heading1 = ({

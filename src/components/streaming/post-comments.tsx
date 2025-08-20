@@ -1,6 +1,6 @@
 import { query } from '@/services/notion/query'
 import { DynamicComments } from '@/components/dynamic-comments'
-import { DynamicScrollToTop } from '@/components/dynamic-scroll-to-top'
+import { ScrollToTopButton } from '@/components/scrolltotop'
 
 interface PostCommentsProps {
   path: string
@@ -24,12 +24,12 @@ export async function PostComments({ path }: PostCommentsProps) {
     return (
       <>
         <DynamicComments title={meta.title} />
-        <DynamicScrollToTop />
+        <ScrollToTopButton />
       </>
     )
   } catch (error) {
     console.error('Error loading comments for:', path, error)
     // Gracefully fail - show scroll button but no comments
-    return <DynamicScrollToTop />
+    return <ScrollToTopButton />
   }
 }

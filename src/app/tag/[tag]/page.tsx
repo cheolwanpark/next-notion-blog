@@ -1,6 +1,6 @@
-import { DynamicSearch } from "@/components/dynamic-search"
+import { ModernSearchablePosts } from "@/components/modern-searchable-posts"
 import { config } from "@/config"
-import { getCachedAllTags } from "@/lib/cached-notion"
+import { getCachedAllTags } from "@/services/cache/cached-notion"
 import { getTagPageData } from "@/lib/parallel-data"
 import { notFound } from "next/navigation"
 
@@ -63,7 +63,7 @@ export default async function TagPage({ params }: TagPageProps) {
         <h1>#{decodedTag}</h1>
         <p>{totalPosts} {totalPosts === 1 ? 'post' : 'posts'}</p>
         
-        <DynamicSearch posts={posts} size={config.postsPerPage} />
+        <ModernSearchablePosts posts={posts} size={config.postsPerPage} />
         
         {/* Future enhancement: Related tags */}
         {/* {relatedTags.length > 0 && (

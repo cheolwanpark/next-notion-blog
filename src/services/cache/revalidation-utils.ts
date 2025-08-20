@@ -227,7 +227,7 @@ export const revalidationExamples = {
   // In a CMS webhook handler
   cmsWebhook: `
     // pages/api/webhook/notion.ts
-    import { handleNotionWebhook } from '@/lib/revalidation-utils'
+    import { handleNotionWebhook } from '@/services/cache/revalidation-utils'
     
     export default async function handler(req, res) {
       const token = process.env.REVALIDATION_TOKEN
@@ -239,7 +239,7 @@ export const revalidationExamples = {
   // In a deployment script
   deploymentScript: `
     // scripts/post-deploy.js
-    import { handleDeploymentComplete } from '@/lib/revalidation-utils'
+    import { handleDeploymentComplete } from '@/services/cache/revalidation-utils'
     
     const token = process.env.REVALIDATION_TOKEN
     await handleDeploymentComplete(token)
@@ -269,7 +269,7 @@ export const revalidationExamples = {
   // Manual admin trigger
   adminInterface: `
     // In an admin component
-    import { revalidationTriggers } from '@/lib/revalidation-utils'
+    import { revalidationTriggers } from '@/services/cache/revalidation-utils'
     
     const AdminPanel = () => {
       const refreshCache = async (action) => {

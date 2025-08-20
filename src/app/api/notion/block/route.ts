@@ -1,5 +1,5 @@
 import { getBlock } from "@/services/notion/block"
-import { ImageBlockExtended } from "@/services/notion/types/block"
+import { ImageBlockExtended } from "@/services/notion/types"
 import { NextRequest, NextResponse } from "next/server"
 
 type GetBlockResponse = {

@@ -1,4 +1,4 @@
-import { ExtendBlock } from "@/services/notion/types/block";
+import { ExtendBlock } from "@/services/notion/types";
 import { ParagraphBlockObjectResponse } from "@notionhq/client/build/src/api-endpoints";
 import classNames from "classnames";
 import { getColorClass } from "./colors";

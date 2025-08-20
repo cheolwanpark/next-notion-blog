@@ -1,57 +1,30 @@
 'use client'
 
+import { Skeleton, SkeletonContainer, SkeletonText } from "@/components/skeleton"
+
 export default function PostLoading() {
   return (
-    <div className="skeleton-container">
+    <SkeletonContainer>
       {/* Post title skeleton */}
-      <div 
-        style={{
-          height: '2.5rem',
-          backgroundColor: 'var(--muted-border-color)',
-          borderRadius: '4px',
-          marginBottom: '1rem',
-          animation: 'pulse 1.5s ease-in-out infinite alternate'
-        }}
+      <Skeleton 
+        height="2.5rem"
+        style={{ marginBottom: '1rem' }}
       />
       
       {/* Post metadata skeleton */}
-      <div 
-        style={{
-          height: '1rem',
-          backgroundColor: 'var(--muted-border-color)',
-          borderRadius: '4px',
-          marginBottom: '2rem',
-          width: '60%',
-          animation: 'pulse 1.5s ease-in-out infinite alternate'
-        }}
+      <Skeleton 
+        height="1rem"
+        width="60%"
+        delay={0.2}
+        style={{ marginBottom: '2rem' }}
       />
       
       {/* Post content skeleton */}
-      {Array.from({ length: 8 }).map((_, i) => (
-        <div
-          key={i}
-          style={{
-            height: '1rem',
-            backgroundColor: 'var(--muted-border-color)',
-            borderRadius: '4px',
-            marginBottom: '0.75rem',
-            width: i % 3 === 0 ? '80%' : i % 2 === 0 ? '95%' : '70%',
-            animation: 'pulse 1.5s ease-in-out infinite alternate',
-            animationDelay: `${i * 0.1}s`
-          }}
-        />
-      ))}
-
-      <style jsx>{`
-        @keyframes pulse {
-          0% {
-            opacity: 0.6;
-          }
-          100% {
-            opacity: 1;
-          }
-        }
-      `}</style>
-    </div>
+      <SkeletonText
+        lines={8}
+        widths={['95%', '80%', '70%']}
+        delay={0.4}
+      />
+    </SkeletonContainer>
   )
 }

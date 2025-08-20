@@ -2,7 +2,7 @@ import { CalloutBlockObjectResponse } from "@notionhq/client/build/src/api-endpo
 import styles from "@/styles/notion/components.module.scss";
 import { RichText } from "./richtext";
 import { Block } from "./block";
-import { ExtendBlock } from "@/services/notion/types/block";
+import { ExtendBlock } from "@/services/notion/types";
 
 export const Callout = ({
   block,

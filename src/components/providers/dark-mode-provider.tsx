@@ -28,7 +28,7 @@ interface DarkModeProviderProps {
  * Simplified DarkModeProvider that works exclusively with localStorage 
  * and html element data-theme attribute for consistent theming
  */
-export function DarkModeProvider({ children }: DarkModeProviderProps) {
+export const DarkModeProvider = ({ children }: DarkModeProviderProps) => {
   const [isDarkMode, _setMode] = useState<boolean | null>(null)
 
   const setMode = (val: boolean) => {

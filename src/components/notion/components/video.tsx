@@ -5,7 +5,7 @@ import { VideoBlockObjectResponse } from "@notionhq/client/build/src/api-endpoin
 import classNames from "classnames";
 import YouTube from "react-youtube";
 import styles from "@/styles/notion/components.module.scss";
-import { ExtendBlock } from "@/services/notion/types/block";
+import { ExtendBlock } from "@/services/notion/types";
 
 export const Video = ({
   block,

@@ -1,5 +1,5 @@
 import { PageMeta } from "@/services/notion/types";
-import styles from "@/styles/posts.module.scss";
+import styles from "@/styles/components/posts.module.scss";
 import dayjs from "dayjs";
 import Link from "next/link";
 import { NewLineAppliedText } from "./newlinetext";

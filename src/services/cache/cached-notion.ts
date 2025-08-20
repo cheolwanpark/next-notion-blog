@@ -3,7 +3,7 @@
 import { query } from '@/services/notion/query'
 import { getBlocks } from '@/services/notion/block'
 import { PageMeta, QueryResult } from '@/services/notion/types'
-import { BlockWithChildren } from '@/services/notion/types/block'
+import { BlockWithChildren } from '@/services/notion/types'
 import { createCachedFunction, cacheConfig } from './cache'
 
 /**

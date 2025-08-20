@@ -2,7 +2,7 @@
 
 import { useReportWebVitals } from 'next/web-vitals'
 
-export function WebVitals() {
+export const WebVitals = () => {
   useReportWebVitals((metric) => {
     // Log to console for development
     console.log(metric)

@@ -1,4 +1,4 @@
-import { ExtendBlock } from "@/services/notion/types/block";
+import { ExtendBlock } from "@/services/notion/types";
 import styles from "@/styles/notion/components.module.scss";
 import { DividerBlockObjectResponse } from "@notionhq/client/build/src/api-endpoints";
 

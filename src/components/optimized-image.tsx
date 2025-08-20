@@ -19,7 +19,7 @@ interface OptimizedImageProps {
   onError?: () => void
 }
 
-export function OptimizedImage({
+export const OptimizedImage = ({
   src,
   alt,
   width,
@@ -33,7 +33,7 @@ export function OptimizedImage({
   style,
   onLoad,
   onError,
-}: OptimizedImageProps) {
+}: OptimizedImageProps) => {
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(false)
 
@@ -112,7 +112,7 @@ export function OptimizedImage({
 }
 
 // Hero image component with priority loading
-export function HeroImage({ 
+export const HeroImage = ({ 
   src, 
   alt, 
   className,
@@ -122,7 +122,7 @@ export function HeroImage({
   alt: string
   className?: string
   style?: React.CSSProperties
-}) {
+}) => {
   return (
     <OptimizedImage
       src={src}
@@ -141,7 +141,7 @@ export function HeroImage({
 }
 
 // Post thumbnail with optimized loading
-export function PostThumbnail({
+export const PostThumbnail = ({
   src,
   alt,
   width = 400,
@@ -153,7 +153,7 @@ export function PostThumbnail({
   width?: number
   height?: number
   className?: string
-}) {
+}) => {
   return (
     <OptimizedImage
       src={src}

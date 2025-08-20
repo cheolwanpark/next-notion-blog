@@ -11,7 +11,7 @@ import { useDarkMode } from "@/components/providers";
 import { RichText } from "./richtext";
 import copy from "clipboard-copy";
 import dynamic from "next/dynamic";
-import { ExtendBlock } from "@/services/notion/types/block";
+import { ExtendBlock } from "@/services/notion/types";
 
 const CodeImpl = ({
   block,

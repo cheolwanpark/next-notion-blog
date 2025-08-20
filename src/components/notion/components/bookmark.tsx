@@ -1,7 +1,7 @@
 import {
   BookmarkBlockExtended,
   ExtendBlock,
-} from "@/services/notion/types/block";
+} from "@/services/notion/types";
 import styles from "@/styles/notion/components.module.scss";
 import Link from "next/link";
 import { RichText } from "./richtext";
