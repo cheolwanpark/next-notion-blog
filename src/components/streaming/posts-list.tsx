@@ -8,12 +8,4 @@ export async function PostsList() {
   const { posts, tags, stats } = await getAllPostsPageData()
 
   return <DynamicSearch posts={posts} size={config.postsPerPage} />
-  
-  // Future enhancement: could show tag filters or stats
-  // return (
-  //   <div>
-  //     <div>Total posts: {stats.totalPosts}</div>
-  //     <DynamicSearch posts={posts} size={config.postsPerPage} />
-  //   </div>
-  // )
 }

@@ -1,5 +1,5 @@
 import { config } from "@/config";
-import { ThemeToggleWrapper } from "@/components/theme-toggle-wrapper";
+import { SimpleThemeToggle } from "@/components/simple-theme-toggle";
 import Link from "next/link";
 import styles from "@/styles/navigation.module.scss";
 import classNames from "classnames";
@@ -26,7 +26,7 @@ export const Navigation = () => {
           </Link>
         </li>
         <li style={{ position: 'relative' }}>
-          <ThemeToggleWrapper />
+          <SimpleThemeToggle />
         </li>
       </ul>
     </nav>

@@ -1,6 +1,20 @@
 import { siteConfig } from "../../site.config";
-import { giscusConfig } from "./giscus";
-import { notionConfig } from "./notion";
+
+// Notion configuration
+const notionConfig = {
+  apiToken: process.env["NOTION_API_TOKEN"] || null,
+  databaseID: siteConfig.databseID,
+};
+
+// Giscus configuration
+const giscusConfig = siteConfig.giscus
+  ? {
+      repo: siteConfig.giscus.repo,
+      repoID: siteConfig.giscus.repoID,
+      category: siteConfig.giscus.category,
+      categoryID: siteConfig.giscus.categoryID,
+    }
+  : undefined;
 
 export const config = {
   blogTitle: siteConfig.blogTitle,

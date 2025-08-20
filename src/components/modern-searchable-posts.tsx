@@ -5,7 +5,7 @@ import { useOptimistic, useDeferredValue, useActionState } from 'react'
 import { useFormStatus } from 'react-dom'
 import { useRouter, useSearchParams, usePathname } from "next/navigation"
 import { useRef, useCallback, useEffect, startTransition } from "react"
-import { Posts } from "./posts"
+import { PostsServer } from "./posts-server"
 import { searchPosts } from "@/app/actions/search"
 import styles from "@/styles/posts.module.scss"
 
@@ -216,7 +216,7 @@ export const ModernSearchablePosts = ({
       )}
 
       {/* Display posts with pagination */}
-      <Posts posts={optimisticState.posts} size={size} />
+      <PostsServer posts={optimisticState.posts} size={size} currentPage={0} />
     </>
   )
 }

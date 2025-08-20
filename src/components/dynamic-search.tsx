@@ -2,7 +2,7 @@
 
 import dynamic from 'next/dynamic'
 import { PageMeta } from "@/services/notion/types"
-import { Posts } from "./posts"
+import { PostsServer } from "./posts-server"
 
 // Dynamically import ModernSearchablePosts with lazy loading
 const ModernSearchablePosts = dynamic(
@@ -24,7 +24,7 @@ const ModernSearchablePosts = dynamic(
         }}>
           Loading search...
         </div>
-        <Posts posts={[]} size={0} />
+        <PostsServer posts={[]} size={0} currentPage={0} />
       </div>
     ),
     ssr: false, // Search doesn't need SSR - interactive component
