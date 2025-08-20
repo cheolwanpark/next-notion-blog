@@ -6,7 +6,6 @@ import "@/services/dayjs"
 
 import { Analytics } from "@vercel/analytics/react"
 import classNames from "classnames"
-import { cookies } from "next/headers"
 import Script from "next/script"
 
 import { Navigation } from "@/components/navigation"
@@ -54,59 +53,38 @@ export const metadata = {
   },
 }
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-  // Get theme from cookies for server-side rendering
-  const cookieStore = await cookies()
-  const theme = cookieStore.get("theme")?.value || "light"
 
   return (
-    <html lang="ko" className={NotoSansKR.className} data-theme={theme}>
+    <html lang="ko" className={NotoSansKR.className} suppressHydrationWarning>
       <head>
         <Script
           id="prevent-flash"
           strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
             __html: `
-              function isPreferColorSchemeIsDark() {
-                return (
-                  window.matchMedia &&
-                  window.matchMedia("(prefers-color-scheme: dark)").matches
-                );
-              }
-              function haveSetDarkMode() {
-                const theme = document.cookie
-                  .split('; ')
-                  .find(row => row.startsWith('theme='))
-                  ?.split('=')[1];
-                if (!theme && !localStorage.getItem("mode")) {
-                  return isPreferColorSchemeIsDark();
+              (function() {
+                function getDarkMode() {
+                  var stored = localStorage.getItem("mode");
+                  if (stored) {
+                    return stored === "dark";
+                  }
+                  return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
                 }
-                return (theme || localStorage.getItem("mode")) === "dark";
-              }
-              if (haveSetDarkMode()) {
-                if (document.documentElement.getAttribute("data-theme") !== "dark") {
-                  document.documentElement.setAttribute("data-theme", "dark");
-                }
-                if (document.body.getAttribute("data-theme") !== "dark") {
-                  document.body.setAttribute("data-theme", "dark");
-                }
-              } else {
-                if (document.documentElement.getAttribute("data-theme") !== "light") {
-                  document.documentElement.setAttribute("data-theme", "light");
-                }
-                if (document.body.getAttribute("data-theme") !== "light") {
-                  document.body.setAttribute("data-theme", "light");
-                }
-              }
+                
+                var isDark = getDarkMode();
+                var theme = isDark ? "dark" : "light";
+                document.documentElement.setAttribute("data-theme", theme);
+              })();
             `,
           }}
         />
       </head>
-      <body className="body" data-theme={theme}>
+      <body className="body" suppressHydrationWarning>
         <DarkModeProvider>
           <div className={NotoSansKR.className}>
             <WebVitals />

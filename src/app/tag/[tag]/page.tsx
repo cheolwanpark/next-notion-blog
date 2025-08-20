@@ -12,15 +12,20 @@ interface TagPageProps {
 export async function generateStaticParams() {
   try {
     const tags = await getCachedAllTags()
+    console.log(`Generated static params for ${tags.length} tags`)
     
     return tags.map((tag) => ({
       tag: tag,
     }))
   } catch (error) {
-    console.warn('Failed to generate static params for tags:', error)
+    console.error('Failed to generate static params for tags:', error)
+    // Return empty array but allow dynamic params
     return []
   }
 }
+
+// Allow dynamic params for tags not pre-generated
+export const dynamicParams = true
 
 // Generate metadata for tag pages
 export async function generateMetadata({ params }: TagPageProps) {

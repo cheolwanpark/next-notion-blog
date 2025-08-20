@@ -1,15 +1,10 @@
-'use client'
-
 import { config } from "@/config";
-import { useDarkMode } from "@/components/providers";
-import { ModernThemeToggle } from "@/components/modern-theme-toggle";
+import { ThemeToggleWrapper } from "@/components/theme-toggle-wrapper";
 import Link from "next/link";
 import styles from "@/styles/navigation.module.scss";
 import classNames from "classnames";
 
 export const Navigation = () => {
-  const { isDarkMode } = useDarkMode();
-  
   return (
     <nav className={classNames("container", styles.navigation)}>
       <ul>
@@ -31,7 +26,7 @@ export const Navigation = () => {
           </Link>
         </li>
         <li style={{ position: 'relative' }}>
-          <ModernThemeToggle initialTheme={isDarkMode === true ? 'dark' : 'light'} />
+          <ThemeToggleWrapper />
         </li>
       </ul>
     </nav>

@@ -16,14 +16,19 @@ export async function generateStaticParams() {
   try {
     // Get all posts for static generation
     const posts = await getAllPages()
+    console.log(`Generated static params for ${posts.length} posts`)
     return posts.map((post) => ({
       path: post.path,
     }))
   } catch (error) {
-    console.warn('Failed to generate static params for posts:', error)
+    console.error('Failed to generate static params for posts:', error)
+    // Return empty array but allow dynamic params
     return []
   }
 }
+
+// Allow dynamic params for posts not pre-generated
+export const dynamicParams = true
 
 // Generate metadata dynamically for each post
 export async function generateMetadata({ params }: PageProps) {

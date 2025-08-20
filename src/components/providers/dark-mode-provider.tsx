@@ -1,6 +1,6 @@
 'use client'
 
-import { createContext, useContext, useEffect, useState } from 'react'
+import { createContext, useContext, useEffect, useLayoutEffect, useState } from 'react'
 
 interface DarkModeContextType {
   isDarkMode: boolean | null
@@ -24,17 +24,18 @@ export function DarkModeProvider({ children }: DarkModeProviderProps) {
   const setMode = (val: boolean) => {
     _setMode(val)
     const theme = val ? "dark" : "light"
-    document.body.setAttribute("data-theme", theme)
-    document.cookie = `theme=${theme}; path=/; max-age=31536000` // 1 year
+    document.documentElement.setAttribute("data-theme", theme)
     localStorage.setItem("mode", theme)
   }
 
-  useEffect(() => {
-    // Get initial theme from body attribute (set by script in layout)
-    const bodyTheme = document.body.getAttribute("data-theme")
-    const isBodyDarkTheme = bodyTheme !== null && bodyTheme === "dark"
-    _setMode(isBodyDarkTheme)
+  useLayoutEffect(() => {
+    // Get initial theme from html attribute (set by script in layout)
+    const htmlTheme = document.documentElement.getAttribute("data-theme")
+    const isHtmlDarkTheme = htmlTheme === "dark"
+    _setMode(isHtmlDarkTheme)
+  }, [])
 
+  useEffect(() => {
     // Listen for system theme changes
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)")
     const handleChange = (event: MediaQueryListEvent) => {
