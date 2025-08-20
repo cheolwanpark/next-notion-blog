@@ -66,83 +66,78 @@ async function loadLanguage(language: string): Promise<void> {
   }
 
   try {
-    // Dynamic import based on language
-    const loadModule = async (modulePath: string) => {
-      await import(/* webpackChunkName: "prism-[request]" */ modulePath);
-    };
-
     switch (language) {
       // Web languages
       case 'css':
-        await loadModule("prismjs/components/prism-css.js");
+        await import(/* webpackChunkName: "prism-css" */ "prismjs/components/prism-css.js");
         break;
       case 'scss':
-        await loadModule("prismjs/components/prism-scss.js");
+        await import(/* webpackChunkName: "prism-scss" */ "prismjs/components/prism-scss.js");
         break;
       case 'sass':
-        await loadModule("prismjs/components/prism-sass.js");
+        await import(/* webpackChunkName: "prism-sass" */ "prismjs/components/prism-sass.js");
         break;
       case 'markdown':
-        await loadModule("prismjs/components/prism-markdown.js");
+        await import(/* webpackChunkName: "prism-markdown" */ "prismjs/components/prism-markdown.js");
         break;
       case 'yaml':
-        await loadModule("prismjs/components/prism-yaml.js");
+        await import(/* webpackChunkName: "prism-yaml" */ "prismjs/components/prism-yaml.js");
         break;
         
       // System languages
       case 'c':
-        await loadModule("prismjs/components/prism-c.js");
+        await import(/* webpackChunkName: "prism-c" */ "prismjs/components/prism-c.js");
         break;
       case 'cpp':
-        await loadModule("prismjs/components/prism-cpp.js");
+        await import(/* webpackChunkName: "prism-cpp" */ "prismjs/components/prism-cpp.js");
         break;
       case 'java':
-        await loadModule("prismjs/components/prism-java.js");
+        await import(/* webpackChunkName: "prism-java" */ "prismjs/components/prism-java.js");
         break;
       case 'python':
-        await loadModule("prismjs/components/prism-python.js");
+        await import(/* webpackChunkName: "prism-python" */ "prismjs/components/prism-python.js");
         break;
       case 'go':
-        await loadModule("prismjs/components/prism-go.js");
+        await import(/* webpackChunkName: "prism-go" */ "prismjs/components/prism-go.js");
         break;
       case 'rust':
-        await loadModule("prismjs/components/prism-rust.js");
+        await import(/* webpackChunkName: "prism-rust" */ "prismjs/components/prism-rust.js");
         break;
       case 'swift':
-        await loadModule("prismjs/components/prism-swift.js");
+        await import(/* webpackChunkName: "prism-swift" */ "prismjs/components/prism-swift.js");
         break;
         
       // DevOps languages
       case 'docker':
-        await loadModule("prismjs/components/prism-docker.js");
+        await import(/* webpackChunkName: "prism-docker" */ "prismjs/components/prism-docker.js");
         break;
       case 'makefile':
-        await loadModule("prismjs/components/prism-makefile.js");
+        await import(/* webpackChunkName: "prism-makefile" */ "prismjs/components/prism-makefile.js");
         break;
       case 'git':
-        await loadModule("prismjs/components/prism-git.js");
+        await import(/* webpackChunkName: "prism-git" */ "prismjs/components/prism-git.js");
         break;
         
       // Specialized languages
       case 'csharp':
-        await loadModule("prismjs/components/prism-csharp.js");
+        await import(/* webpackChunkName: "prism-csharp" */ "prismjs/components/prism-csharp.js");
         break;
       case 'objectivec':
-        await loadModule("prismjs/components/prism-objectivec.js");
+        await import(/* webpackChunkName: "prism-objectivec" */ "prismjs/components/prism-objectivec.js");
         break;
       case 'graphql':
-        await loadModule("prismjs/components/prism-graphql.js");
+        await import(/* webpackChunkName: "prism-graphql" */ "prismjs/components/prism-graphql.js");
         break;
       case 'sql':
-        await loadModule("prismjs/components/prism-sql.js");
+        await import(/* webpackChunkName: "prism-sql" */ "prismjs/components/prism-sql.js");
         break;
       case 'wasm':
-        await loadModule("prismjs/components/prism-wasm.js");
+        await import(/* webpackChunkName: "prism-wasm" */ "prismjs/components/prism-wasm.js");
         break;
         
       // Template dependencies
       case 'js-templates':
-        await loadModule("prismjs/components/prism-js-templates.js");
+        await import(/* webpackChunkName: "prism-js-templates" */ "prismjs/components/prism-js-templates.js");
         break;
         
       default:
