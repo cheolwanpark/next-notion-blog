@@ -30,6 +30,8 @@ const nextConfig = {
   },
   sassOptions: {
     includePaths: [path.join(__dirname, "src/styles")],
+    quietDeps: true, // Suppress deprecation warnings from dependencies
+    silenceDeprecations: ["import", "legacy-js-api", "global-builtin"], // Silence all Sass deprecation warnings
   },
 };
 

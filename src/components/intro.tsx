@@ -9,17 +9,15 @@ export const Intro = () => {
       <hgroup>
         <h1>{config.blogTitle}</h1>
         <h2>
-          안녕하세요 👋
+          Hello! 👋
           <br />
-          코딩빌런의 개발 블로그입니다.
+          Welcome to my development blog.
           <br />
-          렌더링과 머신러닝, 웹 등 다양한 분야에 관심을 가지고 공부하고
-          있습니다.
+          I'm passionate about AI, Agents, Rendering, and Distributed Systems.
           <br />
-          이 블로그에는 공부하거나 개발하면서 정리할 필요를 느낀 내용들을 작성할
-          예정입니다.
+          This blog is where I share knowledge worth organizing and insights worth spreading.
           <br />
-          이곳에 있는 글이 여러분에게 도움이 된다면 좋겠습니다 😊
+          I hope you find it helpful! 😊
         </h2>
       </hgroup>
       <ul className={styles.contacts}>
