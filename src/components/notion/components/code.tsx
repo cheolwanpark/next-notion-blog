@@ -5,6 +5,7 @@ import styles from "@/styles/notion/components.module.scss";
 import { plainText } from "@/services/notion/utils";
 import { createElement, useEffect, useRef, useState } from "react";
 import { highlightElement } from "prismjs";
+import { loadLanguage } from "@/services/prism-optimized";
 import { BsClipboard, BsClipboardCheck } from "react-icons/bs";
 import classNames from "classnames";
 import { useDarkMode } from "@/components/providers";
@@ -23,10 +24,17 @@ const CodeImpl = ({
 
   const codeRef = useRef(null);
   useEffect(() => {
-    if (codeRef.current) {
-      highlightElement(codeRef.current);
-    }
-  }, [codeRef]);
+    const highlight = async () => {
+      if (codeRef.current) {
+        const language = block.code.language;
+        // Wait for language grammar to load before highlighting
+        await loadLanguage(language);
+        highlightElement(codeRef.current);
+      }
+    };
+    
+    highlight();
+  }, [codeRef, block.code.language]);
 
   const [isCopied, setCopied] = useState(false);
   const copyTimeout = useRef<number | null>(null);

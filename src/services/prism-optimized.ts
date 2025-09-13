@@ -60,7 +60,7 @@ const specializedLanguages = [
 const loadedLanguages = new Set<string>(commonLanguages);
 
 // Language loader function with TypeScript compatibility
-async function loadLanguage(language: string): Promise<void> {
+export async function loadLanguage(language: string): Promise<void> {
   if (loadedLanguages.has(language)) {
     return;
   }
