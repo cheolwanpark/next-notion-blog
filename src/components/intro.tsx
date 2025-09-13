@@ -13,7 +13,7 @@ export const Intro = () => {
           <br />
           Welcome to my development blog.
           <br />
-          I'm passionate about AI, Agents, Rendering, and Distributed Systems.
+          I&apos;m passionate about AI, Agents, Rendering, and Distributed Systems.
           <br />
           This blog is where I share knowledge worth organizing and insights worth spreading.
           <br />

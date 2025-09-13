@@ -31,6 +31,7 @@ export async function GET(req: NextRequest) {
             justifyContent: "center",
           }}
         >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             alt="BlogIcon"
             height={300}
